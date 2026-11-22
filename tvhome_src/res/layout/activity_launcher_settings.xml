@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="#ff080b10" android:paddingTop="34.0dp" android:paddingBottom="34.0dp" android:layout_width="match_parent" android:layout_height="match_parent" android:paddingStart="52.0dp" android:paddingEnd="52.0dp"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="20.0dp">
+        <LinearLayout android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content">
+            <TextView android:textSize="12.0sp" android:textColor="#7a8b9e" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="SETTINGS" android:fontFamily="@string/font_medium" android:letterSpacing="0.08" />
+            <TextView android:textSize="32.0sp" android:textColor="#ffffffff" android:id="@id/settingsTitle" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="2.0dp" android:text="Settings" android:fontFamily="@string/font_medium" />
+        </LinearLayout>
+        <TextView android:textSize="13.0sp" android:textColor="#ccffffff" android:id="@id/tvModelBadge" android:background="@drawable/pill_bg" android:paddingTop="7.0dp" android:paddingBottom="7.0dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Xiaomi Smart TV · tvOS Hub" android:layout_centerVertical="true" android:fontFamily="@string/font_medium" android:paddingStart="16.0dp" android:paddingEnd="16.0dp" android:layout_alignParentEnd="true" />
+    </RelativeLayout>
+    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="match_parent">
+        <ScrollView android:id="@id/sidebarScroll" android:scrollbars="none" android:layout_width="300.0dp" android:layout_height="match_parent">
+            <LinearLayout android:orientation="vertical" android:id="@id/categoryContainer" android:layout_width="match_parent" android:layout_height="wrap_content">
+                <TextView android:id="@id/tabGeneral" android:text="General" android:drawableStart="@drawable/ic_settings" style="@style/AppleTab" />
+                <TextView android:id="@id/tabDisplaySound" android:text="Display &amp; Sound" android:drawableStart="@drawable/ic_picture" style="@style/AppleTab" />
+                <TextView android:id="@id/tabNetwork" android:text="Network" android:drawableStart="@drawable/ic_wifi" style="@style/AppleTab" />
+                <TextView android:id="@id/tabHomeScreen" android:text="Home &amp; Dock" android:drawableStart="@drawable/ic_apps" style="@style/AppleTab" />
+                <TextView android:id="@id/tabWallpapers" android:text="Wallpapers &amp; Style" android:drawableStart="@drawable/ic_wallpaper" style="@style/AppleTab" />
+                <TextView android:id="@id/tabSamsung" android:text="Samsung Smart Hub" android:drawableStart="@drawable/ic_gamepad" style="@style/AppleTab" />
+            </LinearLayout>
+        </ScrollView>
+        <View android:background="#1fffffff" android:layout_width="1.0dp" android:layout_height="match_parent" android:layout_marginStart="28.0dp" android:layout_marginEnd="28.0dp" />
+        <FrameLayout android:id="@id/contentContainer" android:layout_width="0.0dp" android:layout_height="match_parent" android:layout_weight="1.0">
+            <ScrollView android:id="@id/paneGeneral" android:visibility="visible" android:scrollbars="none" android:layout_width="match_parent" android:layout_height="match_parent">
+                <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+                    <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:background="@drawable/apple_card_bg" android:paddingTop="12.0dp" android:paddingBottom="12.0dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="12.0dp" android:minHeight="64.0dp" android:paddingStart="18.0dp" android:paddingEnd="18.0dp">
+                        <ImageView android:layout_width="26.0dp" android:layout_height="26.0dp" android:src="@drawable/ic_device_info" android:tint="#ffffffff" />
+                        <LinearLayout android:orientation="vertical" android:layout_width="0.0dp" android:layout_height="wrap_content" android:layout_weight="1.0" android:layout_marginStart="14.0dp">
+                            <TextView android:textSize="17.0sp" android:textColor="@color/apple_card_text" android:id="@id/deviceModelText" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Xiaomi Smart TV" android:fontFamily="@string/font_medium" />
+                            <TextView android:textSize="13.0sp" android:textColor="@color/apple_card_subtext" android:id="@id/deviceDetailsText" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="2.0dp" android:text="MiTV-MOOR0 · Android 11 (API 30)" />
+                        </LinearLayout>
+                    </LinearLayout>
+                    <RelativeLayout android:id="@id/generalTvSettingsChoice" style="@style/AppleCard">
+                        <ImageView android:id="@id/iconGen1" android:duplicateParentState="true" android:layout_width="22.0dp" android:layout_height="22.0dp" android:src="@drawable/ic_settings" android:tint="@color/apple_card_text" android:layout_centerVertical="true" />
+                        <LinearLayout android:orientation="vertical" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerVertical="true" android:layout_marginStart="14.0dp" android:layout_toEndOf="@id/iconGen1">
+                            <TextView android:textSize="16.0sp" android:textColor="@color/apple_card_text" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/tv_settings" android:fontFamily="@string/font_medium" />
+                            <TextView android:textSize="13.0sp" android:textColor="@color/apple_card_subtext" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="2.0dp" android:text="Open full Android TV system preferences" />
+                        </LinearLayout>
+                        <ImageView android:duplicateParentState="true" android:layout_width="18.0dp" android:layout_height="18.0dp" android:src="@drawable/ic_chevron_right" android:tint="@color/apple_card_subtext" android:layout_centerVertical="true" android:layout_alignParentEnd="true" />
+                    </RelativeLayout>
+                    <RelativeLayout android:id="@id/generalAppsChoice" style="@style/AppleCard">
+                        <ImageView android:id="@id/iconGen2" android:duplicateParentState="true" android:layout_width="22.0dp" android:layout_height="22.0dp" android:src="@drawable/ic_apps" android:tint="@color/apple_card_text" android:layout_centerVertical="true" />
+                        <LinearLayout android:orientation="vertical" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerVertical="true" android:layout_marginStart="14.0dp" android:layout_toEndOf="@id/iconGen2">
+                            <TextView android:textSize="16.0sp" android:textColor="@color/apple_card_text" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Apps &amp; Permissions" android:fontFamily="@string/font_medium" />
+                            <TextView android:textSize="13.0sp" android:textColor="@color/apple_card_subtext" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="2.0dp" android:text="Manage installed apps, permissions and storage" />
+                        </LinearLayout>
+                        <ImageView android:duplicateParentState="true" android:layout_width="18.0dp" android:layout_height="18.0dp" android:src="@drawable/ic_chevron_right" android:tint="@color/apple_card_subtext" android:layout_centerVertical="true" android:layout_alignParentEnd="true" />
+                    </RelativeLayout>
+                    <RelativeLayout android:id="@id/defaultHomeChoice" style="@style/AppleCard">
+                        <ImageView android:id="@id/iconGen3" android:duplicateParentState="true" android:layout_width="22.0dp" android:layout_height="22.0dp" android:src="@drawable/ic_home_settings" android:tint="@color/apple_card_text" android:layout_centerVertical="true" />
+                        <LinearLayout android:orientation="vertical" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerVertical="true" android:layout_marginStart="14.0dp" android:layout_toEndOf="@id/iconGen3">
+                            <TextView android:textSize="16.0sp" android:textColor="@color/apple_card_text" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/home_settings" android:fontFamily="@string/font_medium" />
+                            <TextView android:textSize="13.0sp" android:textColor="@color/apple_card_subtext" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="2.0dp" android:text="Choose your preferred default TV launcher" />
+                        </LinearLayout>
+                        <ImageView android:duplicateParentState="true" android:layout_width="18.0dp" android:layout_height="18.0dp" android:src="@drawable/ic_chevron_right" android:tint="@color/apple_card_subtext" android:layout_centerVertical="true" android:layout_alignParentEnd="true" />
+                    </RelativeLayout>
+                    <RelativeLayout android:id="@id/generalAboutChoice" style="@style/AppleCard">
+                        <ImageView android:id="@id/iconGen4" android:duplicateParentState="true" android:layout_width="22.0dp" android:layout_height="22.0dp" android:src="@drawable/ic_home_settings" android:tint="@color/apple_card_text" android:layout_centerVertical="true" />
+                        <LinearLayout android:orientation="vertical" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerVertical="true" android:layout_marginStart="14.0dp" android:layout_toEndOf="@id/iconGen4">
+                            <TextView android:textSize="16.0sp" android:textColor="@color/apple_card_text" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="CleanYourTV Launcher" android:fontFamily="@string/font_medium" />
+                            <TextView android:textSize="13.0sp" android:textColor="@color/apple_card_subtext" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="2.0dp" android:text="v1.5.3 · Your TV, minus the ads" />
+                        </LinearLayout>
+                    </RelativeLayout>
+                </LinearLayout>
+            </ScrollView>
+            <ScrollView android:id="@id/paneDisplaySound" android:visibility="gone" android:scrollbars="none" android:layout_width="match_parent" android:layout_height="match_parent">
+                <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+                    <RelativeLayout android:id="@id/displayPictureChoice" style="@style/AppleCard">
+                        <ImageView android:id="@id/iconDS1" android:duplicateParentState="true" android:layout_width="22.0dp" android:layout_height="22.0dp" android:src="@drawable/ic_picture" android:tint="@color/apple_card_text" android:layout_centerVertical="true" />
+                        <LinearLayout android:orientation="vertical" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerVertical="true" android:layout_marginStart="14.0dp" android:layout_toEndOf="@id/iconDS1">
+                            <TextView android:textSize="16.0sp" android:textColor="@color/apple_card_text" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Picture &amp; Display" android:fontFamily="@string/font_medium" />
+                            <TextView android:textSize="13.0sp" android:textColor="@color/apple_card_subtext" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="2.0dp" android:text="Picture modes, backlight, contrast &amp; color tuning" />
+                        </LinearLayout>
+                        <ImageView android:duplicateParentState="true" android:layout_width="18.0dp" android:layout_height="18.0dp" android:src="@drawable/ic_chevron_right" android:tint="@color/apple_card_subtext" android:layout_centerVertical="true" android:layout_alignParentEnd="true" />
+                    </RelativeLayout>
+                    <RelativeLayout android:id="@id/displaySoundChoice" style="@style/AppleCard">
+                        <ImageView android:id="@id/iconDS2" android:duplicateParentState="true" android:layout_width="22.0dp" android:layout_height="22.0dp" android:src="@drawable/ic_sound" android:tint="@color/apple_card_text" android:layout_centerVertical="true" />
+                        <LinearLayout android:orientation="vertical" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerVertical="true" android:layout_marginStart="14.0dp" android:layout_toEndOf="@id/iconDS2">
+                            <TextView android:textSize="16.0sp" android:textColor="@color/apple_card_text" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Sound &amp; Audio" android:fontFamily="@string/font_medium" />
+                            <TextView android:textSize="13.0sp" android:textColor="@color/apple_card_subtext" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="2.0dp" android:text="Audio outputs, Dolby sound &amp; speaker modes" />
+                        </LinearLayout>
+                        <ImageView android:duplicateParentState="true" android:layout_width="18.0dp" android:layout_height="18.0dp" android:src="@drawable/ic_chevron_right" android:tint="@color/apple_card_subtext" android:layout_centerVertical="true" android:layout_alignParentEnd="true" />
+                    </RelativeLayout>
+                    <RelativeLayout android:id="@id/displayInputsChoice" style="@style/AppleCard">
+                        <ImageView android:id="@id/iconDS3" android:duplicateParentState="true" android:layout_width="22.0dp" android:layout_height="22.0dp" android:src="@drawable/ic_input" android:tint="@color/apple_card_text" android:layout_centerVertical="true" />
+                        <LinearLayout android:orientation="vertical" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerVertical="true" android:layout_marginStart="14.0dp" android:layout_toEndOf="@id/iconDS3">
+                            <TextView android:textSize="16.0sp" android:textColor="@color/apple_card_text" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Inputs Switcher" android:fontFamily="@string/font_medium" />
+                            <TextView android:textSize="13.0sp" android:textColor="@color/apple_card_subtext" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="2.0dp" android:text="Switch to HDMI 1, HDMI 2 (eARC), HDMI 3 or AV" />
+                        </LinearLayout>
+                        <ImageView android:duplicateParentState="true" android:layout_width="18.0dp" android:layout_height="18.0dp" android:src="@drawable/ic_chevron_right" android:tint="@color/apple_card_subtext" android:layout_centerVertical="true" android:layout_alignParentEnd="true" />
+                    </RelativeLayout>
+                    <RelativeLayout android:id="@id/displayAnimationScaleChoice" style="@style/AppleCard">
+                        <ImageView android:id="@id/iconDS4" android:duplicateParentState="true" android:layout_width="22.0dp" android:layout_height="22.0dp" android:src="@drawable/ic_picture" android:tint="@color/apple_card_text" android:layout_centerVertical="true" />
+                        <LinearLayout android:orientation="vertical" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerVertical="true" android:layout_marginStart="14.0dp" android:layout_toEndOf="@id/iconDS4">
+                            <TextView android:textSize="16.0sp" android:textColor="@color/apple_card_text" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="UI Animation Speed" android:fontFamily="@string/font_medium" />
+                            <TextView android:textSize="13.0sp" android:textColor="@color/apple_card_subtext" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="2.0dp" android:text="Toggles window &amp; transition animation scale" />
+                        </LinearLayout>
+                        <TextView android:textSize="12.0sp" android:textColor="@color/apple_card_text" android:id="@id/animScaleBadge" android:background="@drawable/apple_badge_bg" android:paddingTop="6.0dp" android:paddingBottom="6.0dp" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="0.5x Snappy" android:layout_centerVertical="true" android:fontFamily="@string/font_medium" android:paddingStart="14.0dp" android:paddingEnd="14.0dp" android:layout_alignParentEnd="true" />
+                    </RelativeLayout>
+                </LinearLayout>
+            </ScrollView>
+            <ScrollView android:id="@id/paneNetwork" android:visibility="gone" android:scrollbars="none" android:layout_width="match_parent" android:layout_height="match_parent">
+                <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+                    <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:background="@drawable/apple_card_bg" android:paddingTop="12.0dp" android:paddingBottom="12.0dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="12.0dp" android:minHeight="64.0dp" android:paddingStart="18.0dp" android:paddingEnd="18.0dp">
+                        <ImageView android:layout_width="26.0dp" android:layout_height="26.0dp" android:src="@drawable/ic_wifi" android:tint="#30d158" />
+                        <LinearLayout android:orientation="vertical" android:layout_width="0.0dp" android:layout_height="wrap_content" android:layout_weight="1.0" android:layout_marginStart="14.0dp">
+                            <TextView android:textSize="17.0sp" android:textColor="@color/apple_card_text" android:id="@id/networkStatusTitle" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Wi-Fi Connected" android:fontFamily="@string/font_medium" />
+                            <TextView android:textSize="13.0sp" android:textColor="@color/apple_card_subtext" android:id="@id/networkStatusSubtext" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="2.0dp" android:text="IP: 192.168.1.3 · Status: Active" />
+                        </LinearLayout>
+                    </LinearLayout>
+                    <RelativeLayout android:id="@id/networkWifiSettingsChoice" style="@style/AppleCard">
+                        <ImageView android:id="@id/iconNet1" android:duplicateParentState="true" android:layout_width="22.0dp" android:layout_height="22.0dp" android:src="@drawable/ic_wifi" android:tint="@color/apple_card_text" android:layout_centerVertical="true" />
+                        <LinearLayout android:orientation="vertical" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerVertical="true" android:layout_marginStart="14.0dp" android:layout_toEndOf="@id/iconNet1">
+                            <TextView android:textSize="16.0sp" android:textColor="@color/apple_card_text" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Wi-Fi Settings" android:fontFamily="@string/font_medium" />
+                            <TextView android:textSize="13.0sp" android:textColor="@color/apple_card_subtext" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="2.0dp" android:text="Connect to wireless networks and configure DNS" />
+                        </LinearLayout>
+                        <ImageView android:duplicateParentState="true" android:layout_width="18.0dp" android:layout_height="18.0dp" android:src="@drawable/ic_chevron_right" android:tint="@color/apple_card_subtext" android:layout_centerVertical="true" android:layout_alignParentEnd="true" />
+                    </RelativeLayout>
+                    <RelativeLayout android:id="@id/networkBluetoothChoice" style="@style/AppleCard">
+                        <ImageView android:id="@id/iconNet2" android:duplicateParentState="true" android:layout_width="22.0dp" android:layout_height="22.0dp" android:src="@drawable/ic_settings" android:tint="@color/apple_card_text" android:layout_centerVertical="true" />
+                        <LinearLayout android:orientation="vertical" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerVertical="true" android:layout_marginStart="14.0dp" android:layout_toEndOf="@id/iconNet2">
+                            <TextView android:textSize="16.0sp" android:textColor="@color/apple_card_text" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Bluetooth &amp; Remotes" android:fontFamily="@string/font_medium" />
+                            <TextView android:textSize="13.0sp" android:textColor="@color/apple_card_subtext" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="2.0dp" android:text="Pair remotes, gamepads, speakers &amp; accessories" />
+                        </LinearLayout>
+                        <ImageView android:duplicateParentState="true" android:layout_width="18.0dp" android:layout_height="18.0dp" android:src="@drawable/ic_chevron_right" android:tint="@color/apple_card_subtext" android:layout_centerVertical="true" android:layout_alignParentEnd="true" />
+                    </RelativeLayout>
+                </LinearLayout>
+            </ScrollView>
+            <ScrollView android:id="@id/paneHomeScreen" android:visibility="gone" android:scrollbars="none" android:layout_width="match_parent" android:layout_height="match_parent">
+                <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+                    <TextView android:textSize="14.0sp" android:textColor="#b0bccc" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="8.0dp" android:text="@string/columns_label" android:fontFamily="@string/font_medium" />
+                    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="18.0dp">
+                        <TextView android:id="@id/columns4" android:text="4" style="@style/ApplePillChoice" />
+                        <TextView android:id="@id/columns5" android:text="5" style="@style/ApplePillChoice" />
+                        <TextView android:id="@id/columns6" android:text="6" style="@style/ApplePillChoice" />
+                        <TextView android:id="@id/columns7" android:text="7" style="@style/ApplePillChoice" />
+                    </LinearLayout>
+                    <TextView android:textSize="14.0sp" android:textColor="#b0bccc" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="8.0dp" android:text="@string/rows_below_dock_label" android:fontFamily="@string/font_medium" />
+                    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="18.0dp">
+                        <TextView android:id="@id/rows0" android:text="0" style="@style/ApplePillChoice" />
+                        <TextView android:id="@id/rows1" android:text="1" style="@style/ApplePillChoice" />
+                        <TextView android:id="@id/rows2" android:text="2" style="@style/ApplePillChoice" />
+                        <TextView android:id="@id/rows3" android:text="3" style="@style/ApplePillChoice" />
+                    </LinearLayout>
+                    <TextView android:textSize="14.0sp" android:textColor="#b0bccc" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="8.0dp" android:text="@string/dock_opacity_label" android:fontFamily="@string/font_medium" />
+                    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="18.0dp">
+                        <TextView android:id="@id/dock100" android:text="100%" style="@style/ApplePillChoice" />
+                        <TextView android:id="@id/dock70" android:text="70%" style="@style/ApplePillChoice" />
+                        <TextView android:id="@id/dock50" android:text="50%" style="@style/ApplePillChoice" />
+                        <TextView android:id="@id/dock30" android:text="30%" style="@style/ApplePillChoice" />
+                    </LinearLayout>
+                    <RelativeLayout android:id="@id/reorderChoice" style="@style/AppleCard">
+                        <ImageView android:id="@id/iconHD1" android:duplicateParentState="true" android:layout_width="22.0dp" android:layout_height="22.0dp" android:src="@drawable/ic_apps" android:tint="@color/apple_card_text" android:layout_centerVertical="true" />
+                        <LinearLayout android:orientation="vertical" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerVertical="true" android:layout_marginStart="14.0dp" android:layout_toEndOf="@id/iconHD1">
+                            <TextView android:textSize="16.0sp" android:textColor="@color/apple_card_text" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/reorder" android:fontFamily="@string/font_medium" />
+                            <TextView android:textSize="13.0sp" android:textColor="@color/apple_card_subtext" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="2.0dp" android:text="Rearrange tiles on the Home screen dock and grid" />
+                        </LinearLayout>
+                        <ImageView android:duplicateParentState="true" android:layout_width="18.0dp" android:layout_height="18.0dp" android:src="@drawable/ic_chevron_right" android:tint="@color/apple_card_subtext" android:layout_centerVertical="true" android:layout_alignParentEnd="true" />
+                    </RelativeLayout>
+                    <RelativeLayout android:id="@id/openOnStartChoice" style="@style/AppleCard">
+                        <ImageView android:id="@id/iconHD2" android:duplicateParentState="true" android:layout_width="22.0dp" android:layout_height="22.0dp" android:src="@drawable/ic_home_settings" android:tint="@color/apple_card_text" android:layout_centerVertical="true" />
+                        <LinearLayout android:orientation="vertical" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerVertical="true" android:layout_marginStart="14.0dp" android:layout_toEndOf="@id/iconHD2">
+                            <TextView android:textSize="16.0sp" android:textColor="@color/apple_card_text" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Open on Start" android:fontFamily="@string/font_medium" />
+                            <TextView android:textSize="13.0sp" android:textColor="@color/apple_card_subtext" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="2.0dp" android:text="App to open automatically once at TV boot" />
+                        </LinearLayout>
+                        <TextView android:textSize="12.0sp" android:textColor="@color/apple_card_text" android:id="@id/openOnStartBadge" android:background="@drawable/apple_badge_bg" android:paddingTop="6.0dp" android:paddingBottom="6.0dp" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Off" android:layout_centerVertical="true" android:fontFamily="@string/font_medium" android:paddingStart="14.0dp" android:paddingEnd="14.0dp" android:layout_alignParentEnd="true" />
+                    </RelativeLayout>
+                </LinearLayout>
+            </ScrollView>
+            <ScrollView android:id="@id/paneWallpapers" android:visibility="gone" android:scrollbars="none" android:layout_width="match_parent" android:layout_height="match_parent">
+                <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+                    <RelativeLayout android:id="@id/wallpaperChoice" style="@style/AppleCard">
+                        <ImageView android:id="@id/iconW1" android:duplicateParentState="true" android:layout_width="22.0dp" android:layout_height="22.0dp" android:src="@drawable/ic_wallpaper" android:tint="@color/apple_card_text" android:layout_centerVertical="true" />
+                        <LinearLayout android:orientation="vertical" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerVertical="true" android:layout_marginStart="14.0dp" android:layout_toEndOf="@id/iconW1">
+                            <TextView android:textSize="16.0sp" android:textColor="@color/apple_card_text" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Wallpaper &amp; Slider" android:fontFamily="@string/font_medium" />
+                            <TextView android:textSize="13.0sp" android:textColor="@color/apple_card_subtext" android:id="@id/wallpaperSubtext" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="2.0dp" android:text="Apple TV dynamic trending show backdrops" />
+                        </LinearLayout>
+                        <ImageView android:duplicateParentState="true" android:layout_width="18.0dp" android:layout_height="18.0dp" android:src="@drawable/ic_chevron_right" android:tint="@color/apple_card_subtext" android:layout_centerVertical="true" android:layout_alignParentEnd="true" />
+                    </RelativeLayout>
+                    <RelativeLayout android:id="@id/animationsChoice" style="@style/AppleCard">
+                        <ImageView android:id="@id/iconW2" android:duplicateParentState="true" android:layout_width="22.0dp" android:layout_height="22.0dp" android:src="@drawable/ic_picture" android:tint="@color/apple_card_text" android:layout_centerVertical="true" />
+                        <LinearLayout android:orientation="vertical" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerVertical="true" android:layout_marginStart="14.0dp" android:layout_toEndOf="@id/iconW2">
+                            <TextView android:textSize="16.0sp" android:textColor="@color/apple_card_text" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Interface Animations" android:fontFamily="@string/font_medium" />
+                            <TextView android:textSize="13.0sp" android:textColor="@color/apple_card_subtext" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="2.0dp" android:text="Smooth tile focus scale and subtle spring motion" />
+                        </LinearLayout>
+                        <TextView android:textSize="12.0sp" android:textColor="@color/apple_card_text" android:id="@id/animationsBadge" android:background="@drawable/apple_badge_bg" android:paddingTop="6.0dp" android:paddingBottom="6.0dp" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="On" android:layout_centerVertical="true" android:fontFamily="@string/font_medium" android:paddingStart="14.0dp" android:paddingEnd="14.0dp" android:layout_alignParentEnd="true" />
+                    </RelativeLayout>
+                    <RelativeLayout android:id="@id/advancedChoice" style="@style/AppleCard">
+                        <ImageView android:id="@id/iconW3" android:duplicateParentState="true" android:layout_width="22.0dp" android:layout_height="22.0dp" android:src="@drawable/ic_picture" android:tint="@color/apple_card_text" android:layout_centerVertical="true" />
+                        <LinearLayout android:orientation="vertical" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerVertical="true" android:layout_marginStart="14.0dp" android:layout_toEndOf="@id/iconW3">
+                            <TextView android:textSize="16.0sp" android:textColor="@color/apple_card_text" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Advanced Blur &amp; Glow" android:fontFamily="@string/font_medium" />
+                            <TextView android:textSize="13.0sp" android:textColor="@color/apple_card_subtext" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="2.0dp" android:text="Frosted glass dock reflections and ambient horizon" />
+                        </LinearLayout>
+                        <TextView android:textSize="12.0sp" android:textColor="@color/apple_card_text" android:id="@id/advancedBadge" android:background="@drawable/apple_badge_bg" android:paddingTop="6.0dp" android:paddingBottom="6.0dp" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="On" android:layout_centerVertical="true" android:fontFamily="@string/font_medium" android:paddingStart="14.0dp" android:paddingEnd="14.0dp" android:layout_alignParentEnd="true" />
+                    </RelativeLayout>
+                    <RelativeLayout android:id="@id/followThemeChoice" style="@style/AppleCard">
+                        <ImageView android:id="@id/iconW4" android:duplicateParentState="true" android:layout_width="22.0dp" android:layout_height="22.0dp" android:src="@drawable/ic_home_settings" android:tint="@color/apple_card_text" android:layout_centerVertical="true" />
+                        <LinearLayout android:orientation="vertical" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerVertical="true" android:layout_marginStart="14.0dp" android:layout_toEndOf="@id/iconW4">
+                            <TextView android:textSize="16.0sp" android:textColor="@color/apple_card_text" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/follow_theme" android:fontFamily="@string/font_medium" />
+                            <TextView android:textSize="13.0sp" android:textColor="@color/apple_card_subtext" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="2.0dp" android:text="Reset on-TV choices back to theme configuration" />
+                        </LinearLayout>
+                        <ImageView android:duplicateParentState="true" android:layout_width="18.0dp" android:layout_height="18.0dp" android:src="@drawable/ic_chevron_right" android:tint="@color/apple_card_subtext" android:layout_centerVertical="true" android:layout_alignParentEnd="true" />
+                    </RelativeLayout>
+                </LinearLayout>
+            </ScrollView>
+            <ScrollView android:id="@id/paneSamsung" android:visibility="gone" android:scrollbars="none" android:layout_width="match_parent" android:layout_height="match_parent">
+                <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+                    <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:background="@drawable/apple_card_bg" android:paddingTop="12.0dp" android:paddingBottom="12.0dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="12.0dp" android:minHeight="64.0dp" android:paddingStart="18.0dp" android:paddingEnd="18.0dp">
+                        <ImageView android:layout_width="26.0dp" android:layout_height="26.0dp" android:src="@drawable/ic_gamepad" android:tint="#ffffffff" />
+                        <LinearLayout android:orientation="vertical" android:layout_width="0.0dp" android:layout_height="wrap_content" android:layout_weight="1.0" android:layout_marginStart="14.0dp">
+                            <TextView android:textSize="17.0sp" android:textColor="@color/apple_card_text" android:id="@id/gameBarDisplayText" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="1920x1080 @ 60.0 Hz · Full HD" android:fontFamily="@string/font_medium" />
+                            <TextView android:textSize="13.0sp" android:textColor="@color/apple_card_subtext" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="2.0dp" android:text="Game Bar · Auto Low Latency (ALLM) Active" />
+                        </LinearLayout>
+                        <TextView android:textSize="12.0sp" android:textColor="@color/apple_card_text" android:background="@drawable/apple_badge_bg" android:paddingTop="4.0dp" android:paddingBottom="4.0dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="60 FPS" android:fontFamily="@string/font_medium" android:paddingStart="10.0dp" android:paddingEnd="10.0dp" />
+                    </LinearLayout>
+                    <RelativeLayout style="@style/AppleCard">
+                        <ImageView android:id="@id/iconSamHdr" android:duplicateParentState="true" android:layout_width="22.0dp" android:layout_height="22.0dp" android:src="@drawable/ic_picture" android:tint="@color/apple_card_text" android:layout_centerVertical="true" />
+                        <LinearLayout android:orientation="vertical" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerVertical="true" android:layout_marginStart="14.0dp" android:layout_toEndOf="@id/iconSamHdr">
+                            <TextView android:textSize="16.0sp" android:textColor="@color/apple_card_text" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="HDR &amp; Color Capabilities" android:fontFamily="@string/font_medium" />
+                            <TextView android:textSize="13.0sp" android:textColor="@color/apple_card_subtext" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="2.0dp" android:text="Dolby Vision · HDR10+ · HLG · HDR10" />
+                        </LinearLayout>
+                        <TextView android:textSize="12.0sp" android:textColor="@color/apple_card_text" android:background="@drawable/apple_badge_bg" android:paddingTop="4.0dp" android:paddingBottom="4.0dp" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="HDR10+" android:layout_centerVertical="true" android:fontFamily="@string/font_medium" android:paddingStart="10.0dp" android:paddingEnd="10.0dp" android:layout_alignParentEnd="true" />
+                    </RelativeLayout>
+                    <RelativeLayout android:id="@id/deviceCareCleanCard" style="@style/AppleCard">
+                        <ImageView android:id="@id/iconSamCare" android:duplicateParentState="true" android:layout_width="22.0dp" android:layout_height="22.0dp" android:src="@drawable/ic_device_care" android:tint="@color/apple_card_text" android:layout_centerVertical="true" />
+                        <LinearLayout android:orientation="vertical" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerVertical="true" android:layout_marginStart="14.0dp" android:layout_toEndOf="@id/iconSamCare">
+                            <TextView android:textSize="16.0sp" android:textColor="@color/apple_card_text" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Samsung Device Care · Clean RAM" android:fontFamily="@string/font_medium" />
+                            <TextView android:textSize="13.0sp" android:textColor="@color/apple_card_subtext" android:id="@id/deviceCareRamSummary" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="2.0dp" android:text="RAM: 910 MB Free · Click to Boost" />
+                        </LinearLayout>
+                        <TextView android:textSize="12.0sp" android:textColor="@color/apple_card_text" android:id="@id/deviceCareBoostBadge" android:background="@drawable/apple_badge_bg" android:paddingTop="5.0dp" android:paddingBottom="5.0dp" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⚡ Boost" android:layout_centerVertical="true" android:fontFamily="@string/font_medium" android:paddingStart="12.0dp" android:paddingEnd="12.0dp" android:layout_alignParentEnd="true" />
+                    </RelativeLayout>
+                    <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:background="@drawable/apple_card_bg" android:paddingTop="12.0dp" android:paddingBottom="12.0dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="12.0dp" android:minHeight="64.0dp" android:paddingStart="18.0dp" android:paddingEnd="18.0dp">
+                        <ImageView android:layout_width="22.0dp" android:layout_height="22.0dp" android:src="@drawable/ic_timer" android:tint="#ffffffff" />
+                        <LinearLayout android:orientation="vertical" android:layout_width="0.0dp" android:layout_height="wrap_content" android:layout_weight="1.0" android:layout_marginStart="14.0dp">
+                            <TextView android:textSize="16.0sp" android:textColor="@color/apple_card_text" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Samsung Sleep Timer" android:fontFamily="@string/font_medium" />
+                            <TextView android:textSize="13.0sp" android:textColor="@color/apple_card_subtext" android:id="@id/sleepTimerStatusText" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="2.0dp" android:text="Auto power off after duration" />
+                        </LinearLayout>
+                        <LinearLayout android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content">
+                            <TextView android:id="@id/sleepChoiceOff" android:text="Off" style="@style/ApplePillChoice" />
+                            <TextView android:id="@id/sleepChoice15" android:text="15m" style="@style/ApplePillChoice" />
+                            <TextView android:id="@id/sleepChoice30" android:text="30m" style="@style/ApplePillChoice" />
+                            <TextView android:id="@id/sleepChoice60" android:text="60m" style="@style/ApplePillChoice" />
+                            <TextView android:id="@id/sleepChoice120" android:text="120m" style="@style/ApplePillChoice" />
+                        </LinearLayout>
+                    </LinearLayout>
+                    <TextView android:textSize="11.0sp" android:textColor="#66ffffff" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="8.0dp" android:layout_marginBottom="8.0dp" android:text="QUICK SOURCES" android:fontFamily="@string/font_medium" android:letterSpacing="0.08" />
+                    <RelativeLayout android:id="@id/samsungSourceHdmi1" style="@style/AppleCard">
+                        <ImageView android:id="@id/iconSrc1" android:duplicateParentState="true" android:layout_width="22.0dp" android:layout_height="22.0dp" android:src="@drawable/ic_input" android:tint="@color/apple_card_text" android:layout_centerVertical="true" />
+                        <LinearLayout android:orientation="vertical" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerVertical="true" android:layout_marginStart="14.0dp" android:layout_toEndOf="@id/iconSrc1">
+                            <TextView android:textSize="16.0sp" android:textColor="@color/apple_card_text" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="HDMI 1" android:fontFamily="@string/font_medium" />
+                            <TextView android:textSize="13.0sp" android:textColor="@color/apple_card_subtext" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="2.0dp" android:text="Switch TV input to HDMI Port 1" />
+                        </LinearLayout>
+                        <ImageView android:duplicateParentState="true" android:layout_width="18.0dp" android:layout_height="18.0dp" android:src="@drawable/ic_chevron_right" android:tint="@color/apple_card_subtext" android:layout_centerVertical="true" android:layout_alignParentEnd="true" />
+                    </RelativeLayout>
+                    <RelativeLayout android:id="@id/samsungSourceHdmi2" style="@style/AppleCard">
+                        <ImageView android:id="@id/iconSrc2" android:duplicateParentState="true" android:layout_width="22.0dp" android:layout_height="22.0dp" android:src="@drawable/ic_input" android:tint="@color/apple_card_text" android:layout_centerVertical="true" />
+                        <LinearLayout android:orientation="vertical" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerVertical="true" android:layout_marginStart="14.0dp" android:layout_toEndOf="@id/iconSrc2">
+                            <TextView android:textSize="16.0sp" android:textColor="@color/apple_card_text" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="HDMI 2 (eARC / ARC)" android:fontFamily="@string/font_medium" />
+                            <TextView android:textSize="13.0sp" android:textColor="@color/apple_card_subtext" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="2.0dp" android:text="Soundbar / High-Definition Audio Return Channel" />
+                        </LinearLayout>
+                        <ImageView android:duplicateParentState="true" android:layout_width="18.0dp" android:layout_height="18.0dp" android:src="@drawable/ic_chevron_right" android:tint="@color/apple_card_subtext" android:layout_centerVertical="true" android:layout_alignParentEnd="true" />
+                    </RelativeLayout>
+                    <RelativeLayout android:id="@id/samsungSourceHdmi3" style="@style/AppleCard">
+                        <ImageView android:id="@id/iconSrc3" android:duplicateParentState="true" android:layout_width="22.0dp" android:layout_height="22.0dp" android:src="@drawable/ic_input" android:tint="@color/apple_card_text" android:layout_centerVertical="true" />
+                        <LinearLayout android:orientation="vertical" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerVertical="true" android:layout_marginStart="14.0dp" android:layout_toEndOf="@id/iconSrc3">
+                            <TextView android:textSize="16.0sp" android:textColor="@color/apple_card_text" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="HDMI 3" android:fontFamily="@string/font_medium" />
+                            <TextView android:textSize="13.0sp" android:textColor="@color/apple_card_subtext" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="2.0dp" android:text="Switch TV input to HDMI Port 3" />
+                        </LinearLayout>
+                        <ImageView android:duplicateParentState="true" android:layout_width="18.0dp" android:layout_height="18.0dp" android:src="@drawable/ic_chevron_right" android:tint="@color/apple_card_subtext" android:layout_centerVertical="true" android:layout_alignParentEnd="true" />
+                    </RelativeLayout>
+                </LinearLayout>
+            </ScrollView>
+        </FrameLayout>
+    </LinearLayout>
+</LinearLayout>

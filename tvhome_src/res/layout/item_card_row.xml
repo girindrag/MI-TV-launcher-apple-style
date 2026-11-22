@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="@drawable/input_row_bg" android:paddingTop="7.0dp" android:paddingBottom="8.0dp" android:focusable="true" android:clickable="true" android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingStart="12.0dp" android:paddingEnd="12.0dp"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:duplicateParentState="true" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <TextView android:textSize="15.0sp" android:textColor="@drawable/pill_text" android:ellipsize="end" android:id="@id/title" android:duplicateParentState="true" android:layout_width="0.0dp" android:layout_height="wrap_content" android:singleLine="true" android:layout_weight="1.0" android:fontFamily="@string/font_medium" android:layout_marginEnd="12.0dp" />
+        <TextView android:textSize="11.0sp" android:textColor="@drawable/pill_text" android:id="@id/state" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:fontFamily="@string/font_body" android:letterSpacing="0.04" />
+    </LinearLayout>
+    <TextView android:textSize="11.0sp" android:textColor="@drawable/pill_text_mid" android:ellipsize="end" android:id="@id/app" android:duplicateParentState="true" android:layout_width="match_parent" android:layout_height="wrap_content" android:singleLine="true" android:fontFamily="@string/font_body" />
+    <TextView android:textSize="11.0sp" android:textColor="@drawable/pill_text_mid" android:ellipsize="middle" android:id="@id/pkg" android:duplicateParentState="true" android:layout_width="match_parent" android:layout_height="wrap_content" android:singleLine="true" android:fontFamily="@string/font_body" />
+    <TextView android:textSize="10.0sp" android:textColor="@drawable/pill_text_mid" android:id="@id/digest" android:duplicateParentState="true" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="2.0dp" android:maxLines="2" android:fontFamily="@string/font_body" android:letterSpacing="0.03" />
+</LinearLayout>

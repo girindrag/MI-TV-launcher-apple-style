@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppleCard">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:background">@drawable/apple_card_bg</item>
+        <item name="android:paddingTop">10.0dp</item>
+        <item name="android:paddingBottom">10.0dp</item>
+        <item name="android:focusable">true</item>
+        <item name="android:clickable">true</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">10.0dp</item>
+        <item name="android:minHeight">58.0dp</item>
+        <item name="android:paddingStart">18.0dp</item>
+        <item name="android:paddingEnd">18.0dp</item>
+    </style>
+    <style name="ApplePillChoice">
+        <item name="android:textSize">15.0sp</item>
+        <item name="android:textColor">@color/apple_card_text</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/apple_pill_choice_bg</item>
+        <item name="android:focusable">true</item>
+        <item name="android:clickable">true</item>
+        <item name="android:layout_width">0.0dp</item>
+        <item name="android:layout_height">44.0dp</item>
+        <item name="android:layout_weight">1.0</item>
+        <item name="android:fontFamily">@string/font_medium</item>
+        <item name="android:layout_marginEnd">10.0dp</item>
+    </style>
+    <style name="AppleTab">
+        <item name="android:textSize">16.0sp</item>
+        <item name="android:textColor">@color/apple_tab_text</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:background">@drawable/apple_tab_bg</item>
+        <item name="android:focusable">true</item>
+        <item name="android:clickable">true</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">52.0dp</item>
+        <item name="android:layout_marginBottom">8.0dp</item>
+        <item name="android:drawablePadding">14.0dp</item>
+        <item name="android:fontFamily">@string/font_medium</item>
+        <item name="android:paddingStart">16.0dp</item>
+        <item name="android:paddingEnd">16.0dp</item>
+        <item name="android:drawableTint">@color/apple_tab_icon</item>
+    </style>
+    <style name="SettingsColumnChoice" parent="@style/SettingsRow">
+        <item name="android:gravity">center</item>
+        <item name="android:layout_width">0.0dp</item>
+        <item name="android:layout_weight">1.0</item>
+        <item name="android:layout_marginEnd">10.0dp</item>
+    </style>
+    <style name="SettingsRow">
+        <item name="android:textSize">18.0sp</item>
+        <item name="android:textColor">#ffffffff</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:background">@drawable/settings_choice_bg</item>
+        <item name="android:focusable">true</item>
+        <item name="android:clickable">true</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">52.0dp</item>
+        <item name="android:paddingStart">18.0dp</item>
+        <item name="android:paddingEnd">18.0dp</item>
+    </style>
+    <style name="Theme.TvHome" parent="@android:style/Theme.Material.NoActionBar.Fullscreen">
+        <item name="android:colorBackground">@android:color/black</item>
+        <item name="android:windowBackground">@android:color/black</item>
+        <item name="android:windowAnimationStyle">@null</item>
+    </style>
+    <style name="TopButton" parent="@style/TopButtonBase" />
+    <style name="TopButtonBase">
+        <item name="android:textSize">15.0sp</item>
+        <item name="android:textColor">@drawable/pill_text</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/pill_bg</item>
+        <item name="android:focusable">true</item>
+        <item name="android:clickable">true</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">42.0dp</item>
+        <item name="android:drawablePadding">9.0dp</item>
+        <item name="android:fontFamily">@string/font_medium</item>
+        <item name="android:paddingStart">16.0dp</item>
+        <item name="android:paddingEnd">20.0dp</item>
+        <item name="android:layout_marginStart">10.0dp</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="android:drawableTint">@drawable/pill_text</item>
+    </style>
+    <style name="TopButtonIcon" parent="@style/TopButtonBase">
+        <item name="android:layout_width">42.0dp</item>
+        <item name="android:drawablePadding">0.0dp</item>
+        <item name="android:paddingStart">10.0dp</item>
+        <item name="android:paddingEnd">10.0dp</item>
+    </style>
+</resources>

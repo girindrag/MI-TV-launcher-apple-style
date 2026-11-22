@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="app_banners" />
+    <array name="app_keys" />
+    <array name="app_labels" />
+    <string-array name="dock_apps">
+        <item>com.netflix.ninja</item>
+        <item>com.amazon.amazonvideo.livingroom</item>
+        <item>com.google.android.youtube.tv</item>
+        <item>in.startv.hotstar</item>
+    </string-array>
+    <string-array name="hidden_apps">
+        <item>com.mediatek.wwtv.tvcenter</item>
+        <item>com.mitv.gallery</item>
+    </string-array>
+    <array name="input_key_keycodes" />
+    <array name="input_sources" />
+    <array name="launch_actions" />
+    <array name="library_apps" />
+    <string-array name="lunar_branches">
+        <item>Rat</item>
+        <item>Ox</item>
+        <item>Tiger</item>
+        <item>Rabbit</item>
+        <item>Dragon</item>
+        <item>Snake</item>
+        <item>Horse</item>
+        <item>Goat</item>
+        <item>Monkey</item>
+        <item>Rooster</item>
+        <item>Dog</item>
+        <item>Pig</item>
+    </string-array>
+    <string-array name="lunar_stems">
+        <item>Jia</item>
+        <item>Yi</item>
+        <item>Bing</item>
+        <item>Ding</item>
+        <item>Wu</item>
+        <item>Ji</item>
+        <item>Geng</item>
+        <item>Xin</item>
+        <item>Ren</item>
+        <item>Gui</item>
+    </string-array>
+    <string-array name="settings_fallback_components">
+        <item>com.xiaomi.mitv.settings/com.xiaomi.mitv.settings.entry.MainActivity</item>
+        <item>com.tcl.settings/com.tcl.settings.ui.MainActivity</item>
+        <item>com.amazon.tv.launcher/com.amazon.tv.launcher.ui.MainSettingsActivity</item>
+    </string-array>
+    <array name="settings_key_keycodes" />
+    <array name="settings_key_scancodes" />
+    <array name="top_bar_apps" />
+</resources>

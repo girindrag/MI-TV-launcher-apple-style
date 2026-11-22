@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:height="180.0dp" android:width="320.0dp">
+        <shape android:shape="rectangle">
+            <gradient android:startColor="#ffe20074" android:endColor="#ff8c0049" android:angle="315.0" />
+        </shape>
+    </item>
+    <item android:gravity="center" android:height="76.0dp" android:width="76.0dp" android:drawable="@drawable/ic_livetv" />
+</layer-list>

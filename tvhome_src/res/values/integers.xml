@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="cinematic_art">85</integer>
+    <integer name="cinematic_scrim">55</integer>
+    <integer name="clock_wallpaper_dim">50</integer>
+    <integer name="columns">4</integer>
+    <integer name="home_idle_clock_minutes">0</integer>
+    <integer name="rows_below_dock">0</integer>
+    <integer name="sky_intensity">0</integer>
+    <integer name="wifi_label_width">0</integer>
+</resources>

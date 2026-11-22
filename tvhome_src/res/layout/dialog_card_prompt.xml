@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="@drawable/glass_panel" android:paddingTop="22.0dp" android:paddingBottom="20.0dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingStart="26.0dp" android:paddingEnd="26.0dp" android:elevation="12.0dp"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textSize="22.0sp" android:textColor="#ffffffff" android:ellipsize="end" android:id="@id/title" android:layout_width="match_parent" android:layout_height="wrap_content" android:singleLine="true" android:fontFamily="@string/font_medium" android:letterSpacing="-0.01" />
+    <TextView android:textSize="15.0sp" android:textColor="#d9ffffff" android:id="@id/body" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="10.0dp" android:lineSpacingExtra="3.0sp" android:fontFamily="@string/font_body" />
+    <TextView android:textSize="15.0sp" android:textColor="#d9ffffff" android:id="@id/names" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="6.0dp" android:lineSpacingExtra="3.0sp" android:fontFamily="@string/font_body" />
+    <TextView android:textSize="13.0sp" android:textColor="#99ffffff" android:id="@id/hint" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8.0dp" android:text="@string/card_prompt_hint" android:fontFamily="@string/font_body" />
+    <TextView android:textSize="12.0sp" android:textColor="#80ffffff" android:id="@id/identity" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8.0dp" android:maxLines="2" android:fontFamily="@string/font_body" android:letterSpacing="0.03" />
+    <LinearLayout android:gravity="end" android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="18.0dp">
+        <TextView android:id="@id/btnKeep" android:nextFocusLeft="@id/btnKeep" android:nextFocusRight="@id/btnShow" android:nextFocusUp="@id/btnKeep" android:nextFocusDown="@id/btnKeep" android:text="@string/card_keep_hidden" style="@style/TopButton" />
+        <TextView android:id="@id/btnShow" android:nextFocusLeft="@id/btnKeep" android:nextFocusRight="@id/btnShow" android:nextFocusUp="@id/btnShow" android:nextFocusDown="@id/btnShow" android:text="@string/card_show" style="@style/TopButton" />
+    </LinearLayout>
+</LinearLayout>

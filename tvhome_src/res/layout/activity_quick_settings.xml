@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:id="@id/scrim" android:layout_width="match_parent" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:layout_gravity="end|top" android:orientation="vertical" android:id="@id/panel" android:background="@drawable/glass_panel" android:padding="6.0dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="105.0dp" android:minWidth="220.0dp" android:layout_marginEnd="56.0dp" android:elevation="12.0dp">
+        <LinearLayout android:orientation="vertical" android:id="@id/rows" android:layout_width="match_parent" android:layout_height="wrap_content" />
+    </LinearLayout>
+</FrameLayout>

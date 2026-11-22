@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:compileSdkVersion="34" android:compileSdkVersionCodename="14" package="com.gathin.tvhome" platformBuildVersionCode="34" platformBuildVersionName="14">
+    <uses-feature android:name="android.software.leanback" android:required="false"/>
+    <uses-feature android:name="android.hardware.touchscreen" android:required="false"/>
+    <uses-feature android:name="android.hardware.wifi" android:required="false"/>
+    <uses-feature android:name="android.hardware.location.gps" android:required="false"/>
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS"/>
+    <uses-permission android:name="yandex.tv.permission.ACCESS_TV_SOURCE"/>
+    <uses-permission android:name="com.android.providers.tv.permission.READ_EPG_DATA"/>
+    <uses-permission android:name="com.android.providers.tv.permission.WRITE_EPG_DATA"/>
+    <uses-permission android:name="com.android.providers.tv.permission.ACCESS_ALL_EPG_DATA"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <queries>
+        <intent>
+            <action android:name="android.settings.SETTINGS"/>
+        </intent>
+        <intent>
+            <action android:name="android.settings.WIFI_SETTINGS"/>
+        </intent>
+        <intent>
+            <action android:name="android.settings.DISPLAY_SETTINGS"/>
+        </intent>
+        <intent>
+            <action android:name="android.settings.MANAGE_APPLICATIONS_SETTINGS"/>
+        </intent>
+        <intent>
+            <action android:name="android.settings.APPLICATION_DETAILS_SETTINGS"/>
+            <data android:scheme="package"/>
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.MAIN"/>
+            <category android:name="android.intent.category.LAUNCHER"/>
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.MAIN"/>
+            <category android:name="android.intent.category.LEANBACK_LAUNCHER"/>
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.MAIN"/>
+            <category android:name="com.gathin.tvhome.category.DOCK_CARD"/>
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.MAIN"/>
+            <category android:name="android.intent.category.HOME"/>
+        </intent>
+        <package android:name="com.xiaomi.mitv.settings"/>
+        <package android:name="com.tcl.settings"/>
+        <package android:name="com.amazon.tv.launcher"/>
+        <provider android:authorities="com.skyworth.tv.provider"/>
+        <provider android:authorities="com.skyworth.tv.sdk.provider"/>
+    </queries>
+    <application android:allowBackup="false" android:appComponentFactory="androidx.core.app.CoreComponentFactory" android:banner="@drawable/banner" android:extractNativeLibs="false" android:icon="@mipmap/ic_launcher" android:label="@string/app_name" android:localeConfig="@xml/locales_config" android:theme="@style/Theme.TvHome">
+        <activity android:clearTaskOnLaunch="true" android:configChanges="keyboard|keyboardHidden|orientation|uiMode|screenSize" android:excludeFromRecents="true" android:exported="true" android:launchMode="singleTask" android:name="com.gathin.tvhome.MainActivity" android:screenOrientation="landscape" android:stateNotNeeded="true">
+            <intent-filter android:priority="999">
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.HOME"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter android:priority="999">
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LEANBACK_LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:excludeFromRecents="true" android:exported="false" android:name="com.gathin.tvhome.LauncherSettingsActivity" android:screenOrientation="landscape"/>
+        <activity android:enabled="false" android:excludeFromRecents="true" android:exported="true" android:name="com.gathin.tvhome.InputsRequestActivity" android:noHistory="true" android:theme="@android:style/Theme.NoDisplay">
+            <intent-filter>
+                <action android:name="com.android.tv.action.VIEW_INPUTS"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:excludeFromRecents="true" android:exported="false" android:launchMode="singleTop" android:name="com.gathin.tvhome.QuickSettingsActivity" android:noHistory="true" android:taskAffinity="" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
+        <activity android:excludeFromRecents="true" android:exported="false" android:name="com.gathin.tvhome.HomeSettingsActivity" android:taskAffinity="" android:theme="@android:style/Theme.NoDisplay"/>
+        <service android:directBootAware="true" android:exported="true" android:label="@string/home_key_name" android:name="com.gathin.tvhome.HomeKeyService" android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService"/>
+            </intent-filter>
+            <meta-data android:name="android.accessibilityservice" android:resource="@xml/home_key_service"/>
+        </service>
+        <activity android:excludeFromRecents="true" android:exported="true" android:name="com.gathin.tvhome.AppLaunchActivity" android:noHistory="true" android:theme="@android:style/Theme.NoDisplay">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="launch" android:scheme="market"/>
+            </intent-filter>
+        </activity>
+        <activity android:excludeFromRecents="true" android:exported="false" android:name="com.gathin.tvhome.ClockActivity" android:noHistory="true" android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"/>
+        <activity android:excludeFromRecents="true" android:exported="false" android:name="com.gathin.tvhome.ProbeActivity" android:noHistory="true" android:taskAffinity="" android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+        <service android:exported="true" android:label="@string/dream_name" android:name="com.gathin.tvhome.ClockDream" android:permission="android.permission.BIND_DREAM_SERVICE">
+            <intent-filter>
+                <action android:name="android.service.dreams.DreamService"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </service>
+        <provider android:authorities="com.gathin.tvhome.theme" android:exported="true" android:name="com.gathin.tvhome.ThemeProvider" android:permission="android.permission.WRITE_SECURE_SETTINGS"/>
+        <service android:exported="false" android:label="@string/app_name" android:name="com.gathin.tvhome.InputKeyService" android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService"/>
+            </intent-filter>
+            <meta-data android:name="android.accessibilityservice" android:resource="@xml/input_key_service"/>
+        </service>
+    </application>
+</manifest>
