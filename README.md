@@ -15,9 +15,9 @@
 | :---: | :---: |
 | ![Home Screen](screenshots/home_screen_imdb.png) | ![Screensaver](screenshots/screensaver_imdb.png) |
 
-| YouTube Remote Integration | Classic Grid & App Launcher |
+| YouTube Remote Integration | AirDroid Cast TV & Screen Mirroring |
 | :---: | :---: |
-| ![YouTube Launch](screenshots/yt_screen.png) | ![App Grid](screenshots/home_screen.png) |
+| ![YouTube Launch](screenshots/yt_screen.png) | ![AirDroid Cast TV](screenshots/airdroid_cast_ready.png) |
 
 ---
 
@@ -48,12 +48,12 @@
   - **Sleep Timer**: Easily toggle 15m, 30m, 60m, or 120m sleep timers.
   - **Quick Power Controls**: Instant Sleep, Restart, and Settings toggles from the home screen.
 
-- **📱 Apple AirPlay & iPhone Screen Mirroring (Instant QR Code)**:
-  - **Zero App Required on iPhone**: Connect effortlessly with any iPhone via the native Camera app.
-  - **Instant QR Code**: Top status bar AirPlay icon (📺) launches a sharp QR code pointing to the TV's local Wi-Fi receiver (`http://<TV_IP>:7070`).
-  - **Live Screen Mirroring**: Uses Safari Screen Broadcast (`getDisplayMedia`) to stream your iPhone screen at 30-60fps HD with low local Wi-Fi latency.
-  - **4K Photo & Media Casting**: Select photos or videos from your iPhone Camera Roll to display in full-screen on your TV.
-  - **Touch TV Remote**: Use your iPhone as a touch controller (D-Pad, Volume, Home, Back).
+- **📱 Seamless Screen Mirroring & AirDroid Cast TV (iOS, Android, Windows, Mac)**:
+  - **1-Click Cast Access**: Tapping the Cast/AirPlay icon in the top status bar opens **AirDroid Cast TV** directly on your TV.
+  - **Instant QR Code & 9-Digit Code**: Displays a live QR code and 9-digit cast code for fast, seamless pairing.
+  - **iPhone / iPad (iOS)**: Works seamlessly via the free AirDroid Cast iOS app (scans the QR code and activates iOS Screen Broadcast, bypassing mobile Safari WebKit screen recording restrictions) or via native AirPlay receiver.
+  - **Android, Windows & Mac**: Cast effortlessly using the AirDroid Cast client or directly in any desktop browser via `webcast.airdroid.com`.
+  - **Built-in Fallbacks**: Intelligent multi-stage fallback to native AirPlay receiver (`io.github.jqssun.airplay`) and local HTTP media caster.
 
 - **🔒 Child Lock & Privacy PIN**:
   - Built-in 4-digit PIN system to restrict access to selected apps and TV settings.

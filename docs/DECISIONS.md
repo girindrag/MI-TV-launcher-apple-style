@@ -12,6 +12,7 @@ This document records the architectural and engineering decisions made during th
 - [ADR-005: Clutter-Free Ambient Screensaver (Clock-Only, No Captions)](#adr-005-clutter-free-ambient-screensaver-clock-only-no-captions)
 - [ADR-006: Rejection of Third-Party Background Voice Wake-Word Engine](#adr-006-rejection-of-third-party-background-voice-wake-word-engine)
 - [ADR-007: QR-Code Driven Embedded AirPlay & Web Screen Mirroring Receiver](#adr-007-qr-code-driven-embedded-airplay--web-screen-mirroring-receiver)
+- [ADR-008: Official AirDroid Cast TV Receiver Integration](#adr-008-official-airdroid-cast-tv-receiver-integration)
 
 ---
 
@@ -91,3 +92,16 @@ This document records the architectural and engineering decisions made during th
   - ✅ **High Privacy & Low Latency**: All communication stays strictly on the local Wi-Fi network with zero cloud dependencies.
   - ✅ **4K Media & Remote Control**: Users can stream photos, broadcast screens, and control TV navigation directly from their phone.
   - ⚠️ Requires TV and iPhone to be on the same local Wi-Fi network.
+
+
+---
+
+### ADR-008: Official AirDroid Cast TV Receiver Integration
+- **Status**: Accepted
+- **Context**: iOS Safari restricts WebRTC screen capture (`navigator.mediaDevices.getDisplayMedia`) on non-secure HTTP origins and requires native ReplayKit broadcast extensions for smooth full-device screen mirroring. Users requested the full functionality and seamlessness of AirDroid Cast (https://www.airdroid.com/cast/).
+- **Decision**: Install and integrate the official **AirDroid Cast TV** app (`com.sand.aircasttv`) directly on the TV and wire the launcher's top-bar AirPlay/Cast action (`AirPlayClickLambda`) to launch AirDroid Cast TV as the primary screen mirroring receiver, with automatic fallback to native AirPlay (`io.github.jqssun.airplay`).
+- **Consequences**:
+  - ✅ **Native iOS Broadcast**: iPhone users can use the free AirDroid Cast app on the App Store to scan the TV's QR code or enter the 9-digit Cast Code, activating Apple's native ReplayKit Screen Broadcast.
+  - ✅ **Universal Device Support**: Compatible with iOS, Android, Windows, and Mac (via `webcast.airdroid.com` or desktop app).
+  - ✅ **Zero WebKit Restrictions**: Completely circumvents iOS Safari `getDisplayMedia` limitations.
+  - ✅ **Seamless TV Integration**: 1-click launch from the launcher status bar with automatic fallback.

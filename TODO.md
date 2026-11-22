@@ -31,11 +31,11 @@ Active development checklist, completed milestones, and planned features for the
   - [x] Sleep timer (15, 30, 60, 120 minutes).
   - [x] 4-digit PIN security for sensitive apps.
 
-- [x] **Apple AirPlay & iPhone Screen Mirroring (QR Code)**:
-  - [x] Top status bar dedicated AirPlay icon (`btnAirPlay`).
-  - [x] Apple TV-style modal with dynamically rendered high-contrast QR Code (`QrCode.java`).
-  - [x] Embedded HTTP & WebSocket streaming receiver (`AirPlayServer.java`) on port `7070`.
-  - [x] Zero-app iPhone web client for Safari with Screen Broadcast, Photo casting, and touch remote.
+- [x] **AirDroid Cast TV & Universal Screen Mirroring Integration**:
+  - [x] Installed and configured official **AirDroid Cast TV** receiver (`com.sand.aircasttv`) on TV.
+  - [x] Re-routed launcher status bar Cast button (`AirPlayClickLambda`) to launch AirDroid Cast TV seamlessly.
+  - [x] 9-digit cast code & live QR code support for iOS Screen Broadcast, Android, Windows, and Mac webcasting (`webcast.airdroid.com`).
+  - [x] Native AirPlay receiver (`io.github.jqssun.airplay`) background service and HTTP fallback.
 
 - [x] **Automated Tooling & Repository Setup**:
   - [x] `scripts/install.sh` for 1-click ADB installation and permission granting.
