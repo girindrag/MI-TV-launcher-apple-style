@@ -5,6 +5,7 @@
 [![Platform](https://img.shields.io/badge/Platform-Android%20TV%209%2B-blue.svg)](https://developer.android.com/tv)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Release](https://img.shields.io/badge/Release-v1.0-orange.svg)](releases/MiTvLauncherAppleStyle-v1.0.apk)
+[![Installation Guide](https://img.shields.io/badge/Manual-PDF%20Guide-red.svg)](docs/INSTALLATION_GUIDE.pdf)
 
 ---
 
@@ -135,6 +136,7 @@ This compiles the smali resources from `tvhome_src/`, packages the APK, and sign
 ├── TODO.md                        # Task tracker, completed milestones & roadmap
 ├── .gitignore                     # Git ignore rules
 ├── docs/
+│   ├── INSTALLATION_GUIDE.pdf     # Printable step-by-step installation manual (PDF)
 │   ├── ARCHITECTURE.md            # System architecture, flows & component design
 │   └── DECISIONS.md               # Architecture Decision Records (ADRs)
 ├── .agents/
@@ -145,7 +147,8 @@ This compiles the smali resources from `tvhome_src/`, packages the APK, and sign
 │   └── MiTvLauncherAppleStyle-v1.0.apk # Pre-built, signed ready-to-flash APK
 ├── scripts/
 │   ├── install.sh                 # 1-Click ADB installer & TV permission configurator
-│   └── build.sh                   # Apktool build and apksigner automation
+│   ├── build.sh                   # Apktool build and apksigner automation
+│   └── generate_pdf.py            # Generates the printable PDF installation manual
 ├── screenshots/                   # Live screenshots captured from Xiaomi TV
 │   ├── home_screen_imdb.png
 │   ├── screensaver_imdb.png
