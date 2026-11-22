@@ -33,7 +33,7 @@
         }
     .end annotation
 
-    .line 409
+    .line 472
     iput-object p1, p0, Lcom/gathin/tvhome/VoiceAssistantActivity$9;->this$0:Lcom/gathin/tvhome/VoiceAssistantActivity;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -46,11 +46,16 @@
 .method public run()V
     .locals 1
 
-    .line 412
+    .line 475
     iget-object v0, p0, Lcom/gathin/tvhome/VoiceAssistantActivity$9;->this$0:Lcom/gathin/tvhome/VoiceAssistantActivity;
 
-    invoke-virtual {v0}, Lcom/gathin/tvhome/VoiceAssistantActivity;->launchVoiceInput()V
+    invoke-static {v0}, Lcom/gathin/tvhome/AppleTvScreensaver;->showScreensaver(Landroid/app/Activity;)V
 
-    .line 413
+    .line 476
+    iget-object v0, p0, Lcom/gathin/tvhome/VoiceAssistantActivity$9;->this$0:Lcom/gathin/tvhome/VoiceAssistantActivity;
+
+    invoke-virtual {v0}, Lcom/gathin/tvhome/VoiceAssistantActivity;->finish()V
+
+    .line 477
     return-void
 .end method

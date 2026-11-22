@@ -35,7 +35,6 @@ import java.util.Locale;
 
 public class VoiceAssistantActivity extends Activity {
     private static final String TAG = "VoiceAssistant";
-    private static final int REQUEST_VOICE = 1001;
 
     private FrameLayout rootLayout;
     private View siriOrb;
@@ -49,9 +48,8 @@ public class VoiceAssistantActivity extends Activity {
     private Handler mainHandler = new Handler(Looper.getMainLooper());
     private boolean isListening = false;
     private boolean isDestroyed = false;
-    private boolean hasTriggeredInitialVoice = false;
 
-    // Animation runnable for Siri pulse
+    // Pulse animation for Siri Orb
     private float pulseScale = 1.0f;
     private boolean pulseGrowing = true;
     private Runnable pulseRunnable = new Runnable() {
@@ -59,11 +57,11 @@ public class VoiceAssistantActivity extends Activity {
         public void run() {
             if (isDestroyed || siriOrb == null) return;
             if (pulseGrowing) {
-                pulseScale += 0.04f;
-                if (pulseScale >= 1.25f) pulseGrowing = false;
+                pulseScale += 0.03f;
+                if (pulseScale >= 1.20f) pulseGrowing = false;
             } else {
-                pulseScale -= 0.04f;
-                if (pulseScale <= 0.95f) pulseGrowing = true;
+                pulseScale -= 0.03f;
+                if (pulseScale <= 0.96f) pulseGrowing = true;
             }
             siriOrb.setScaleX(pulseScale);
             siriOrb.setScaleY(pulseScale);
@@ -114,17 +112,17 @@ public class VoiceAssistantActivity extends Activity {
         siriOrb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                launchVoiceInput();
+                startInAppListening();
             }
         });
 
         LinearLayout.LayoutParams orbParams = new LinearLayout.LayoutParams(dp(90), dp(90));
-        orbParams.bottomMargin = dp(18);
+        orbParams.bottomMargin = dp(16);
         centerPanel.addView(siriOrb, orbParams);
 
         // Header Title
         titleView = new TextView(this);
-        titleView.setText("SIRI VOICE ASSISTANT");
+        titleView.setText("APPLE TV VOICE ASSISTANT");
         titleView.setTextSize(12);
         titleView.setTextColor(Color.parseColor("#94A3B8"));
         titleView.setTypeface(Typeface.create("sans-serif-medium", Typeface.BOLD));
@@ -134,7 +132,7 @@ public class VoiceAssistantActivity extends Activity {
 
         // Live Transcript / Spoken Text
         transcriptView = new TextView(this);
-        transcriptView.setText("Listening... Say a command or choose below");
+        transcriptView.setText("Listening... Speak into your remote");
         transcriptView.setTextSize(20);
         transcriptView.setTextColor(Color.parseColor("#F8FAFC"));
         transcriptView.setTypeface(Typeface.create("sans-serif", Typeface.BOLD));
@@ -144,7 +142,7 @@ public class VoiceAssistantActivity extends Activity {
 
         // Assistant Spoken Response Text
         responseView = new TextView(this);
-        responseView.setText("Try saying: 'Hey Siri', 'Open YouTube', 'Clean RAM', 'Sleep 30 min'...");
+        responseView.setText("Speak: 'Clean RAM', 'Open YouTube', 'Screensaver', 'Sleep 30 min'...");
         responseView.setTextSize(13);
         responseView.setTextColor(Color.parseColor("#38BDF8"));
         responseView.setGravity(Gravity.CENTER);
@@ -164,7 +162,7 @@ public class VoiceAssistantActivity extends Activity {
         centerPanel.addView(scroll, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
         // Add Quick Action Chips
-        addChip("🎙️ Speak Now", "SPEAK_ACTION");
+        addChip("🎙️ Listen Again", "LISTEN_AGAIN");
         addChip("🚀 Boost RAM", "clean ram");
         addChip("🔴 YouTube", "open youtube");
         addChip("🎬 Screensaver", "screensaver");
@@ -182,50 +180,8 @@ public class VoiceAssistantActivity extends Activity {
         // Start Siri Pulse Animation
         mainHandler.post(pulseRunnable);
 
-        // Launch Voice Input after slight layout delay
-        mainHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if (!hasTriggeredInitialVoice && !isDestroyed) {
-                    hasTriggeredInitialVoice = true;
-                    launchVoiceInput();
-                }
-            }
-        }, 300);
-    }
-
-    @Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
-        setIntent(intent);
-        launchVoiceInput();
-    }
-
-    public void launchVoiceInput() {
-        try {
-            Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-            intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-            intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
-            intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Say a command: 'Open YouTube', 'Clean RAM', 'Sleep 30 min'...");
-            startActivityForResult(intent, REQUEST_VOICE);
-        } catch (Exception e) {
-            Log.w(TAG, "RecognizerIntent failed, falling back to SpeechRecognizer", e);
-            initSpeechRecognizer();
-        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_VOICE && resultCode == RESULT_OK && data != null) {
-            ArrayList<String> matches = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-            if (matches != null && !matches.isEmpty()) {
-                String spoken = matches.get(0);
-                executeVoiceCommand(spoken);
-                return;
-            }
-        }
-        updateStatus("Listening Paused", "Tap '🎙️ Speak Now' or choose an action chip below.");
+        // Start listening in-app (staying on this screen)
+        startInAppListening();
     }
 
     private void addChip(final String label, final String command) {
@@ -270,8 +226,8 @@ public class VoiceAssistantActivity extends Activity {
         chip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if ("SPEAK_ACTION".equals(command)) {
-                    launchVoiceInput();
+                if ("LISTEN_AGAIN".equals(command)) {
+                    startInAppListening();
                 } else {
                     executeVoiceCommand(command);
                 }
@@ -307,23 +263,32 @@ public class VoiceAssistantActivity extends Activity {
         }
     }
 
-    private void initSpeechRecognizer() {
-        if (!SpeechRecognizer.isRecognitionAvailable(this)) return;
+    private void startInAppListening() {
+        if (!SpeechRecognizer.isRecognitionAvailable(this)) {
+            updateStatus("Voice Ready", "Microphone available. Click any chip below or speak into remote.");
+            return;
+        }
+
         try {
             if (speechRecognizer != null) {
-                speechRecognizer.destroy();
+                try {
+                    speechRecognizer.cancel();
+                    speechRecognizer.destroy();
+                } catch (Exception ignored) {}
             }
+
             speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
             speechRecognizer.setRecognitionListener(new RecognitionListener() {
                 @Override
                 public void onReadyForSpeech(Bundle params) {
                     isListening = true;
-                    updateStatus("Listening...", "Say a command: 'Open YouTube', 'Clean RAM', 'Hey Siri'...");
+                    updateStatus("Listening...", "Say a command: 'Open YouTube', 'Clean RAM', 'Sleep 30 min'...");
                 }
 
                 @Override
                 public void onBeginningOfSpeech() {
-                    pulseScale = 1.2f;
+                    updateStatus("Listening...", "Hearing your voice...");
+                    pulseScale = 1.25f;
                 }
 
                 @Override
@@ -348,7 +313,8 @@ public class VoiceAssistantActivity extends Activity {
                 @Override
                 public void onError(int error) {
                     isListening = false;
-                    updateStatus("Listening Paused", "Tap '🎙️ Speak Now' or choose a chip below.");
+                    Log.d(TAG, "SpeechRecognizer error: " + error);
+                    updateStatus("Listening Idle", "Speak into remote or click a suggestion chip below.");
                 }
 
                 @Override
@@ -358,7 +324,7 @@ public class VoiceAssistantActivity extends Activity {
                     if (matches != null && !matches.isEmpty()) {
                         executeVoiceCommand(matches.get(0));
                     } else {
-                        updateStatus("Listening Paused", "No voice detected. Choose a chip below.");
+                        updateStatus("Listening Idle", "No voice detected. Choose a chip below.");
                     }
                 }
 
@@ -378,9 +344,11 @@ public class VoiceAssistantActivity extends Activity {
             intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
             intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
             intent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 3);
+            intent.putExtra(RecognizerIntent.EXTRA_PARTIAL_RESULTS, true);
             speechRecognizer.startListening(intent);
         } catch (Exception e) {
-            Log.e(TAG, "Error in initSpeechRecognizer", e);
+            Log.e(TAG, "Error in startInAppListening", e);
+            updateStatus("Assistant Ready", "Click any action chip below using your TV remote.");
         }
     }
 
@@ -409,7 +377,7 @@ public class VoiceAssistantActivity extends Activity {
             mainHandler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    launchVoiceInput();
+                    startInAppListening();
                 }
             }, 3000);
             return;
@@ -689,12 +657,17 @@ public class VoiceAssistantActivity extends Activity {
         isDestroyed = true;
         mainHandler.removeCallbacksAndMessages(null);
         if (speechRecognizer != null) {
-            speechRecognizer.destroy();
+            try {
+                speechRecognizer.cancel();
+                speechRecognizer.destroy();
+            } catch (Exception ignored) {}
             speechRecognizer = null;
         }
         if (textToSpeech != null) {
-            textToSpeech.stop();
-            textToSpeech.shutdown();
+            try {
+                textToSpeech.stop();
+                textToSpeech.shutdown();
+            } catch (Exception ignored) {}
             textToSpeech = null;
         }
     }

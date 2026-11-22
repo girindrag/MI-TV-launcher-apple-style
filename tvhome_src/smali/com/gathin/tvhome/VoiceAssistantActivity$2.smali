@@ -33,7 +33,7 @@
         }
     .end annotation
 
-    .line 114
+    .line 112
     iput-object p1, p0, Lcom/gathin/tvhome/VoiceAssistantActivity$2;->this$0:Lcom/gathin/tvhome/VoiceAssistantActivity;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -46,11 +46,11 @@
 .method public onClick(Landroid/view/View;)V
     .locals 0
 
-    .line 117
+    .line 115
     iget-object p1, p0, Lcom/gathin/tvhome/VoiceAssistantActivity$2;->this$0:Lcom/gathin/tvhome/VoiceAssistantActivity;
 
-    invoke-virtual {p1}, Lcom/gathin/tvhome/VoiceAssistantActivity;->launchVoiceInput()V
+    invoke-static {p1}, Lcom/gathin/tvhome/VoiceAssistantActivity;->access$500(Lcom/gathin/tvhome/VoiceAssistantActivity;)V
 
-    .line 118
+    .line 116
     return-void
 .end method

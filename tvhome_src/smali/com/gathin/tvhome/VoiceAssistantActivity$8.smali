@@ -8,7 +8,7 @@
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lcom/gathin/tvhome/VoiceAssistantActivity;->updateStatus(Ljava/lang/String;Ljava/lang/String;)V
+    value = Lcom/gathin/tvhome/VoiceAssistantActivity;->executeVoiceCommand(Ljava/lang/String;)V
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -20,38 +20,20 @@
 # instance fields
 .field final synthetic this$0:Lcom/gathin/tvhome/VoiceAssistantActivity;
 
-.field final synthetic val$response:Ljava/lang/String;
-
-.field final synthetic val$transcript:Ljava/lang/String;
-
 
 # direct methods
-.method constructor <init>(Lcom/gathin/tvhome/VoiceAssistantActivity;Ljava/lang/String;Ljava/lang/String;)V
+.method constructor <init>(Lcom/gathin/tvhome/VoiceAssistantActivity;)V
     .locals 0
     .annotation system Ldalvik/annotation/MethodParameters;
         accessFlags = {
-            0x8010,
-            0x1010,
-            0x1010
+            0x8010
         }
         names = {
-            null,
-            null,
             null
         }
     .end annotation
 
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "()V"
-        }
-    .end annotation
-
-    .line 388
-    iput-object p2, p0, Lcom/gathin/tvhome/VoiceAssistantActivity$8;->val$transcript:Ljava/lang/String;
-
-    iput-object p3, p0, Lcom/gathin/tvhome/VoiceAssistantActivity$8;->val$response:Ljava/lang/String;
-
+    .line 377
     iput-object p1, p0, Lcom/gathin/tvhome/VoiceAssistantActivity$8;->this$0:Lcom/gathin/tvhome/VoiceAssistantActivity;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -62,48 +44,13 @@
 
 # virtual methods
 .method public run()V
-    .locals 2
+    .locals 1
 
-    .line 391
+    .line 380
     iget-object v0, p0, Lcom/gathin/tvhome/VoiceAssistantActivity$8;->this$0:Lcom/gathin/tvhome/VoiceAssistantActivity;
 
-    invoke-static {v0}, Lcom/gathin/tvhome/VoiceAssistantActivity;->access$900(Lcom/gathin/tvhome/VoiceAssistantActivity;)Landroid/widget/TextView;
+    invoke-static {v0}, Lcom/gathin/tvhome/VoiceAssistantActivity;->access$500(Lcom/gathin/tvhome/VoiceAssistantActivity;)V
 
-    move-result-object v0
-
-    if-eqz v0, :cond_0
-
-    iget-object v0, p0, Lcom/gathin/tvhome/VoiceAssistantActivity$8;->this$0:Lcom/gathin/tvhome/VoiceAssistantActivity;
-
-    invoke-static {v0}, Lcom/gathin/tvhome/VoiceAssistantActivity;->access$900(Lcom/gathin/tvhome/VoiceAssistantActivity;)Landroid/widget/TextView;
-
-    move-result-object v0
-
-    iget-object v1, p0, Lcom/gathin/tvhome/VoiceAssistantActivity$8;->val$transcript:Ljava/lang/String;
-
-    invoke-virtual {v0, v1}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
-
-    .line 392
-    :cond_0
-    iget-object v0, p0, Lcom/gathin/tvhome/VoiceAssistantActivity$8;->this$0:Lcom/gathin/tvhome/VoiceAssistantActivity;
-
-    invoke-static {v0}, Lcom/gathin/tvhome/VoiceAssistantActivity;->access$1000(Lcom/gathin/tvhome/VoiceAssistantActivity;)Landroid/widget/TextView;
-
-    move-result-object v0
-
-    if-eqz v0, :cond_1
-
-    iget-object v0, p0, Lcom/gathin/tvhome/VoiceAssistantActivity$8;->this$0:Lcom/gathin/tvhome/VoiceAssistantActivity;
-
-    invoke-static {v0}, Lcom/gathin/tvhome/VoiceAssistantActivity;->access$1000(Lcom/gathin/tvhome/VoiceAssistantActivity;)Landroid/widget/TextView;
-
-    move-result-object v0
-
-    iget-object v1, p0, Lcom/gathin/tvhome/VoiceAssistantActivity$8;->val$response:Ljava/lang/String;
-
-    invoke-virtual {v0, v1}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
-
-    .line 393
-    :cond_1
+    .line 381
     return-void
 .end method
