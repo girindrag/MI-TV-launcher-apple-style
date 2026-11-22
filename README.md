@@ -130,8 +130,17 @@ This compiles the smali resources from `tvhome_src/`, packages the APK, and sign
 ## 📂 Repository Structure
 
 ```text
-├── README.md                      # Project documentation
+├── README.md                      # Project overview and installation guide
+├── AGENTS.md                      # Always-on instructions & constraints for agents
+├── TODO.md                        # Task tracker, completed milestones & roadmap
 ├── .gitignore                     # Git ignore rules
+├── docs/
+│   ├── ARCHITECTURE.md            # System architecture, flows & component design
+│   └── DECISIONS.md               # Architecture Decision Records (ADRs)
+├── .agents/
+│   └── skills/                    # Project-specific developer & agent workflows
+│       ├── tv-deploy/             # Live TV ADB deployment & verification
+│       └── apk-patch/             # Java-to-smali compilation & patching guide
 ├── releases/
 │   └── MiTvLauncherAppleStyle-v1.0.apk # Pre-built, signed ready-to-flash APK
 ├── scripts/
