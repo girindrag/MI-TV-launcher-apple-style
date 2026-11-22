@@ -30,7 +30,7 @@
         }
     .end annotation
 
-    .line 198
+    .line 194
     iput-object p1, p0, Lcom/gathin/tvhome/AppleTvScreensaver$6;->val$dismissAction:Ljava/lang/Runnable;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -43,11 +43,11 @@
 .method public onClick(Landroid/view/View;)V
     .locals 0
 
-    .line 201
+    .line 197
     iget-object p1, p0, Lcom/gathin/tvhome/AppleTvScreensaver$6;->val$dismissAction:Ljava/lang/Runnable;
 
     invoke-interface {p1}, Ljava/lang/Runnable;->run()V
 
-    .line 202
+    .line 198
     return-void
 .end method

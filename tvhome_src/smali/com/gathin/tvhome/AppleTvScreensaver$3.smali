@@ -48,7 +48,7 @@
         }
     .end annotation
 
-    .line 163
+    .line 159
     iput-object p1, p0, Lcom/gathin/tvhome/AppleTvScreensaver$3;->val$activity:Landroid/app/Activity;
 
     iput-object p2, p0, Lcom/gathin/tvhome/AppleTvScreensaver$3;->val$imdbItems:Ljava/util/List;
@@ -79,7 +79,7 @@
 .method public run()V
     .locals 9
 
-    .line 166
+    .line 162
     iget-object v0, p0, Lcom/gathin/tvhome/AppleTvScreensaver$3;->val$activity:Landroid/app/Activity;
 
     iget-object v1, p0, Lcom/gathin/tvhome/AppleTvScreensaver$3;->val$imdbItems:Ljava/util/List;
@@ -100,13 +100,13 @@
 
     invoke-static/range {v0 .. v8}, Lcom/gathin/tvhome/AppleTvScreensaver;->access$000(Landroid/content/Context;Ljava/util/List;Ljava/util/List;[I[ZLandroid/widget/ImageView;Landroid/widget/ImageView;Lcom/gathin/tvhome/AmbientVideoView;Landroid/widget/TextView;)V
 
-    .line 167
+    .line 163
     iget-object v0, p0, Lcom/gathin/tvhome/AppleTvScreensaver$3;->val$screensaverHandler:Landroid/os/Handler;
 
     const-wide/16 v1, 0x36b0
 
     invoke-virtual {v0, p0, v1, v2}, Landroid/os/Handler;->postDelayed(Ljava/lang/Runnable;J)Z
 
-    .line 168
+    .line 164
     return-void
 .end method

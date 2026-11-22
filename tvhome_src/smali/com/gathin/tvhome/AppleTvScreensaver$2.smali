@@ -34,7 +34,7 @@
         }
     .end annotation
 
-    .line 126
+    .line 122
     iput-object p1, p0, Lcom/gathin/tvhome/AppleTvScreensaver$2;->val$clockView:Landroid/widget/TextView;
 
     iput-object p2, p0, Lcom/gathin/tvhome/AppleTvScreensaver$2;->val$timeFormat:Ljava/text/SimpleDateFormat;
@@ -51,7 +51,7 @@
 .method public run()V
     .locals 3
 
-    .line 129
+    .line 125
     iget-object v0, p0, Lcom/gathin/tvhome/AppleTvScreensaver$2;->val$clockView:Landroid/widget/TextView;
 
     iget-object v1, p0, Lcom/gathin/tvhome/AppleTvScreensaver$2;->val$timeFormat:Ljava/text/SimpleDateFormat;
@@ -66,13 +66,13 @@
 
     invoke-virtual {v0, v1}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
-    .line 130
+    .line 126
     iget-object v0, p0, Lcom/gathin/tvhome/AppleTvScreensaver$2;->val$screensaverHandler:Landroid/os/Handler;
 
     const-wide/16 v1, 0x3e8
 
     invoke-virtual {v0, p0, v1, v2}, Landroid/os/Handler;->postDelayed(Ljava/lang/Runnable;J)Z
 
-    .line 131
+    .line 127
     return-void
 .end method

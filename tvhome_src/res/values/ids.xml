@@ -228,5 +228,4 @@
     <id name="btnChildLock" />
     <id name="btnControlCenter" />
     <id name="lineAnimation" />
-    <id name="btnVoice" />
 </resources>

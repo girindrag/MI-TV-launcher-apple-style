@@ -10,7 +10,7 @@ This document records the architectural and engineering decisions made during th
 - [ADR-003: Dual-Layer Crossfade Architecture for Dynamic Screensaver](#adr-003-dual-layer-crossfade-architecture-for-dynamic-screensaver)
 - [ADR-004: Android Accessibility Service for Hardware Hotkey Interception](#adr-004-android-accessibility-service-for-hardware-hotkey-interception)
 - [ADR-005: Clutter-Free Ambient Screensaver (Clock-Only, No Captions)](#adr-005-clutter-free-ambient-screensaver-clock-only-no-captions)
-- [ADR-006: Apple Siri / Alexa Style Voice Assistant Subsystem](#adr-006-apple-siri--alexa-style-voice-assistant-subsystem)
+- [ADR-006: Rejection of Third-Party Background Voice Wake-Word Engine](#adr-006-rejection-of-third-party-background-voice-wake-word-engine)
 
 ---
 
@@ -69,16 +69,12 @@ This document records the architectural and engineering decisions made during th
 
 ---
 
-### ADR-006: Apple Siri / Alexa Style Voice Assistant Subsystem
-- **Status**: Accepted
-- **Context**: Controlling Android TV purely with directional buttons can be tedious when searching for content, boosting performance, or adjusting sleep timers. Users expect conversational voice control similar to Apple Siri, Alexa, or Google Assistant.
-- **Decision**: Implement `VoiceAssistantActivity` and `TvVoiceAssistant`:
-  - Translucent Apple Siri glassmorphism overlay with dynamic pulsing gradient orb.
-  - Android `SpeechRecognizer` integration with system recognition engine (`Katniss`).
-  - Natural spoken audio feedback via Google `TextToSpeech` (TTS).
-  - Multi-intent parser for TV control: app launching, RAM cleaner, sleep timer, volume mute, weather, and time queries.
-  - D-Pad focusable glass suggestion chips for quiet or noisy environments.
+### ADR-006: Rejection of Third-Party Background Voice Wake-Word Engine
+- **Status**: Rejected / Deprecated
+- **Context**: Evaluation of a hands-free "Hey Siri" / Alexa-style continuous voice listener embedded directly inside the third-party launcher APK across all applications on Android 11 (`MiTV-MOOR0`).
+- **Decision**: Remove experimental background continuous microphone capture and custom voice overlays entirely. Rely on native Android TV OS assistant architecture (`com.google.android.katniss`) via the physical remote mic button.
 - **Consequences**:
-  - ✅ Fast, hands-free voice control across the entire television.
-  - ✅ Graceful audio and visual feedback.
-  - ✅ Remote-friendly D-Pad fallback chips if microphone is unavailable.
+  - ✅ **OS Security Compliance**: Android 11 strictly restricts background `AudioRecord` capture when another app (YouTube, Netflix, Prime) occupies the foreground.
+  - ✅ **Hardware Realism**: Mi TV Bluetooth remotes shut down hardware ADC mic packets unless physically triggered via the dedicated remote mic button.
+  - ✅ **Zero Contention & High Performance**: Prevents audio subsystem lockups, battery drain, and memory pressure on TV SoC hardware.
+  - ✅ **Maximum Launcher Stability**: Preserves a clean, fast, clutter-free Apple TV home screen experience.

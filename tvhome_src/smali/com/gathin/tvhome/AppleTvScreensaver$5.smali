@@ -30,7 +30,7 @@
         }
     .end annotation
 
-    .line 187
+    .line 183
     iput-object p1, p0, Lcom/gathin/tvhome/AppleTvScreensaver$5;->val$dismissAction:Ljava/lang/Runnable;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -43,7 +43,7 @@
 .method public onKey(Landroid/content/DialogInterface;ILandroid/view/KeyEvent;)Z
     .locals 0
 
-    .line 190
+    .line 186
     invoke-virtual {p3}, Landroid/view/KeyEvent;->getAction()I
 
     move-result p1
@@ -52,15 +52,15 @@
 
     if-ne p1, p2, :cond_0
 
-    .line 191
+    .line 187
     iget-object p1, p0, Lcom/gathin/tvhome/AppleTvScreensaver$5;->val$dismissAction:Ljava/lang/Runnable;
 
     invoke-interface {p1}, Ljava/lang/Runnable;->run()V
 
-    .line 192
+    .line 188
     return p2
 
-    .line 194
+    .line 190
     :cond_0
     const/4 p1, 0x0
 

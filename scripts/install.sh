@@ -32,9 +32,8 @@ fi
 echo "📦 1/4 Installing MiTvLauncherAppleStyle-v1.0.apk..."
 adb -s "$DEVICE" install -r "$APK_PATH"
 
-echo "🔑 2/4 Granting system permissions (WRITE_SECURE_SETTINGS & RECORD_AUDIO)..."
+echo "🔑 2/4 Granting system permissions (WRITE_SECURE_SETTINGS)..."
 adb -s "$DEVICE" shell "pm grant com.gathin.tvhome android.permission.WRITE_SECURE_SETTINGS" || true
-adb -s "$DEVICE" shell "pm grant com.gathin.tvhome android.permission.RECORD_AUDIO" || true
 
 echo "🎮 3/4 Configuring Remote Hotkeys & Accessibility..."
 adb -s "$DEVICE" shell "settings put secure enabled_accessibility_services com.gathin.tvhome/com.gathin.tvhome.HomeKeyService"

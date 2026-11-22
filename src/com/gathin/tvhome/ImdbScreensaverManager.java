@@ -292,20 +292,6 @@ public class ImdbScreensaverManager {
         }
     }
 
-    public static String getCachedTopTitle(Context context) {
-        try {
-            List<ImdbItem> items = getCachedItems(context);
-            if (items != null && !items.isEmpty()) {
-                return items.get(0).getDisplayName();
-            }
-        } catch (Exception ignored) {}
-        return "The Penguin, Dune Part Two, and Gladiator II";
-    }
-
-    public static String getCachedTopTitle() {
-        return "The Penguin, Dune Part Two, and Gladiator II";
-    }
-
     public static String getTodayDateString() {
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.US);

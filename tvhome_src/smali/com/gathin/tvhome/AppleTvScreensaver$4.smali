@@ -34,7 +34,7 @@
         }
     .end annotation
 
-    .line 173
+    .line 169
     iput-object p1, p0, Lcom/gathin/tvhome/AppleTvScreensaver$4;->val$screensaverHandler:Landroid/os/Handler;
 
     iput-object p2, p0, Lcom/gathin/tvhome/AppleTvScreensaver$4;->val$dialog:Landroid/app/Dialog;
@@ -51,14 +51,14 @@
 .method public run()V
     .locals 2
 
-    .line 176
+    .line 172
     iget-object v0, p0, Lcom/gathin/tvhome/AppleTvScreensaver$4;->val$screensaverHandler:Landroid/os/Handler;
 
     const/4 v1, 0x0
 
     invoke-virtual {v0, v1}, Landroid/os/Handler;->removeCallbacksAndMessages(Ljava/lang/Object;)V
 
-    .line 177
+    .line 173
     iget-object v0, p0, Lcom/gathin/tvhome/AppleTvScreensaver$4;->val$dialog:Landroid/app/Dialog;
 
     invoke-virtual {v0}, Landroid/app/Dialog;->isShowing()Z
@@ -67,7 +67,7 @@
 
     if-eqz v0, :cond_0
 
-    .line 179
+    .line 175
     :try_start_0
     iget-object v0, p0, Lcom/gathin/tvhome/AppleTvScreensaver$4;->val$dialog:Landroid/app/Dialog;
 
@@ -77,22 +77,22 @@
 
     goto :goto_0
 
-    .line 180
+    .line 176
     :catch_0
     move-exception v0
 
     :goto_0
     nop
 
-    .line 182
+    .line 178
     :cond_0
     invoke-static {v1}, Lcom/gathin/tvhome/AppleTvScreensaver;->access$102(Landroid/app/Dialog;)Landroid/app/Dialog;
 
-    .line 183
+    .line 179
     iget-object v0, p0, Lcom/gathin/tvhome/AppleTvScreensaver$4;->val$activity:Landroid/app/Activity;
 
     invoke-static {v0}, Lcom/gathin/tvhome/AppleTvScreensaver;->resetIdleTimer(Landroid/app/Activity;)V
 
-    .line 184
+    .line 180
     return-void
 .end method

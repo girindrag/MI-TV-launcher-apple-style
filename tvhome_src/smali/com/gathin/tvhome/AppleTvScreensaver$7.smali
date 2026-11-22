@@ -32,7 +32,7 @@
         }
     .end annotation
 
-    .line 205
+    .line 201
     iput-object p1, p0, Lcom/gathin/tvhome/AppleTvScreensaver$7;->val$screensaverHandler:Landroid/os/Handler;
 
     iput-object p2, p0, Lcom/gathin/tvhome/AppleTvScreensaver$7;->val$activity:Landroid/app/Activity;
@@ -47,21 +47,21 @@
 .method public onDismiss(Landroid/content/DialogInterface;)V
     .locals 1
 
-    .line 208
+    .line 204
     iget-object p1, p0, Lcom/gathin/tvhome/AppleTvScreensaver$7;->val$screensaverHandler:Landroid/os/Handler;
 
     const/4 v0, 0x0
 
     invoke-virtual {p1, v0}, Landroid/os/Handler;->removeCallbacksAndMessages(Ljava/lang/Object;)V
 
-    .line 209
+    .line 205
     invoke-static {v0}, Lcom/gathin/tvhome/AppleTvScreensaver;->access$102(Landroid/app/Dialog;)Landroid/app/Dialog;
 
-    .line 210
+    .line 206
     iget-object p1, p0, Lcom/gathin/tvhome/AppleTvScreensaver$7;->val$activity:Landroid/app/Activity;
 
     invoke-static {p1}, Lcom/gathin/tvhome/AppleTvScreensaver;->resetIdleTimer(Landroid/app/Activity;)V
 
-    .line 211
+    .line 207
     return-void
 .end method
