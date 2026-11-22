@@ -341,6 +341,8 @@ public class AirPlayServer {
                 "    .card { width: 100%; max-width: 380px; background: #1c1c1e; border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 20px; margin-bottom: 16px; }\n" +
                 "    .card-title { font-size: 17px; font-weight: 600; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }\n" +
                 "    .card-desc { font-size: 13px; color: #a1a1a6; margin-bottom: 16px; line-height: 1.4; }\n" +
+                "    .step-box { background: rgba(255,255,255,0.06); border-radius: 12px; padding: 12px; margin-bottom: 8px; font-size: 14px; line-height: 1.5; color: #e2e8f0; display: flex; align-items: flex-start; gap: 10px; }\n" +
+                "    .step-num { background: #0071e3; color: #fff; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; flex-shrink: 0; }\n" +
                 "    button.btn { width: 100%; background: #0071e3; color: #fff; border: none; border-radius: 12px; padding: 14px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.2s; }\n" +
                 "    button.btn:active { transform: scale(0.98); opacity: 0.9; }\n" +
                 "    button.btn-secondary { background: rgba(255,255,255,0.12); color: #fff; margin-top: 10px; }\n" +
@@ -348,6 +350,7 @@ public class AirPlayServer {
                 "    .remote-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 12px; }\n" +
                 "    .remote-btn { background: #2c2c2e; border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 14px; font-size: 15px; font-weight: 600; color: #fff; cursor: pointer; text-align: center; }\n" +
                 "    .remote-btn:active { background: #0071e3; }\n" +
+                "    .toast { position: fixed; bottom: 20px; background: #34c759; color: #000; padding: 12px 24px; border-radius: 24px; font-weight: 600; font-size: 14px; display: none; z-index: 999; box-shadow: 0 4px 12px rgba(0,0,0,0.5); }\n" +
                 "    #fileInput { display: none; }\n" +
                 "  </style>\n" +
                 "</head>\n" +
@@ -356,21 +359,31 @@ public class AirPlayServer {
                 "    <div class=\"logo\"></div>\n" +
                 "    <h1>Living Room TV</h1>\n" +
                 "    <p class=\"sub\">Apple Style TV Mirroring Hub</p>\n" +
-                "    <div class=\"status-badge\"><div class=\"status-dot\"></div> Connected via Wi-Fi</div>\n" +
+                "    <div class=\"status-badge\"><div class=\"status-dot\"></div> AirPlay Active on Wi-Fi</div>\n" +
                 "  </div>\n" +
                 "\n" +
-                "  <!-- Screen Mirroring Card -->\n" +
-                "  <div class=\"card\">\n" +
-                "    <div class=\"card-title\">📱 Live Screen Mirroring</div>\n" +
-                "    <div class=\"card-desc\">Mirror your iPhone screen live to the TV with real-time video stream.</div>\n" +
+                "  <!-- iOS Native AirPlay Instruction Card (Shown on iPhone/iPad) -->\n" +
+                "  <div id=\"iosAirPlayCard\" class=\"card\" style=\"display:none; border: 1px solid rgba(56, 189, 248, 0.4); background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);\">\n" +
+                "    <div class=\"card-title\">✨ Mirror Full iPhone Screen</div>\n" +
+                "    <div class=\"card-desc\">Mirror your entire iPhone screen wirelessly without extra apps:</div>\n" +
+                "    <div class=\"step-box\"><div class=\"step-num\">1</div><div>Swipe down from top-right corner to open <b>Control Center</b></div></div>\n" +
+                "    <div class=\"step-box\"><div class=\"step-num\">2</div><div>Tap <b>Screen Mirroring</b> (overlapping screens icon)</div></div>\n" +
+                "    <div class=\"step-box\"><div class=\"step-num\">3</div><div>Select <b>Android AirPlay</b> from the list</div></div>\n" +
+                "    <div style=\"color: #34d399; font-size: 13px; font-weight: 600; text-align: center; margin-top: 10px;\">🟢 Receiver Ready &amp; Broadcasting</div>\n" +
+                "  </div>\n" +
+                "\n" +
+                "  <!-- Desktop / Browser Screen Mirroring Card -->\n" +
+                "  <div id=\"browserMirrorCard\" class=\"card\" style=\"display:none;\">\n" +
+                "    <div class=\"card-title\">💻 Browser Screen Mirroring</div>\n" +
+                "    <div class=\"card-desc\">Mirror your laptop or computer screen live to the TV.</div>\n" +
                 "    <button id=\"btnStartMirror\" class=\"btn\" onclick=\"startScreenMirror()\">📺 Start Screen Mirroring</button>\n" +
                 "    <button id=\"btnStopMirror\" class=\"btn btn-danger\" style=\"display:none;\" onclick=\"stopScreenMirror()\">⏹ Stop Mirroring</button>\n" +
                 "  </div>\n" +
                 "\n" +
                 "  <!-- Cast Photos Card -->\n" +
                 "  <div class=\"card\">\n" +
-                "    <div class=\"card-title\">📸 Cast Photos &amp; 4K Media</div>\n" +
-                "    <div class=\"card-desc\">Select photos or videos from your iPhone to showcase in full screen on TV.</div>\n" +
+                "    <div class=\"card-title\">📸 Cast Photos to TV</div>\n" +
+                "    <div class=\"card-desc\">Select photos from your iPhone Camera Roll to showcase in 4K on TV.</div>\n" +
                 "    <input type=\"file\" id=\"fileInput\" accept=\"image/*\" onchange=\"uploadPhoto(this)\">\n" +
                 "    <button class=\"btn btn-secondary\" onclick=\"document.getElementById('fileInput').click()\">🖼️ Choose Photo from Library</button>\n" +
                 "  </div>\n" +
@@ -391,7 +404,25 @@ public class AirPlayServer {
                 "    </div>\n" +
                 "  </div>\n" +
                 "\n" +
+                "  <div id=\"toast\" class=\"toast\">✅ Done</div>\n" +
+                "\n" +
                 "  <script>\n" +
+                "    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);\n" +
+                "    if (isIOS) {\n" +
+                "      document.getElementById('iosAirPlayCard').style.display = 'block';\n" +
+                "    } else if (navigator.mediaDevices && navigator.mediaDevices.getDisplayMedia) {\n" +
+                "      document.getElementById('browserMirrorCard').style.display = 'block';\n" +
+                "    } else {\n" +
+                "      document.getElementById('iosAirPlayCard').style.display = 'block';\n" +
+                "    }\n" +
+                "\n" +
+                "    function showToast(msg) {\n" +
+                "      const t = document.getElementById('toast');\n" +
+                "      t.innerText = msg;\n" +
+                "      t.style.display = 'block';\n" +
+                "      setTimeout(() => { t.style.display = 'none'; }, 2500);\n" +
+                "    }\n" +
+                "\n" +
                 "    let ws = null;\n" +
                 "    let screenStream = null;\n" +
                 "    let timer = null;\n" +
@@ -456,11 +487,12 @@ public class AirPlayServer {
                 "        method: 'POST',\n" +
                 "        body: buf\n" +
                 "      });\n" +
-                "      alert('✅ Photo casted to your TV screen!');\n" +
+                "      showToast('✅ Photo casted to TV screen!');\n" +
                 "    }\n" +
                 "\n" +
                 "    function sendKey(key) {\n" +
                 "      fetch('/api/remote?key=' + key, { method: 'POST' });\n" +
+                "      showToast('🎮 ' + key);\n" +
                 "    }\n" +
                 "  </script>\n" +
                 "</body>\n" +

@@ -12,7 +12,7 @@ This document records the architectural and engineering decisions made during th
 - [ADR-005: Clutter-Free Ambient Screensaver (Clock-Only, No Captions)](#adr-005-clutter-free-ambient-screensaver-clock-only-no-captions)
 - [ADR-006: Rejection of Third-Party Background Voice Wake-Word Engine](#adr-006-rejection-of-third-party-background-voice-wake-word-engine)
 - [ADR-007: QR-Code Driven Embedded AirPlay & Web Screen Mirroring Receiver](#adr-007-qr-code-driven-embedded-airplay--web-screen-mirroring-receiver)
-- [ADR-008: Official AirDroid Cast TV Receiver Integration](#adr-008-official-airdroid-cast-tv-receiver-integration)
+- [ADR-008: Native Launcher AirPlay Hub & iOS Control Center Integration](#adr-008-native-launcher-airplay-hub--ios-control-center-integration)
 
 ---
 
@@ -96,12 +96,13 @@ This document records the architectural and engineering decisions made during th
 
 ---
 
-### ADR-008: Official AirDroid Cast TV Receiver Integration
+### ADR-008: Native Launcher AirPlay Hub & iOS Control Center Integration
 - **Status**: Accepted
-- **Context**: iOS Safari restricts WebRTC screen capture (`navigator.mediaDevices.getDisplayMedia`) on non-secure HTTP origins and requires native ReplayKit broadcast extensions for smooth full-device screen mirroring. Users requested the full functionality and seamlessness of AirDroid Cast (https://www.airdroid.com/cast/).
-- **Decision**: Install and integrate the official **AirDroid Cast TV** app (`com.sand.aircasttv`) directly on the TV and wire the launcher's top-bar AirPlay/Cast action (`AirPlayClickLambda`) to launch AirDroid Cast TV as the primary screen mirroring receiver, with automatic fallback to native AirPlay (`io.github.jqssun.airplay`).
+- **Context**: Screen mirroring requested without external third-party app windows on the TV. Mobile iOS Safari strictly disallows WebKit screen recording (`navigator.mediaDevices.getDisplayMedia`), leading to browser exceptions when scanning web QR codes.
+- **Decision**: Build the entire AirPlay and screen mirroring receiver natively inside the launcher (`AirPlayMirrorActivity`), supported by a lightweight background AirPlay service (`_airplay._tcp`). When clicking the status bar Cast button, the launcher presents a dual-option glassmorphism dashboard:
+  1. **Native AirPlay**: Instructs iPhone users to swipe down iOS Control Center and tap Screen Mirroring ➔ 'Android AirPlay' for seamless, zero-app 60 FPS system mirroring.
+  2. **Local Web Hub**: Provides a sharp QR code to `http://<TV_IP>:7070` for instant 4K photo casting and touch TV remote control, intelligently bypassing unsupported WebKit APIs on iOS while supporting desktop browser mirroring.
 - **Consequences**:
-  - ✅ **Native iOS Broadcast**: iPhone users can use the free AirDroid Cast app on the App Store to scan the TV's QR code or enter the 9-digit Cast Code, activating Apple's native ReplayKit Screen Broadcast.
-  - ✅ **Universal Device Support**: Compatible with iOS, Android, Windows, and Mac (via `webcast.airdroid.com` or desktop app).
-  - ✅ **Zero WebKit Restrictions**: Completely circumvents iOS Safari `getDisplayMedia` limitations.
-  - ✅ **Seamless TV Integration**: 1-click launch from the launcher status bar with automatic fallback.
+  - ✅ **Zero App Windows**: Fully native experience contained within `com.gathin.tvhome`.
+  - ✅ **No Safari Errors**: Eliminates the `getDisplayMedia` exception on iPhone.
+  - ✅ **True Apple TV Experience**: Users mirror screens naturally using Apple's built-in Control Center gesture.

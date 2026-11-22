@@ -15,9 +15,9 @@
 | :---: | :---: |
 | ![Home Screen](screenshots/home_screen_imdb.png) | ![Screensaver](screenshots/screensaver_imdb.png) |
 
-| YouTube Remote Integration | AirDroid Cast TV & Screen Mirroring |
+| YouTube Remote Integration | Native AirPlay & iPhone Mirroring |
 | :---: | :---: |
-| ![YouTube Launch](screenshots/yt_screen.png) | ![AirDroid Cast TV](screenshots/airdroid_cast_ready.png) |
+| ![YouTube Launch](screenshots/yt_screen.png) | ![Native AirPlay](screenshots/native_airplay_perfect.png) |
 
 ---
 
@@ -48,12 +48,11 @@
   - **Sleep Timer**: Easily toggle 15m, 30m, 60m, or 120m sleep timers.
   - **Quick Power Controls**: Instant Sleep, Restart, and Settings toggles from the home screen.
 
-- **📱 Seamless Screen Mirroring & AirDroid Cast TV (iOS, Android, Windows, Mac)**:
-  - **1-Click Cast Access**: Tapping the Cast/AirPlay icon in the top status bar opens **AirDroid Cast TV** directly on your TV.
-  - **Instant QR Code & 9-Digit Code**: Displays a live QR code and 9-digit cast code for fast, seamless pairing.
-  - **iPhone / iPad (iOS)**: Works seamlessly via the free AirDroid Cast iOS app (scans the QR code and activates iOS Screen Broadcast, bypassing mobile Safari WebKit screen recording restrictions) or via native AirPlay receiver.
-  - **Android, Windows & Mac**: Cast effortlessly using the AirDroid Cast client or directly in any desktop browser via `webcast.airdroid.com`.
-  - **Built-in Fallbacks**: Intelligent multi-stage fallback to native AirPlay receiver (`io.github.jqssun.airplay`) and local HTTP media caster.
+- **📱 Native Screen Mirroring & Apple AirPlay (Zero-App Setup)**:
+  - **100% Native in Launcher**: Built directly into the TV launcher without requiring any external app windows.
+  - **Apple AirPlay Screen Mirroring**: Swipe down from top-right corner on iPhone/iPad to open Control Center ➔ tap **Screen Mirroring** ➔ select **Android AirPlay** for instant 60 FPS full-screen mirroring with audio and apps.
+  - **QR Code Web Hub**: Scan the on-screen QR code with iPhone Camera to open the local web hub for 4K photo casting and touch TV remote control, completely free of Safari WebKit errors.
+  - **Desktop / Laptop Mirroring**: Native browser screen capture for Mac, Windows, and Android Chrome.
 
 - **🔒 Child Lock & Privacy PIN**:
   - Built-in 4-digit PIN system to restrict access to selected apps and TV settings.

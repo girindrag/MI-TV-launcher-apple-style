@@ -1,6 +1,5 @@
 package com.gathin.tvhome;
 
-import android.content.ComponentName;
 import android.content.Intent;
 import android.view.View;
 
@@ -13,34 +12,15 @@ public class AirPlayClickLambda implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        // Priority 1: AirDroid Cast TV (seamless cross-platform mirroring for iOS, Android, PC/Mac)
+        // Ensure background AirPlay receiver service is running
         try {
-            Intent intent = activity.getPackageManager().getLaunchIntentForPackage("com.sand.aircasttv");
-            if (intent == null) {
-                intent = activity.getPackageManager().getLeanbackLaunchIntentForPackage("com.sand.aircasttv");
-            }
-            if (intent == null) {
-                intent = new Intent();
-                intent.setComponent(new ComponentName("com.sand.aircasttv", "com.sand.aircast.ui.SplashTvActivity"));
-            }
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            activity.startActivity(intent);
-            return;
+            Intent broadcast = new Intent("io.github.jqssun.airplay.START_SERVER");
+            activity.sendBroadcast(broadcast);
         } catch (Exception ignored) {}
 
-        // Priority 2: Native AirPlay receiver
-        try {
-            Intent launchIntent = activity.getPackageManager().getLaunchIntentForPackage("io.github.jqssun.airplay");
-            if (launchIntent != null) {
-                launchIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                activity.startActivity(launchIntent);
-                return;
-            }
-        } catch (Exception ignored) {}
-
-        // Priority 3: Built-in AirPlay mirror activity fallback
-        Intent fallback = new Intent(activity, AirPlayMirrorActivity.class);
-        fallback.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        activity.startActivity(fallback);
+        // Launch Native Apple Style AirPlay Activity directly
+        Intent intent = new Intent(activity, AirPlayMirrorActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        activity.startActivity(intent);
     }
 }
