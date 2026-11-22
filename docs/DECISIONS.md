@@ -96,13 +96,11 @@ This document records the architectural and engineering decisions made during th
 
 ---
 
-### ADR-008: Native Launcher AirPlay Hub & iOS Control Center Integration
+### ADR-008: PigeonCast QR Code Screen Mirroring Receiver Integration
 - **Status**: Accepted
-- **Context**: Screen mirroring requested without external third-party app windows on the TV. Mobile iOS Safari strictly disallows WebKit screen recording (`navigator.mediaDevices.getDisplayMedia`), leading to browser exceptions when scanning web QR codes.
-- **Decision**: Build the entire AirPlay and screen mirroring receiver natively inside the launcher (`AirPlayMirrorActivity`), supported by a lightweight background AirPlay service (`_airplay._tcp`). When clicking the status bar Cast button, the launcher presents a dual-option glassmorphism dashboard:
-  1. **Native AirPlay**: Instructs iPhone users to swipe down iOS Control Center and tap Screen Mirroring ➔ 'Android AirPlay' for seamless, zero-app 60 FPS system mirroring.
-  2. **Local Web Hub**: Provides a sharp QR code to `http://<TV_IP>:7070` for instant 4K photo casting and touch TV remote control, intelligently bypassing unsupported WebKit APIs on iOS while supporting desktop browser mirroring.
+- **Context**: iOS Safari blocks system-wide screen capture inside web browsers, causing exceptions when attempting to mirror apps outside of photo libraries. The user provided a reference video (`https://www.youtube.com/watch?v=jsxngzsI0lc`) utilizing the PigeonCast QR Code mirroring framework.
+- **Decision**: Install **PigeonCast: TV Cast & Mirror** (`com.pigeoncast.screen.mirroring.android.tv`) directly on the TV and wire the launcher's top status bar Cast icon (`AirPlayClickLambda`) to launch PigeonCast as the primary casting receiver.
 - **Consequences**:
-  - ✅ **Zero App Windows**: Fully native experience contained within `com.gathin.tvhome`.
-  - ✅ **No Safari Errors**: Eliminates the `getDisplayMedia` exception on iPhone.
-  - ✅ **True Apple TV Experience**: Users mirror screens naturally using Apple's built-in Control Center gesture.
+  - ✅ **Exact Video Implementation**: Uses the exact app demonstrated in the user's reference video.
+  - ✅ **Full iPhone Screen Mirroring**: Supports full iOS Screen Broadcast across all apps, games, and media without being limited to photo libraries.
+  - ✅ **Instant QR Scan**: Displays a prominent, high-contrast QR code on the TV that any iPhone can scan to connect in seconds.

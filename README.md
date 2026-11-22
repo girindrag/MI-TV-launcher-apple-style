@@ -15,9 +15,9 @@
 | :---: | :---: |
 | ![Home Screen](screenshots/home_screen_imdb.png) | ![Screensaver](screenshots/screensaver_imdb.png) |
 
-| YouTube Remote Integration | Native AirPlay & iPhone Mirroring |
+| YouTube Remote Integration | PigeonCast QR Code Screen Mirroring |
 | :---: | :---: |
-| ![YouTube Launch](screenshots/yt_screen.png) | ![Native AirPlay](screenshots/native_airplay_perfect.png) |
+| ![YouTube Launch](screenshots/yt_screen.png) | ![PigeonCast QR Code](screenshots/pigeon_click_test.png) |
 
 ---
 
@@ -48,11 +48,11 @@
   - **Sleep Timer**: Easily toggle 15m, 30m, 60m, or 120m sleep timers.
   - **Quick Power Controls**: Instant Sleep, Restart, and Settings toggles from the home screen.
 
-- **📱 Native Screen Mirroring & Apple AirPlay (Zero-App Setup)**:
-  - **100% Native in Launcher**: Built directly into the TV launcher without requiring any external app windows.
-  - **Apple AirPlay Screen Mirroring**: Swipe down from top-right corner on iPhone/iPad to open Control Center ➔ tap **Screen Mirroring** ➔ select **Android AirPlay** for instant 60 FPS full-screen mirroring with audio and apps.
-  - **QR Code Web Hub**: Scan the on-screen QR code with iPhone Camera to open the local web hub for 4K photo casting and touch TV remote control, completely free of Safari WebKit errors.
-  - **Desktop / Laptop Mirroring**: Native browser screen capture for Mac, Windows, and Android Chrome.
+- **📱 QR Code Screen Mirroring (PigeonCast Universal Receiver)**:
+  - **1-Click Launch from Launcher Status Bar**: Tapping the Cast icon directly opens the integrated **PigeonCast** receiver screen with a live QR Code and Device Code (`IC4014`).
+  - **Full iPhone Screen Mirroring**: Open the free PigeonCast app on iPhone, scan the TV's QR Code, tap *Screen Mirroring* ➔ *Start Broadcast* to mirror your entire iPhone screen across ANY app (YouTube, Instagram, Netflix, games, camera) with full audio and zero WebKit errors.
+  - **Universal Support**: Seamlessly connects iPhone, iPad, Android, Windows, and Mac devices over local Wi-Fi.
+  - **Built-in Fallbacks**: Multi-stage fallback to background AirPlay and local media hub.
 
 - **🔒 Child Lock & Privacy PIN**:
   - Built-in 4-digit PIN system to restrict access to selected apps and TV settings.

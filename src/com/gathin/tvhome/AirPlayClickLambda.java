@@ -13,25 +13,32 @@ public class AirPlayClickLambda implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        // Start background AirPlay receiver service
+        // Priority 1: PigeonCast TV Receiver (exact requested video implementation for full iPhone screen mirroring via QR scan)
         try {
-            Intent broadcast = new Intent("io.github.jqssun.airplay.START_SERVER");
-            activity.sendBroadcast(broadcast);
-        } catch (Exception ignored) {}
-
-        // Launch full-screen AirPlay Mirroring Receiver
-        try {
-            Intent intent = activity.getPackageManager().getLaunchIntentForPackage("io.github.jqssun.airplay");
+            Intent intent = activity.getPackageManager().getLaunchIntentForPackage("com.pigeoncast.screen.mirroring.android.tv");
+            if (intent == null) {
+                intent = activity.getPackageManager().getLeanbackLaunchIntentForPackage("com.pigeoncast.screen.mirroring.android.tv");
+            }
             if (intent == null) {
                 intent = new Intent();
-                intent.setComponent(new ComponentName("io.github.jqssun.airplay", "io.github.jqssun.airplay.MainActivity"));
+                intent.setComponent(new ComponentName("com.pigeoncast.screen.mirroring.android.tv", "com.mirror_universal.receiver.activity.SplashActivity"));
             }
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             activity.startActivity(intent);
             return;
         } catch (Exception ignored) {}
 
-        // Fallback to built-in activity
+        // Priority 2: AirDroid Cast TV receiver
+        try {
+            Intent intent = activity.getPackageManager().getLaunchIntentForPackage("com.sand.aircasttv");
+            if (intent != null) {
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                activity.startActivity(intent);
+                return;
+            }
+        } catch (Exception ignored) {}
+
+        // Priority 3: Fallback built-in activity
         Intent fallback = new Intent(activity, AirPlayMirrorActivity.class);
         fallback.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         activity.startActivity(fallback);

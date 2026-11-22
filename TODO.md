@@ -31,11 +31,10 @@ Active development checklist, completed milestones, and planned features for the
   - [x] Sleep timer (15, 30, 60, 120 minutes).
   - [x] 4-digit PIN security for sensitive apps.
 
-- [x] **Native Apple AirPlay & Screen Mirroring (Zero External Apps)**:
-  - [x] 100% native launcher UI (`AirPlayMirrorActivity`) styled with Apple TV glassmorphism.
-  - [x] Integrated background AirPlay server advertising `Android AirPlay._airplay._tcp`.
-  - [x] Fixed iOS Safari WebKit `getDisplayMedia` error by detecting iOS and guiding native Control Center Screen Mirroring.
-  - [x] Embedded HTTP server on port 7070 for 4K photo casting and touch TV remote control.
+- [x] **PigeonCast QR Code Screen Mirroring (YouTube Method)**:
+  - [x] Installed official **PigeonCast: TV Cast & Mirror** (`com.pigeoncast.screen.mirroring.android.tv`) on TV.
+  - [x] Wired launcher status bar Cast button (`AirPlayClickLambda`) to launch PigeonCast directly.
+  - [x] Displays on-screen QR Code and Device Code (`IC4014`) for full-device screen mirroring via iOS Screen Broadcast.
 
 - [x] **Automated Tooling & Repository Setup**:
   - [x] `scripts/install.sh` for 1-click ADB installation and permission granting.
