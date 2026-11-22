@@ -228,4 +228,13 @@
     <id name="btnChildLock" />
     <id name="btnControlCenter" />
     <id name="lineAnimation" />
+    <id name="btnAirPlay" />
+    <id name="qrContainer" />
+    <id name="ivQrCode" />
+    <id name="tvAirPlayUrl" />
+    <id name="tvStatusBadge" />
+    <id name="btnExitAirPlay" />
+    <id name="mirrorContainer" />
+    <id name="ivMirrorDisplay" />
+    <id name="tvMirrorOverlay" />
 </resources>

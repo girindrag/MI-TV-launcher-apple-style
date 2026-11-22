@@ -40,6 +40,7 @@
                 <TextView android:id="@id/btnInputs" android:nextFocusDown="@id/grid" android:text="@string/inputs" android:drawableStart="@drawable/ic_input" style="@style/TopButton" />
                 <TextView android:ellipsize="end" android:id="@id/btnWifi" android:nextFocusDown="@id/grid" android:maxWidth="180.0dp" android:text="@string/wifi" android:singleLine="true" android:drawableStart="@drawable/ic_wifi" style="@style/TopButton" />
                 <TextView android:id="@id/btnBluetooth" android:nextFocusDown="@id/grid" android:contentDescription="@string/bluetooth" android:drawableStart="@drawable/ic_bluetooth" style="@style/TopButtonIcon" />
+                <TextView android:id="@id/btnAirPlay" android:nextFocusDown="@id/grid" android:contentDescription="AirPlay Mirroring" android:drawableStart="@drawable/ic_airplay" style="@style/TopButtonIcon" />
                 <TextView android:id="@id/btnReorder" android:nextFocusDown="@id/grid" android:contentDescription="@string/reorder" android:drawableStart="@drawable/ic_swap_vert" style="@style/TopButtonIcon" />
                 <TextView android:id="@id/btnLibraryTop" android:visibility="gone" android:nextFocusDown="@id/grid" android:contentDescription="@string/app_library" android:drawableStart="@drawable/ic_apps_pill" style="@style/TopButtonIcon" />
                 <TextView android:id="@id/btnControlCenter" android:nextFocusDown="@id/grid" android:contentDescription="Control Center" android:drawableStart="@drawable/ic_device_care" style="@style/TopButtonIcon" />

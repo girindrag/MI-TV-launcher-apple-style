@@ -11,6 +11,7 @@ This document records the architectural and engineering decisions made during th
 - [ADR-004: Android Accessibility Service for Hardware Hotkey Interception](#adr-004-android-accessibility-service-for-hardware-hotkey-interception)
 - [ADR-005: Clutter-Free Ambient Screensaver (Clock-Only, No Captions)](#adr-005-clutter-free-ambient-screensaver-clock-only-no-captions)
 - [ADR-006: Rejection of Third-Party Background Voice Wake-Word Engine](#adr-006-rejection-of-third-party-background-voice-wake-word-engine)
+- [ADR-007: QR-Code Driven Embedded AirPlay & Web Screen Mirroring Receiver](#adr-007-qr-code-driven-embedded-airplay--web-screen-mirroring-receiver)
 
 ---
 
@@ -78,3 +79,15 @@ This document records the architectural and engineering decisions made during th
   - ✅ **Hardware Realism**: Mi TV Bluetooth remotes shut down hardware ADC mic packets unless physically triggered via the dedicated remote mic button.
   - ✅ **Zero Contention & High Performance**: Prevents audio subsystem lockups, battery drain, and memory pressure on TV SoC hardware.
   - ✅ **Maximum Launcher Stability**: Preserves a clean, fast, clutter-free Apple TV home screen experience.
+
+---
+
+### ADR-007: QR-Code Driven Embedded AirPlay & Web Screen Mirroring Receiver
+- **Status**: Accepted
+- **Context**: Users want to mirror their iPhone screen, photos, and media directly to the TV without installing third-party app store apps on either the iPhone or the TV.
+- **Decision**: Embed an internal HTTP/WebSocket streaming server (`AirPlayServer.java`) on port `7070` inside the launcher, coupled with an on-demand QR code generator (`QrCode.java`). Scanning the QR code opens a web-based screen capture and media casting hub in Safari on the iPhone.
+- **Consequences**:
+  - ✅ **Zero App Required on iPhone**: Any iPhone running iOS 13+ connects instantly using native Safari Screen Broadcast (`getDisplayMedia`) and HTML5 media APIs.
+  - ✅ **High Privacy & Low Latency**: All communication stays strictly on the local Wi-Fi network with zero cloud dependencies.
+  - ✅ **4K Media & Remote Control**: Users can stream photos, broadcast screens, and control TV navigation directly from their phone.
+  - ⚠️ Requires TV and iPhone to be on the same local Wi-Fi network.

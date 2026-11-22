@@ -91,6 +91,7 @@
             </intent-filter>
         </activity>
         <activity android:excludeFromRecents="true" android:exported="false" android:name="com.gathin.tvhome.ClockActivity" android:noHistory="true" android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"/>
+        <activity android:name="com.gathin.tvhome.AirPlayMirrorActivity" android:screenOrientation="landscape" android:exported="true" android:theme="@android:style/Theme.NoTitleBar.Fullscreen"/>
         <activity android:excludeFromRecents="true" android:exported="false" android:name="com.gathin.tvhome.ProbeActivity" android:noHistory="true" android:taskAffinity="" android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
         <service android:exported="true" android:label="@string/dream_name" android:name="com.gathin.tvhome.ClockDream" android:permission="android.permission.BIND_DREAM_SERVICE">
             <intent-filter>

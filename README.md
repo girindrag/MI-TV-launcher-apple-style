@@ -48,6 +48,13 @@
   - **Sleep Timer**: Easily toggle 15m, 30m, 60m, or 120m sleep timers.
   - **Quick Power Controls**: Instant Sleep, Restart, and Settings toggles from the home screen.
 
+- **📱 Apple AirPlay & iPhone Screen Mirroring (Instant QR Code)**:
+  - **Zero App Required on iPhone**: Connect effortlessly with any iPhone via the native Camera app.
+  - **Instant QR Code**: Top status bar AirPlay icon (📺) launches a sharp QR code pointing to the TV's local Wi-Fi receiver (`http://<TV_IP>:7070`).
+  - **Live Screen Mirroring**: Uses Safari Screen Broadcast (`getDisplayMedia`) to stream your iPhone screen at 30-60fps HD with low local Wi-Fi latency.
+  - **4K Photo & Media Casting**: Select photos or videos from your iPhone Camera Roll to display in full-screen on your TV.
+  - **Touch TV Remote**: Use your iPhone as a touch controller (D-Pad, Volume, Home, Back).
+
 - **🔒 Child Lock & Privacy PIN**:
   - Built-in 4-digit PIN system to restrict access to selected apps and TV settings.
 

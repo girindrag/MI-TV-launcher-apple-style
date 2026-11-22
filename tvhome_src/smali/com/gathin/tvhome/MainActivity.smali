@@ -5858,6 +5858,21 @@
     invoke-virtual {v7, v8}, Landroid/view/View;->setOnClickListener(Landroid/view/View$OnClickListener;)V
 
     :cond_32
+    const v7, 0x7f0900e4
+
+    invoke-virtual {v1, v7}, Landroid/app/Activity;->findViewById(I)Landroid/view/View;
+
+    move-result-object v7
+
+    if-eqz v7, :cond_airplay_done
+
+    new-instance v8, Lcom/gathin/tvhome/AirPlayClickLambda;
+
+    invoke-direct {v8, v1}, Lcom/gathin/tvhome/AirPlayClickLambda;-><init>(Lcom/gathin/tvhome/MainActivity;)V
+
+    invoke-virtual {v7, v8}, Landroid/view/View;->setOnClickListener(Landroid/view/View$OnClickListener;)V
+
+    :cond_airplay_done
     const v7, 0x7f0900c1
 
     invoke-virtual {v1, v7}, Landroid/app/Activity;->findViewById(I)Landroid/view/View;
