@@ -12,6 +12,6 @@ public class VoiceClickLambda implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        TvVoiceAssistant.start(activity);
+        HeySiriVoiceManager.toggleVoice(activity);
     }
 }

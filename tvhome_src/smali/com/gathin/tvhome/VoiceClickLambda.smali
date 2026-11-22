@@ -32,7 +32,7 @@
     .line 15
     iget-object p1, p0, Lcom/gathin/tvhome/VoiceClickLambda;->activity:Landroid/app/Activity;
 
-    invoke-static {p1}, Lcom/gathin/tvhome/TvVoiceAssistant;->start(Landroid/content/Context;)V
+    invoke-static {p1}, Lcom/gathin/tvhome/HeySiriVoiceManager;->toggleVoice(Landroid/app/Activity;)V
 
     .line 16
     return-void

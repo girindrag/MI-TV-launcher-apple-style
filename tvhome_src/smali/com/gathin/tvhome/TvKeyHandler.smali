@@ -343,7 +343,7 @@
     invoke-static {p2, p1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 36
-    invoke-static {p0}, Lcom/gathin/tvhome/TvVoiceAssistant;->start(Landroid/content/Context;)V
+    invoke-static {p0}, Lcom/gathin/tvhome/HeySiriVoiceManager;->toggleVoice(Landroid/app/Activity;)V
 
     .line 38
     :cond_1

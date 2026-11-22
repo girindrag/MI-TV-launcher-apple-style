@@ -33,7 +33,7 @@ public class TvKeyHandler {
         }
         if (action == 1) { // KeyEvent.ACTION_UP
             Log.d(TAG, "Voice key intercepted from Activity: " + keyCode);
-            TvVoiceAssistant.start(activity);
+            HeySiriVoiceManager.toggleVoice(activity);
         }
         return true;
     }
