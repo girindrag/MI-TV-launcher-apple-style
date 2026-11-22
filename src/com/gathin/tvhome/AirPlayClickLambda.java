@@ -12,7 +12,16 @@ public class AirPlayClickLambda implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        Intent intent = new Intent(activity, AirPlayMirrorActivity.class);
-        activity.startActivity(intent);
+        try {
+            Intent launchIntent = activity.getPackageManager().getLaunchIntentForPackage("io.github.jqssun.airplay");
+            if (launchIntent != null) {
+                launchIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                activity.startActivity(launchIntent);
+                return;
+            }
+        } catch (Exception ignored) {}
+
+        Intent fallback = new Intent(activity, AirPlayMirrorActivity.class);
+        activity.startActivity(fallback);
     }
 }
