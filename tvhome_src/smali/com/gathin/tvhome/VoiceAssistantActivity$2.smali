@@ -3,12 +3,12 @@
 .source "VoiceAssistantActivity.java"
 
 # interfaces
-.implements Landroid/view/View$OnFocusChangeListener;
+.implements Landroid/view/View$OnClickListener;
 
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lcom/gathin/tvhome/VoiceAssistantActivity;->addChip(Ljava/lang/String;Ljava/lang/String;)V
+    value = Lcom/gathin/tvhome/VoiceAssistantActivity;->onCreate(Landroid/os/Bundle;)V
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -20,44 +20,20 @@
 # instance fields
 .field final synthetic this$0:Lcom/gathin/tvhome/VoiceAssistantActivity;
 
-.field final synthetic val$chip:Landroid/widget/TextView;
-
-.field final synthetic val$focusedBg:Landroid/graphics/drawable/GradientDrawable;
-
-.field final synthetic val$normalBg:Landroid/graphics/drawable/GradientDrawable;
-
 
 # direct methods
-.method constructor <init>(Lcom/gathin/tvhome/VoiceAssistantActivity;Landroid/widget/TextView;Landroid/graphics/drawable/GradientDrawable;Landroid/graphics/drawable/GradientDrawable;)V
+.method constructor <init>(Lcom/gathin/tvhome/VoiceAssistantActivity;)V
     .locals 0
     .annotation system Ldalvik/annotation/MethodParameters;
         accessFlags = {
-            0x8010,
-            0x1010,
-            0x1010,
-            0x1010
+            0x8010
         }
         names = {
-            null,
-            null,
-            null,
             null
         }
     .end annotation
 
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "()V"
-        }
-    .end annotation
-
-    .line 200
-    iput-object p2, p0, Lcom/gathin/tvhome/VoiceAssistantActivity$2;->val$chip:Landroid/widget/TextView;
-
-    iput-object p3, p0, Lcom/gathin/tvhome/VoiceAssistantActivity$2;->val$focusedBg:Landroid/graphics/drawable/GradientDrawable;
-
-    iput-object p4, p0, Lcom/gathin/tvhome/VoiceAssistantActivity$2;->val$normalBg:Landroid/graphics/drawable/GradientDrawable;
-
+    .line 114
     iput-object p1, p0, Lcom/gathin/tvhome/VoiceAssistantActivity$2;->this$0:Lcom/gathin/tvhome/VoiceAssistantActivity;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -67,76 +43,14 @@
 
 
 # virtual methods
-.method public onFocusChange(Landroid/view/View;Z)V
+.method public onClick(Landroid/view/View;)V
     .locals 0
 
-    .line 203
-    if-eqz p2, :cond_0
+    .line 117
+    iget-object p1, p0, Lcom/gathin/tvhome/VoiceAssistantActivity$2;->this$0:Lcom/gathin/tvhome/VoiceAssistantActivity;
 
-    .line 204
-    iget-object p1, p0, Lcom/gathin/tvhome/VoiceAssistantActivity$2;->val$chip:Landroid/widget/TextView;
+    invoke-virtual {p1}, Lcom/gathin/tvhome/VoiceAssistantActivity;->launchVoiceInput()V
 
-    iget-object p2, p0, Lcom/gathin/tvhome/VoiceAssistantActivity$2;->val$focusedBg:Landroid/graphics/drawable/GradientDrawable;
-
-    invoke-virtual {p1, p2}, Landroid/widget/TextView;->setBackground(Landroid/graphics/drawable/Drawable;)V
-
-    .line 205
-    iget-object p1, p0, Lcom/gathin/tvhome/VoiceAssistantActivity$2;->val$chip:Landroid/widget/TextView;
-
-    const-string p2, "#0F172A"
-
-    invoke-static {p2}, Landroid/graphics/Color;->parseColor(Ljava/lang/String;)I
-
-    move-result p2
-
-    invoke-virtual {p1, p2}, Landroid/widget/TextView;->setTextColor(I)V
-
-    .line 206
-    iget-object p1, p0, Lcom/gathin/tvhome/VoiceAssistantActivity$2;->val$chip:Landroid/widget/TextView;
-
-    const p2, 0x3f8ccccd    # 1.1f
-
-    invoke-virtual {p1, p2}, Landroid/widget/TextView;->setScaleX(F)V
-
-    .line 207
-    iget-object p1, p0, Lcom/gathin/tvhome/VoiceAssistantActivity$2;->val$chip:Landroid/widget/TextView;
-
-    invoke-virtual {p1, p2}, Landroid/widget/TextView;->setScaleY(F)V
-
-    goto :goto_0
-
-    .line 209
-    :cond_0
-    iget-object p1, p0, Lcom/gathin/tvhome/VoiceAssistantActivity$2;->val$chip:Landroid/widget/TextView;
-
-    iget-object p2, p0, Lcom/gathin/tvhome/VoiceAssistantActivity$2;->val$normalBg:Landroid/graphics/drawable/GradientDrawable;
-
-    invoke-virtual {p1, p2}, Landroid/widget/TextView;->setBackground(Landroid/graphics/drawable/Drawable;)V
-
-    .line 210
-    iget-object p1, p0, Lcom/gathin/tvhome/VoiceAssistantActivity$2;->val$chip:Landroid/widget/TextView;
-
-    const-string p2, "#E2E8F0"
-
-    invoke-static {p2}, Landroid/graphics/Color;->parseColor(Ljava/lang/String;)I
-
-    move-result p2
-
-    invoke-virtual {p1, p2}, Landroid/widget/TextView;->setTextColor(I)V
-
-    .line 211
-    iget-object p1, p0, Lcom/gathin/tvhome/VoiceAssistantActivity$2;->val$chip:Landroid/widget/TextView;
-
-    const/high16 p2, 0x3f800000    # 1.0f
-
-    invoke-virtual {p1, p2}, Landroid/widget/TextView;->setScaleX(F)V
-
-    .line 212
-    iget-object p1, p0, Lcom/gathin/tvhome/VoiceAssistantActivity$2;->val$chip:Landroid/widget/TextView;
-
-    invoke-virtual {p1, p2}, Landroid/widget/TextView;->setScaleY(F)V
-
-    .line 214
-    :goto_0
+    .line 118
     return-void
 .end method

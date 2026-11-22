@@ -8,7 +8,7 @@
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lcom/gathin/tvhome/VoiceAssistantActivity;->finishWithDelay(J)V
+    value = Lcom/gathin/tvhome/VoiceAssistantActivity;->executeVoiceCommand(Ljava/lang/String;)V
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -33,7 +33,7 @@
         }
     .end annotation
 
-    .line 625
+    .line 409
     iput-object p1, p0, Lcom/gathin/tvhome/VoiceAssistantActivity$9;->this$0:Lcom/gathin/tvhome/VoiceAssistantActivity;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -46,11 +46,11 @@
 .method public run()V
     .locals 1
 
-    .line 628
+    .line 412
     iget-object v0, p0, Lcom/gathin/tvhome/VoiceAssistantActivity$9;->this$0:Lcom/gathin/tvhome/VoiceAssistantActivity;
 
-    invoke-virtual {v0}, Lcom/gathin/tvhome/VoiceAssistantActivity;->finish()V
+    invoke-virtual {v0}, Lcom/gathin/tvhome/VoiceAssistantActivity;->launchVoiceInput()V
 
-    .line 629
+    .line 413
     return-void
 .end method

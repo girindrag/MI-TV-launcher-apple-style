@@ -4,11 +4,15 @@
 
 
 # static fields
+.field private static final REQUEST_VOICE:I = 0x3e9
+
 .field private static final TAG:Ljava/lang/String; = "VoiceAssistant"
 
 
 # instance fields
 .field private chipsContainer:Landroid/widget/LinearLayout;
+
+.field private hasTriggeredInitialVoice:Z
 
 .field private isDestroyed:Z
 
@@ -41,7 +45,7 @@
 .method public constructor <init>()V
     .locals 2
 
-    .line 37
+    .line 36
     invoke-direct {p0}, Landroid/app/Activity;-><init>()V
 
     .line 49
@@ -63,17 +67,20 @@
     .line 51
     iput-boolean v0, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->isDestroyed:Z
 
-    .line 54
+    .line 52
+    iput-boolean v0, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->hasTriggeredInitialVoice:Z
+
+    .line 55
     const/high16 v0, 0x3f800000    # 1.0f
 
     iput v0, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->pulseScale:F
 
-    .line 55
+    .line 56
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->pulseGrowing:Z
 
-    .line 56
+    .line 57
     new-instance v0, Lcom/gathin/tvhome/VoiceAssistantActivity$1;
 
     invoke-direct {v0, p0}, Lcom/gathin/tvhome/VoiceAssistantActivity$1;-><init>(Lcom/gathin/tvhome/VoiceAssistantActivity;)V
@@ -86,7 +93,7 @@
 .method static synthetic access$000(Lcom/gathin/tvhome/VoiceAssistantActivity;)Z
     .locals 0
 
-    .line 37
+    .line 36
     iget-boolean p0, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->isDestroyed:Z
 
     return p0
@@ -95,25 +102,25 @@
 .method static synthetic access$100(Lcom/gathin/tvhome/VoiceAssistantActivity;)Landroid/view/View;
     .locals 0
 
-    .line 37
+    .line 36
     iget-object p0, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->siriOrb:Landroid/view/View;
 
     return-object p0
 .end method
 
-.method static synthetic access$1000(Lcom/gathin/tvhome/VoiceAssistantActivity;)V
+.method static synthetic access$1000(Lcom/gathin/tvhome/VoiceAssistantActivity;)Landroid/widget/TextView;
     .locals 0
 
-    .line 37
-    invoke-direct {p0}, Lcom/gathin/tvhome/VoiceAssistantActivity;->startListening()V
+    .line 36
+    iget-object p0, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->responseView:Landroid/widget/TextView;
 
-    return-void
+    return-object p0
 .end method
 
 .method static synthetic access$200(Lcom/gathin/tvhome/VoiceAssistantActivity;)Z
     .locals 0
 
-    .line 37
+    .line 36
     iget-boolean p0, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->pulseGrowing:Z
 
     return p0
@@ -122,7 +129,7 @@
 .method static synthetic access$202(Lcom/gathin/tvhome/VoiceAssistantActivity;Z)Z
     .locals 0
 
-    .line 37
+    .line 36
     iput-boolean p1, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->pulseGrowing:Z
 
     return p1
@@ -131,7 +138,7 @@
 .method static synthetic access$300(Lcom/gathin/tvhome/VoiceAssistantActivity;)F
     .locals 0
 
-    .line 37
+    .line 36
     iget p0, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->pulseScale:F
 
     return p0
@@ -140,7 +147,7 @@
 .method static synthetic access$302(Lcom/gathin/tvhome/VoiceAssistantActivity;F)F
     .locals 0
 
-    .line 37
+    .line 36
     iput p1, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->pulseScale:F
 
     return p1
@@ -149,7 +156,7 @@
 .method static synthetic access$316(Lcom/gathin/tvhome/VoiceAssistantActivity;F)F
     .locals 1
 
-    .line 37
+    .line 36
     iget v0, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->pulseScale:F
 
     add-float/2addr v0, p1
@@ -162,7 +169,7 @@
 .method static synthetic access$324(Lcom/gathin/tvhome/VoiceAssistantActivity;F)F
     .locals 1
 
-    .line 37
+    .line 36
     iget v0, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->pulseScale:F
 
     sub-float/2addr v0, p1
@@ -175,53 +182,62 @@
 .method static synthetic access$400(Lcom/gathin/tvhome/VoiceAssistantActivity;)Landroid/os/Handler;
     .locals 0
 
-    .line 37
+    .line 36
     iget-object p0, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->mainHandler:Landroid/os/Handler;
 
     return-object p0
 .end method
 
-.method static synthetic access$500(Lcom/gathin/tvhome/VoiceAssistantActivity;)Landroid/speech/tts/TextToSpeech;
+.method static synthetic access$500(Lcom/gathin/tvhome/VoiceAssistantActivity;)Z
     .locals 0
 
-    .line 37
+    .line 36
+    iget-boolean p0, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->hasTriggeredInitialVoice:Z
+
+    return p0
+.end method
+
+.method static synthetic access$502(Lcom/gathin/tvhome/VoiceAssistantActivity;Z)Z
+    .locals 0
+
+    .line 36
+    iput-boolean p1, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->hasTriggeredInitialVoice:Z
+
+    return p1
+.end method
+
+.method static synthetic access$600(Lcom/gathin/tvhome/VoiceAssistantActivity;)Landroid/speech/tts/TextToSpeech;
+    .locals 0
+
+    .line 36
     iget-object p0, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->textToSpeech:Landroid/speech/tts/TextToSpeech;
 
     return-object p0
 .end method
 
-.method static synthetic access$602(Lcom/gathin/tvhome/VoiceAssistantActivity;Z)Z
+.method static synthetic access$702(Lcom/gathin/tvhome/VoiceAssistantActivity;Z)Z
     .locals 0
 
-    .line 37
+    .line 36
     iput-boolean p1, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->isListening:Z
 
     return p1
 .end method
 
-.method static synthetic access$700(Lcom/gathin/tvhome/VoiceAssistantActivity;Ljava/lang/String;Ljava/lang/String;)V
+.method static synthetic access$800(Lcom/gathin/tvhome/VoiceAssistantActivity;Ljava/lang/String;Ljava/lang/String;)V
     .locals 0
 
-    .line 37
+    .line 36
     invoke-direct {p0, p1, p2}, Lcom/gathin/tvhome/VoiceAssistantActivity;->updateStatus(Ljava/lang/String;Ljava/lang/String;)V
 
     return-void
 .end method
 
-.method static synthetic access$800(Lcom/gathin/tvhome/VoiceAssistantActivity;)Landroid/widget/TextView;
-    .locals 0
-
-    .line 37
-    iget-object p0, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->transcriptView:Landroid/widget/TextView;
-
-    return-object p0
-.end method
-
 .method static synthetic access$900(Lcom/gathin/tvhome/VoiceAssistantActivity;)Landroid/widget/TextView;
     .locals 0
 
-    .line 37
-    iget-object p0, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->responseView:Landroid/widget/TextView;
+    .line 36
+    iget-object p0, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->transcriptView:Landroid/widget/TextView;
 
     return-object p0
 .end method
@@ -229,20 +245,20 @@
 .method private addChip(Ljava/lang/String;Ljava/lang/String;)V
     .locals 5
 
-    .line 179
+    .line 232
     new-instance v0, Landroid/widget/TextView;
 
     invoke-direct {v0, p0}, Landroid/widget/TextView;-><init>(Landroid/content/Context;)V
 
-    .line 180
+    .line 233
     invoke-virtual {v0, p1}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
-    .line 181
+    .line 234
     const/high16 p1, 0x41400000    # 12.0f
 
     invoke-virtual {v0, p1}, Landroid/widget/TextView;->setTextSize(F)V
 
-    .line 182
+    .line 235
     const-string p1, "#E2E8F0"
 
     invoke-static {p1}, Landroid/graphics/Color;->parseColor(Ljava/lang/String;)I
@@ -251,7 +267,7 @@
 
     invoke-virtual {v0, p1}, Landroid/widget/TextView;->setTextColor(I)V
 
-    .line 183
+    .line 236
     const-string p1, "sans-serif-medium"
 
     const/4 v1, 0x0
@@ -262,7 +278,7 @@
 
     invoke-virtual {v0, p1}, Landroid/widget/TextView;->setTypeface(Landroid/graphics/Typeface;)V
 
-    .line 184
+    .line 237
     const/16 p1, 0x10
 
     invoke-direct {p0, p1}, Lcom/gathin/tvhome/VoiceAssistantActivity;->dp(I)I
@@ -285,20 +301,20 @@
 
     invoke-virtual {v0, v2, v4, p1, v3}, Landroid/widget/TextView;->setPadding(IIII)V
 
-    .line 185
+    .line 238
     const/4 p1, 0x1
 
     invoke-virtual {v0, p1}, Landroid/widget/TextView;->setFocusable(Z)V
 
-    .line 186
+    .line 239
     invoke-virtual {v0, p1}, Landroid/widget/TextView;->setClickable(Z)V
 
-    .line 188
+    .line 241
     new-instance v2, Landroid/graphics/drawable/GradientDrawable;
 
     invoke-direct {v2}, Landroid/graphics/drawable/GradientDrawable;-><init>()V
 
-    .line 189
+    .line 242
     const-string v3, "#253347"
 
     invoke-static {v3}, Landroid/graphics/Color;->parseColor(Ljava/lang/String;)I
@@ -307,7 +323,7 @@
 
     invoke-virtual {v2, v3}, Landroid/graphics/drawable/GradientDrawable;->setColor(I)V
 
-    .line 190
+    .line 243
     const/16 v3, 0x14
 
     invoke-direct {p0, v3}, Lcom/gathin/tvhome/VoiceAssistantActivity;->dp(I)I
@@ -318,7 +334,7 @@
 
     invoke-virtual {v2, v4}, Landroid/graphics/drawable/GradientDrawable;->setCornerRadius(F)V
 
-    .line 191
+    .line 244
     invoke-direct {p0, p1}, Lcom/gathin/tvhome/VoiceAssistantActivity;->dp(I)I
 
     move-result p1
@@ -331,12 +347,12 @@
 
     invoke-virtual {v2, p1, v4}, Landroid/graphics/drawable/GradientDrawable;->setStroke(II)V
 
-    .line 193
+    .line 246
     new-instance p1, Landroid/graphics/drawable/GradientDrawable;
 
     invoke-direct {p1}, Landroid/graphics/drawable/GradientDrawable;-><init>()V
 
-    .line 194
+    .line 247
     const-string v4, "#38BDF8"
 
     invoke-static {v4}, Landroid/graphics/Color;->parseColor(Ljava/lang/String;)I
@@ -345,7 +361,7 @@
 
     invoke-virtual {p1, v4}, Landroid/graphics/drawable/GradientDrawable;->setColor(I)V
 
-    .line 195
+    .line 248
     invoke-direct {p0, v3}, Lcom/gathin/tvhome/VoiceAssistantActivity;->dp(I)I
 
     move-result v3
@@ -354,7 +370,7 @@
 
     invoke-virtual {p1, v3}, Landroid/graphics/drawable/GradientDrawable;->setCornerRadius(F)V
 
-    .line 196
+    .line 249
     const/4 v3, 0x2
 
     invoke-direct {p0, v3}, Lcom/gathin/tvhome/VoiceAssistantActivity;->dp(I)I
@@ -365,31 +381,31 @@
 
     invoke-virtual {p1, v3, v4}, Landroid/graphics/drawable/GradientDrawable;->setStroke(II)V
 
-    .line 198
+    .line 251
     invoke-virtual {v0, v2}, Landroid/widget/TextView;->setBackground(Landroid/graphics/drawable/Drawable;)V
 
-    .line 200
-    new-instance v3, Lcom/gathin/tvhome/VoiceAssistantActivity$2;
+    .line 253
+    new-instance v3, Lcom/gathin/tvhome/VoiceAssistantActivity$4;
 
-    invoke-direct {v3, p0, v0, p1, v2}, Lcom/gathin/tvhome/VoiceAssistantActivity$2;-><init>(Lcom/gathin/tvhome/VoiceAssistantActivity;Landroid/widget/TextView;Landroid/graphics/drawable/GradientDrawable;Landroid/graphics/drawable/GradientDrawable;)V
+    invoke-direct {v3, p0, v0, p1, v2}, Lcom/gathin/tvhome/VoiceAssistantActivity$4;-><init>(Lcom/gathin/tvhome/VoiceAssistantActivity;Landroid/widget/TextView;Landroid/graphics/drawable/GradientDrawable;Landroid/graphics/drawable/GradientDrawable;)V
 
     invoke-virtual {v0, v3}, Landroid/widget/TextView;->setOnFocusChangeListener(Landroid/view/View$OnFocusChangeListener;)V
 
-    .line 217
-    new-instance p1, Lcom/gathin/tvhome/VoiceAssistantActivity$3;
+    .line 270
+    new-instance p1, Lcom/gathin/tvhome/VoiceAssistantActivity$5;
 
-    invoke-direct {p1, p0, p2}, Lcom/gathin/tvhome/VoiceAssistantActivity$3;-><init>(Lcom/gathin/tvhome/VoiceAssistantActivity;Ljava/lang/String;)V
+    invoke-direct {p1, p0, p2}, Lcom/gathin/tvhome/VoiceAssistantActivity$5;-><init>(Lcom/gathin/tvhome/VoiceAssistantActivity;Ljava/lang/String;)V
 
     invoke-virtual {v0, p1}, Landroid/widget/TextView;->setOnClickListener(Landroid/view/View$OnClickListener;)V
 
-    .line 224
+    .line 281
     new-instance p1, Landroid/widget/LinearLayout$LayoutParams;
 
     const/4 p2, -0x2
 
     invoke-direct {p1, p2, p2}, Landroid/widget/LinearLayout$LayoutParams;-><init>(II)V
 
-    .line 227
+    .line 284
     const/4 p2, 0x6
 
     invoke-direct {p0, p2}, Lcom/gathin/tvhome/VoiceAssistantActivity;->dp(I)I
@@ -402,19 +418,19 @@
 
     invoke-virtual {p1, v2, v1, p2, v1}, Landroid/widget/LinearLayout$LayoutParams;->setMargins(IIII)V
 
-    .line 228
+    .line 285
     iget-object p2, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->chipsContainer:Landroid/widget/LinearLayout;
 
     invoke-virtual {p2, v0, p1}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
 
-    .line 229
+    .line 286
     return-void
 .end method
 
 .method private dp(I)I
     .locals 1
 
-    .line 634
+    .line 674
     int-to-float p1, p1
 
     invoke-virtual {p0}, Lcom/gathin/tvhome/VoiceAssistantActivity;->getResources()Landroid/content/res/Resources;
@@ -441,150 +457,178 @@
 .method private finishWithDelay(J)V
     .locals 2
 
-    .line 625
+    .line 665
     iget-object v0, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->mainHandler:Landroid/os/Handler;
 
-    new-instance v1, Lcom/gathin/tvhome/VoiceAssistantActivity$9;
+    new-instance v1, Lcom/gathin/tvhome/VoiceAssistantActivity$11;
 
-    invoke-direct {v1, p0}, Lcom/gathin/tvhome/VoiceAssistantActivity$9;-><init>(Lcom/gathin/tvhome/VoiceAssistantActivity;)V
+    invoke-direct {v1, p0}, Lcom/gathin/tvhome/VoiceAssistantActivity$11;-><init>(Lcom/gathin/tvhome/VoiceAssistantActivity;)V
 
     invoke-virtual {v0, v1, p1, p2}, Landroid/os/Handler;->postDelayed(Ljava/lang/Runnable;J)Z
 
-    .line 631
+    .line 671
     return-void
 .end method
 
 .method private initSpeechRecognizer()V
     .locals 3
 
-    .line 254
+    .line 311
     invoke-static {p0}, Landroid/speech/SpeechRecognizer;->isRecognitionAvailable(Landroid/content/Context;)Z
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-nez v0, :cond_0
 
-    .line 256
+    return-void
+
+    .line 313
+    :cond_0
     :try_start_0
+    iget-object v0, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->speechRecognizer:Landroid/speech/SpeechRecognizer;
+
+    if-eqz v0, :cond_1
+
+    .line 314
+    iget-object v0, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->speechRecognizer:Landroid/speech/SpeechRecognizer;
+
+    invoke-virtual {v0}, Landroid/speech/SpeechRecognizer;->destroy()V
+
+    .line 316
+    :cond_1
     invoke-static {p0}, Landroid/speech/SpeechRecognizer;->createSpeechRecognizer(Landroid/content/Context;)Landroid/speech/SpeechRecognizer;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->speechRecognizer:Landroid/speech/SpeechRecognizer;
 
-    .line 257
+    .line 317
     iget-object v0, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->speechRecognizer:Landroid/speech/SpeechRecognizer;
 
-    new-instance v1, Lcom/gathin/tvhome/VoiceAssistantActivity$5;
+    new-instance v1, Lcom/gathin/tvhome/VoiceAssistantActivity$7;
 
-    invoke-direct {v1, p0}, Lcom/gathin/tvhome/VoiceAssistantActivity$5;-><init>(Lcom/gathin/tvhome/VoiceAssistantActivity;)V
+    invoke-direct {v1, p0}, Lcom/gathin/tvhome/VoiceAssistantActivity$7;-><init>(Lcom/gathin/tvhome/VoiceAssistantActivity;)V
 
     invoke-virtual {v0, v1}, Landroid/speech/SpeechRecognizer;->setRecognitionListener(Landroid/speech/RecognitionListener;)V
 
-    .line 323
-    invoke-direct {p0}, Lcom/gathin/tvhome/VoiceAssistantActivity;->startListening()V
+    .line 377
+    new-instance v0, Landroid/content/Intent;
+
+    const-string v1, "android.speech.action.RECOGNIZE_SPEECH"
+
+    invoke-direct {v0, v1}, Landroid/content/Intent;-><init>(Ljava/lang/String;)V
+
+    .line 378
+    const-string v1, "android.speech.extra.LANGUAGE_MODEL"
+
+    const-string v2, "free_form"
+
+    invoke-virtual {v0, v1, v2}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;
+
+    .line 379
+    const-string v1, "android.speech.extra.LANGUAGE"
+
+    invoke-static {}, Ljava/util/Locale;->getDefault()Ljava/util/Locale;
+
+    move-result-object v2
+
+    invoke-virtual {v0, v1, v2}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Ljava/io/Serializable;)Landroid/content/Intent;
+
+    .line 380
+    const-string v1, "android.speech.extra.MAX_RESULTS"
+
+    const/4 v2, 0x3
+
+    invoke-virtual {v0, v1, v2}, Landroid/content/Intent;->putExtra(Ljava/lang/String;I)Landroid/content/Intent;
+
+    .line 381
+    iget-object v1, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->speechRecognizer:Landroid/speech/SpeechRecognizer;
+
+    invoke-virtual {v1, v0}, Landroid/speech/SpeechRecognizer;->startListening(Landroid/content/Intent;)V
     :try_end_0
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
+    .line 384
     goto :goto_0
 
-    .line 324
+    .line 382
     :catch_0
     move-exception v0
 
-    .line 325
+    .line 383
     const-string v1, "VoiceAssistant"
 
-    const-string v2, "Error initializing speech recognizer"
+    const-string v2, "Error in initSpeechRecognizer"
 
     invoke-static {v1, v2, v0}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    .line 326
-    const-string v0, "Voice Ready"
-
-    const-string v1, "Microphone available. Choose an action below or speak."
-
-    invoke-direct {p0, v0, v1}, Lcom/gathin/tvhome/VoiceAssistantActivity;->updateStatus(Ljava/lang/String;Ljava/lang/String;)V
-
-    .line 327
+    .line 385
     :goto_0
-    goto :goto_1
-
-    .line 329
-    :cond_0
-    const-string v0, "Voice Assistant Ready"
-
-    const-string v1, "Select an action chip below using your TV remote."
-
-    invoke-direct {p0, v0, v1}, Lcom/gathin/tvhome/VoiceAssistantActivity;->updateStatus(Ljava/lang/String;Ljava/lang/String;)V
-
-    .line 331
-    :goto_1
     return-void
 .end method
 
 .method private initTTS()V
     .locals 2
 
-    .line 232
+    .line 289
     new-instance v0, Landroid/speech/tts/TextToSpeech;
 
-    new-instance v1, Lcom/gathin/tvhome/VoiceAssistantActivity$4;
+    new-instance v1, Lcom/gathin/tvhome/VoiceAssistantActivity$6;
 
-    invoke-direct {v1, p0}, Lcom/gathin/tvhome/VoiceAssistantActivity$4;-><init>(Lcom/gathin/tvhome/VoiceAssistantActivity;)V
+    invoke-direct {v1, p0}, Lcom/gathin/tvhome/VoiceAssistantActivity$6;-><init>(Lcom/gathin/tvhome/VoiceAssistantActivity;)V
 
     invoke-direct {v0, p0, v1}, Landroid/speech/tts/TextToSpeech;-><init>(Landroid/content/Context;Landroid/speech/tts/TextToSpeech$OnInitListener;)V
 
     iput-object v0, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->textToSpeech:Landroid/speech/tts/TextToSpeech;
 
-    .line 241
+    .line 298
     return-void
 .end method
 
 .method private launchAppPackage(Ljava/lang/String;)V
     .locals 3
 
-    .line 612
+    .line 652
     :try_start_0
     invoke-virtual {p0}, Lcom/gathin/tvhome/VoiceAssistantActivity;->getPackageManager()Landroid/content/pm/PackageManager;
 
     move-result-object v0
 
-    .line 613
+    .line 653
     invoke-virtual {v0, p1}, Landroid/content/pm/PackageManager;->getLeanbackLaunchIntentForPackage(Ljava/lang/String;)Landroid/content/Intent;
 
     move-result-object v1
 
-    .line 614
+    .line 654
     if-nez v1, :cond_0
 
     invoke-virtual {v0, p1}, Landroid/content/pm/PackageManager;->getLaunchIntentForPackage(Ljava/lang/String;)Landroid/content/Intent;
 
     move-result-object v1
 
-    .line 615
+    .line 655
     :cond_0
     if-eqz v1, :cond_1
 
-    .line 616
+    .line 656
     const/high16 v0, 0x10000000
 
     invoke-virtual {v1, v0}, Landroid/content/Intent;->addFlags(I)Landroid/content/Intent;
 
-    .line 617
+    .line 657
     invoke-virtual {p0, v1}, Lcom/gathin/tvhome/VoiceAssistantActivity;->startActivity(Landroid/content/Intent;)V
     :try_end_0
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 621
+    .line 661
     :cond_1
     goto :goto_0
 
-    .line 619
+    .line 659
     :catch_0
     move-exception v0
 
-    .line 620
+    .line 660
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
@@ -607,7 +651,7 @@
 
     invoke-static {v1, p1, v0}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    .line 622
+    .line 662
     :goto_0
     return-void
 .end method
@@ -615,7 +659,7 @@
 .method private searchAndLaunchApp(Ljava/lang/String;)Z
     .locals 5
 
-    .line 586
+    .line 626
     const-string v0, ""
 
     :try_start_0
@@ -623,14 +667,14 @@
 
     move-result-object v1
 
-    .line 587
+    .line 627
     const/16 v2, 0x80
 
     invoke-virtual {v1, v2}, Landroid/content/pm/PackageManager;->getInstalledApplications(I)Ljava/util/List;
 
     move-result-object v2
 
-    .line 588
+    .line 628
     const-string v3, "open"
 
     invoke-virtual {p1, v3, v0}, Ljava/lang/String;->replace(Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Ljava/lang/String;
@@ -653,7 +697,7 @@
 
     move-result-object p1
 
-    .line 590
+    .line 630
     invoke-interface {v2}, Ljava/util/List;->iterator()Ljava/util/Iterator;
 
     move-result-object v0
@@ -671,7 +715,7 @@
 
     check-cast v2, Landroid/content/pm/ApplicationInfo;
 
-    .line 591
+    .line 631
     invoke-virtual {v1, v2}, Landroid/content/pm/PackageManager;->getApplicationLabel(Landroid/content/pm/ApplicationInfo;)Ljava/lang/CharSequence;
 
     move-result-object v3
@@ -686,7 +730,7 @@
 
     move-result-object v3
 
-    .line 592
+    .line 632
     invoke-virtual {v3, p1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
 
     move-result v4
@@ -699,7 +743,7 @@
 
     if-eqz v3, :cond_2
 
-    .line 593
+    .line 633
     :cond_0
     iget-object v3, v2, Landroid/content/pm/ApplicationInfo;->packageName:Ljava/lang/String;
 
@@ -707,7 +751,7 @@
 
     move-result-object v3
 
-    .line 594
+    .line 634
     if-nez v3, :cond_1
 
     iget-object v3, v2, Landroid/content/pm/ApplicationInfo;->packageName:Ljava/lang/String;
@@ -716,11 +760,11 @@
 
     move-result-object v3
 
-    .line 595
+    .line 635
     :cond_1
     if-eqz v3, :cond_2
 
-    .line 596
+    .line 636
     iget-object p1, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->responseView:Landroid/widget/TextView;
 
     new-instance v0, Ljava/lang/StringBuilder;
@@ -753,7 +797,7 @@
 
     invoke-virtual {p1, v0}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
-    .line 597
+    .line 637
     new-instance p1, Ljava/lang/StringBuilder;
 
     invoke-direct {p1}, Ljava/lang/StringBuilder;-><init>()V
@@ -778,41 +822,41 @@
 
     invoke-direct {p0, p1}, Lcom/gathin/tvhome/VoiceAssistantActivity;->speakResponse(Ljava/lang/String;)V
 
-    .line 598
+    .line 638
     const/high16 p1, 0x10000000
 
     invoke-virtual {v3, p1}, Landroid/content/Intent;->addFlags(I)Landroid/content/Intent;
 
-    .line 599
+    .line 639
     invoke-virtual {p0, v3}, Lcom/gathin/tvhome/VoiceAssistantActivity;->startActivity(Landroid/content/Intent;)V
     :try_end_0
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 600
+    .line 640
     const/4 p1, 0x1
 
     return p1
 
-    .line 603
+    .line 643
     :cond_2
     goto :goto_0
 
-    .line 606
+    .line 646
     :cond_3
     goto :goto_1
 
-    .line 604
+    .line 644
     :catch_0
     move-exception p1
 
-    .line 605
+    .line 645
     const-string v0, "VoiceAssistant"
 
     const-string v1, "Error matching app"
 
     invoke-static {v0, v1, p1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    .line 607
+    .line 647
     :goto_1
     const/4 p1, 0x0
 
@@ -822,12 +866,12 @@
 .method private speakResponse(Ljava/lang/String;)V
     .locals 4
 
-    .line 244
+    .line 301
     iget-object v0, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->textToSpeech:Landroid/speech/tts/TextToSpeech;
 
     if-eqz v0, :cond_0
 
-    .line 246
+    .line 303
     :try_start_0
     iget-object v0, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->textToSpeech:Landroid/speech/tts/TextToSpeech;
 
@@ -841,97 +885,22 @@
     :try_end_0
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 249
+    .line 306
     goto :goto_0
 
-    .line 247
+    .line 304
     :catch_0
     move-exception p1
 
-    .line 248
+    .line 305
     const-string v0, "VoiceAssistant"
 
     const-string v1, "TTS speak error"
 
     invoke-static {v0, v1, p1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    .line 251
+    .line 308
     :cond_0
-    :goto_0
-    return-void
-.end method
-
-.method private startListening()V
-    .locals 3
-
-    .line 334
-    iget-object v0, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->speechRecognizer:Landroid/speech/SpeechRecognizer;
-
-    if-nez v0, :cond_0
-
-    return-void
-
-    .line 336
-    :cond_0
-    :try_start_0
-    new-instance v0, Landroid/content/Intent;
-
-    const-string v1, "android.speech.action.RECOGNIZE_SPEECH"
-
-    invoke-direct {v0, v1}, Landroid/content/Intent;-><init>(Ljava/lang/String;)V
-
-    .line 337
-    const-string v1, "android.speech.extra.LANGUAGE_MODEL"
-
-    const-string v2, "free_form"
-
-    invoke-virtual {v0, v1, v2}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;
-
-    .line 338
-    const-string v1, "android.speech.extra.LANGUAGE"
-
-    invoke-static {}, Ljava/util/Locale;->getDefault()Ljava/util/Locale;
-
-    move-result-object v2
-
-    invoke-virtual {v0, v1, v2}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Ljava/io/Serializable;)Landroid/content/Intent;
-
-    .line 339
-    const-string v1, "android.speech.extra.MAX_RESULTS"
-
-    const/4 v2, 0x3
-
-    invoke-virtual {v0, v1, v2}, Landroid/content/Intent;->putExtra(Ljava/lang/String;I)Landroid/content/Intent;
-
-    .line 340
-    const-string v1, "android.speech.extra.PARTIAL_RESULTS"
-
-    const/4 v2, 0x1
-
-    invoke-virtual {v0, v1, v2}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Z)Landroid/content/Intent;
-
-    .line 341
-    iget-object v1, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->speechRecognizer:Landroid/speech/SpeechRecognizer;
-
-    invoke-virtual {v1, v0}, Landroid/speech/SpeechRecognizer;->startListening(Landroid/content/Intent;)V
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
-
-    .line 344
-    goto :goto_0
-
-    .line 342
-    :catch_0
-    move-exception v0
-
-    .line 343
-    const-string v1, "VoiceAssistant"
-
-    const-string v2, "Error startListening"
-
-    invoke-static {v1, v2, v0}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
-
-    .line 345
     :goto_0
     return-void
 .end method
@@ -939,16 +908,16 @@
 .method private updateStatus(Ljava/lang/String;Ljava/lang/String;)V
     .locals 2
 
-    .line 348
+    .line 388
     iget-object v0, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->mainHandler:Landroid/os/Handler;
 
-    new-instance v1, Lcom/gathin/tvhome/VoiceAssistantActivity$6;
+    new-instance v1, Lcom/gathin/tvhome/VoiceAssistantActivity$8;
 
-    invoke-direct {v1, p0, p1, p2}, Lcom/gathin/tvhome/VoiceAssistantActivity$6;-><init>(Lcom/gathin/tvhome/VoiceAssistantActivity;Ljava/lang/String;Ljava/lang/String;)V
+    invoke-direct {v1, p0, p1, p2}, Lcom/gathin/tvhome/VoiceAssistantActivity$8;-><init>(Lcom/gathin/tvhome/VoiceAssistantActivity;Ljava/lang/String;Ljava/lang/String;)V
 
     invoke-virtual {v0, v1}, Landroid/os/Handler;->post(Ljava/lang/Runnable;)Z
 
-    .line 355
+    .line 395
     return-void
 .end method
 
@@ -957,7 +926,7 @@
 .method public executeVoiceCommand(Ljava/lang/String;)V
     .locals 8
 
-    .line 358
+    .line 398
     if-eqz p1, :cond_32
 
     invoke-virtual {p1}, Ljava/lang/String;->trim()Ljava/lang/String;
@@ -972,7 +941,7 @@
 
     goto/16 :goto_14
 
-    .line 359
+    .line 399
     :cond_0
     sget-object v0, Ljava/util/Locale;->ROOT:Ljava/util/Locale;
 
@@ -984,7 +953,7 @@
 
     move-result-object v0
 
-    .line 360
+    .line 400
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
@@ -1007,7 +976,7 @@
 
     invoke-static {v2, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 362
+    .line 402
     iget-object v1, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->transcriptView:Landroid/widget/TextView;
 
     new-instance v2, Ljava/lang/StringBuilder;
@@ -1036,7 +1005,7 @@
 
     invoke-virtual {v1, v2}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
-    .line 365
+    .line 405
     const-string v1, "hey siri"
 
     invoke-virtual {v0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
@@ -1087,7 +1056,7 @@
 
     goto/16 :goto_13
 
-    .line 379
+    .line 419
     :cond_1
     const-string v1, "clean ram"
 
@@ -1143,7 +1112,7 @@
 
     goto/16 :goto_11
 
-    .line 398
+    .line 438
     :cond_2
     const-string v1, "youtube"
 
@@ -1165,7 +1134,7 @@
 
     goto/16 :goto_10
 
-    .line 407
+    .line 447
     :cond_3
     const-string v1, "netflix"
 
@@ -1175,30 +1144,30 @@
 
     if-eqz v1, :cond_4
 
-    .line 408
+    .line 448
     iget-object p1, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->responseView:Landroid/widget/TextView;
 
     const-string v0, "\ud83c\udfac Opening Netflix..."
 
     invoke-virtual {p1, v0}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
-    .line 409
+    .line 449
     const-string p1, "Opening Netflix"
 
     invoke-direct {p0, p1}, Lcom/gathin/tvhome/VoiceAssistantActivity;->speakResponse(Ljava/lang/String;)V
 
-    .line 410
+    .line 450
     const-string p1, "com.netflix.ninja"
 
     invoke-direct {p0, p1}, Lcom/gathin/tvhome/VoiceAssistantActivity;->launchAppPackage(Ljava/lang/String;)V
 
-    .line 411
+    .line 451
     invoke-direct {p0, v5, v6}, Lcom/gathin/tvhome/VoiceAssistantActivity;->finishWithDelay(J)V
 
-    .line 412
+    .line 452
     return-void
 
-    .line 416
+    .line 456
     :cond_4
     const-string v1, "prime"
 
@@ -1218,7 +1187,7 @@
 
     goto/16 :goto_f
 
-    .line 425
+    .line 465
     :cond_5
     const-string v1, "hotstar"
 
@@ -1238,7 +1207,7 @@
 
     goto/16 :goto_e
 
-    .line 434
+    .line 474
     :cond_6
     const-string v1, "sonyliv"
 
@@ -1258,7 +1227,7 @@
 
     goto/16 :goto_d
 
-    .line 443
+    .line 483
     :cond_7
     const-string v1, "zee"
 
@@ -1278,7 +1247,7 @@
 
     goto/16 :goto_c
 
-    .line 452
+    .line 492
     :cond_8
     const-string v1, "airtel"
 
@@ -1298,7 +1267,7 @@
 
     goto/16 :goto_b
 
-    .line 461
+    .line 501
     :cond_9
     const-string v1, "screensaver"
 
@@ -1334,7 +1303,7 @@
 
     goto/16 :goto_a
 
-    .line 475
+    .line 515
     :cond_a
     const-string v1, "sleep"
 
@@ -1354,7 +1323,7 @@
 
     goto/16 :goto_6
 
-    .line 488
+    .line 528
     :cond_b
     const-string v1, "audio"
 
@@ -1364,7 +1333,7 @@
 
     check-cast v1, Landroid/media/AudioManager;
 
-    .line 489
+    .line 529
     const-string v2, "mute"
 
     invoke-virtual {v0, v2}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
@@ -1383,15 +1352,15 @@
 
     if-nez v2, :cond_d
 
-    .line 490
+    .line 530
     if-eqz v1, :cond_c
 
-    .line 491
+    .line 531
     const/16 p1, -0x64
 
     invoke-virtual {v1, v7, p1, v4}, Landroid/media/AudioManager;->adjustStreamVolume(III)V
 
-    .line 493
+    .line 533
     :cond_c
     iget-object p1, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->responseView:Landroid/widget/TextView;
 
@@ -1399,18 +1368,18 @@
 
     invoke-virtual {p1, v0}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
-    .line 494
+    .line 534
     const-string p1, "TV muted"
 
     invoke-direct {p0, p1}, Lcom/gathin/tvhome/VoiceAssistantActivity;->speakResponse(Ljava/lang/String;)V
 
-    .line 495
+    .line 535
     invoke-direct {p0, v5, v6}, Lcom/gathin/tvhome/VoiceAssistantActivity;->finishWithDelay(J)V
 
-    .line 496
+    .line 536
     return-void
 
-    .line 498
+    .line 538
     :cond_d
     invoke-virtual {v0, v3}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
 
@@ -1418,15 +1387,15 @@
 
     if-eqz v2, :cond_f
 
-    .line 499
+    .line 539
     if-eqz v1, :cond_e
 
-    .line 500
+    .line 540
     const/16 p1, 0x64
 
     invoke-virtual {v1, v7, p1, v4}, Landroid/media/AudioManager;->adjustStreamVolume(III)V
 
-    .line 502
+    .line 542
     :cond_e
     iget-object p1, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->responseView:Landroid/widget/TextView;
 
@@ -1434,18 +1403,18 @@
 
     invoke-virtual {p1, v0}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
-    .line 503
+    .line 543
     const-string p1, "Sound restored"
 
     invoke-direct {p0, p1}, Lcom/gathin/tvhome/VoiceAssistantActivity;->speakResponse(Ljava/lang/String;)V
 
-    .line 504
+    .line 544
     invoke-direct {p0, v5, v6}, Lcom/gathin/tvhome/VoiceAssistantActivity;->finishWithDelay(J)V
 
-    .line 505
+    .line 545
     return-void
 
-    .line 507
+    .line 547
     :cond_f
     const-string v2, "volume up"
 
@@ -1473,7 +1442,7 @@
 
     goto/16 :goto_5
 
-    .line 516
+    .line 556
     :cond_10
     const-string v2, "volume down"
 
@@ -1501,7 +1470,7 @@
 
     goto/16 :goto_4
 
-    .line 527
+    .line 567
     :cond_11
     const-string v1, "time"
 
@@ -1511,7 +1480,7 @@
 
     if-eqz v1, :cond_12
 
-    .line 528
+    .line 568
     new-instance p1, Ljava/text/SimpleDateFormat;
 
     const-string v0, "h:mm a"
@@ -1530,7 +1499,7 @@
 
     move-result-object p1
 
-    .line 529
+    .line 569
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -1549,7 +1518,7 @@
 
     move-result-object p1
 
-    .line 530
+    .line 570
     iget-object v0, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->responseView:Landroid/widget/TextView;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -1572,13 +1541,13 @@
 
     invoke-virtual {v0, v1}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
-    .line 531
+    .line 571
     invoke-direct {p0, p1}, Lcom/gathin/tvhome/VoiceAssistantActivity;->speakResponse(Ljava/lang/String;)V
 
-    .line 532
+    .line 572
     return-void
 
-    .line 534
+    .line 574
     :cond_12
     const-string v1, "date"
 
@@ -1598,7 +1567,7 @@
 
     goto/16 :goto_3
 
-    .line 543
+    .line 583
     :cond_13
     const-string v1, "weather"
 
@@ -1608,10 +1577,10 @@
 
     if-eqz v1, :cond_14
 
-    .line 544
+    .line 584
     nop
 
-    .line 545
+    .line 585
     iget-object p1, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->responseView:Landroid/widget/TextView;
 
     new-instance v0, Ljava/lang/StringBuilder;
@@ -1636,13 +1605,13 @@
 
     invoke-virtual {p1, v0}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
-    .line 546
+    .line 586
     invoke-direct {p0, v1}, Lcom/gathin/tvhome/VoiceAssistantActivity;->speakResponse(Ljava/lang/String;)V
 
-    .line 547
+    .line 587
     return-void
 
-    .line 551
+    .line 591
     :cond_14
     const-string v1, "trending"
 
@@ -1678,7 +1647,7 @@
 
     goto :goto_2
 
-    .line 561
+    .line 601
     :cond_15
     const-string v1, "setting"
 
@@ -1698,22 +1667,22 @@
 
     goto :goto_0
 
-    .line 572
+    .line 612
     :cond_16
     invoke-direct {p0, v0}, Lcom/gathin/tvhome/VoiceAssistantActivity;->searchAndLaunchApp(Ljava/lang/String;)Z
 
     move-result v0
 
-    .line 573
+    .line 613
     if-eqz v0, :cond_17
 
-    .line 574
+    .line 614
     invoke-direct {p0, v5, v6}, Lcom/gathin/tvhome/VoiceAssistantActivity;->finishWithDelay(J)V
 
-    .line 575
+    .line 615
     return-void
 
-    .line 579
+    .line 619
     :cond_17
     new-instance v0, Ljava/lang/StringBuilder;
 
@@ -1739,18 +1708,18 @@
 
     move-result-object p1
 
-    .line 580
+    .line 620
     iget-object v0, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->responseView:Landroid/widget/TextView;
 
     invoke-virtual {v0, p1}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
-    .line 581
+    .line 621
     invoke-direct {p0, p1}, Lcom/gathin/tvhome/VoiceAssistantActivity;->speakResponse(Ljava/lang/String;)V
 
-    .line 582
+    .line 622
     return-void
 
-    .line 562
+    .line 602
     :cond_18
     :goto_0
     iget-object p1, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->responseView:Landroid/widget/TextView;
@@ -1759,12 +1728,12 @@
 
     invoke-virtual {p1, v0}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
-    .line 563
+    .line 603
     const-string p1, "Opening Settings"
 
     invoke-direct {p0, p1}, Lcom/gathin/tvhome/VoiceAssistantActivity;->speakResponse(Ljava/lang/String;)V
 
-    .line 565
+    .line 605
     :try_start_0
     new-instance p1, Landroid/content/Intent;
 
@@ -1778,27 +1747,27 @@
 
     goto :goto_1
 
-    .line 566
+    .line 606
     :catch_0
     move-exception p1
 
     :goto_1
     nop
 
-    .line 567
+    .line 607
     invoke-direct {p0, v5, v6}, Lcom/gathin/tvhome/VoiceAssistantActivity;->finishWithDelay(J)V
 
-    .line 568
+    .line 608
     return-void
 
-    .line 552
+    .line 592
     :cond_19
     :goto_2
-    invoke-static {}, Lcom/gathin/tvhome/ImdbScreensaverManager;->getCachedTopTitle()Ljava/lang/String;
+    invoke-static {p0}, Lcom/gathin/tvhome/ImdbScreensaverManager;->getCachedTopTitle(Landroid/content/Context;)Ljava/lang/String;
 
     move-result-object p1
 
-    .line 553
+    .line 593
     if-eqz p1, :cond_1a
 
     invoke-virtual {p1}, Ljava/lang/String;->isEmpty()Z
@@ -1810,7 +1779,7 @@
     :cond_1a
     const-string p1, "The Penguin, Dune Part Two, and Gladiator II"
 
-    .line 554
+    .line 594
     :cond_1b
     new-instance v0, Ljava/lang/StringBuilder;
 
@@ -1830,7 +1799,7 @@
 
     move-result-object p1
 
-    .line 555
+    .line 595
     iget-object v0, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->responseView:Landroid/widget/TextView;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -1853,13 +1822,13 @@
 
     invoke-virtual {v0, v1}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
-    .line 556
+    .line 596
     invoke-direct {p0, p1}, Lcom/gathin/tvhome/VoiceAssistantActivity;->speakResponse(Ljava/lang/String;)V
 
-    .line 557
+    .line 597
     return-void
 
-    .line 535
+    .line 575
     :cond_1c
     :goto_3
     new-instance p1, Ljava/text/SimpleDateFormat;
@@ -1880,7 +1849,7 @@
 
     move-result-object p1
 
-    .line 536
+    .line 576
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -1899,7 +1868,7 @@
 
     move-result-object p1
 
-    .line 537
+    .line 577
     iget-object v0, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->responseView:Landroid/widget/TextView;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -1922,23 +1891,23 @@
 
     invoke-virtual {v0, v1}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
-    .line 538
+    .line 578
     invoke-direct {p0, p1}, Lcom/gathin/tvhome/VoiceAssistantActivity;->speakResponse(Ljava/lang/String;)V
 
-    .line 539
+    .line 579
     return-void
 
-    .line 517
+    .line 557
     :cond_1d
     :goto_4
     if-eqz v1, :cond_1e
 
-    .line 518
+    .line 558
     const/4 p1, -0x1
 
     invoke-virtual {v1, v7, p1, v4}, Landroid/media/AudioManager;->adjustStreamVolume(III)V
 
-    .line 520
+    .line 560
     :cond_1e
     iget-object p1, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->responseView:Landroid/widget/TextView;
 
@@ -1946,26 +1915,26 @@
 
     invoke-virtual {p1, v0}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
-    .line 521
+    .line 561
     const-string p1, "Volume down"
 
     invoke-direct {p0, p1}, Lcom/gathin/tvhome/VoiceAssistantActivity;->speakResponse(Ljava/lang/String;)V
 
-    .line 522
+    .line 562
     invoke-direct {p0, v5, v6}, Lcom/gathin/tvhome/VoiceAssistantActivity;->finishWithDelay(J)V
 
-    .line 523
+    .line 563
     return-void
 
-    .line 508
+    .line 548
     :cond_1f
     :goto_5
     if-eqz v1, :cond_20
 
-    .line 509
+    .line 549
     invoke-virtual {v1, v7, v4, v4}, Landroid/media/AudioManager;->adjustStreamVolume(III)V
 
-    .line 511
+    .line 551
     :cond_20
     iget-object p1, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->responseView:Landroid/widget/TextView;
 
@@ -1973,23 +1942,23 @@
 
     invoke-virtual {p1, v0}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
-    .line 512
+    .line 552
     const-string p1, "Volume up"
 
     invoke-direct {p0, p1}, Lcom/gathin/tvhome/VoiceAssistantActivity;->speakResponse(Ljava/lang/String;)V
 
-    .line 513
+    .line 553
     invoke-direct {p0, v5, v6}, Lcom/gathin/tvhome/VoiceAssistantActivity;->finishWithDelay(J)V
 
-    .line 514
+    .line 554
     return-void
 
-    .line 476
+    .line 516
     :cond_21
     :goto_6
     nop
 
-    .line 477
+    .line 517
     const-string p1, "15"
 
     invoke-virtual {v0, p1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
@@ -2002,7 +1971,7 @@
 
     goto :goto_9
 
-    .line 478
+    .line 518
     :cond_22
     const-string p1, "60"
 
@@ -2030,7 +1999,7 @@
 
     goto :goto_8
 
-    .line 479
+    .line 519
     :cond_23
     const-string p1, "120"
 
@@ -2069,12 +2038,12 @@
 
     goto :goto_9
 
-    .line 478
+    .line 518
     :cond_26
     :goto_8
     const/16 p1, 0x3c
 
-    .line 481
+    .line 521
     :goto_9
     iget-object v0, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->responseView:Landroid/widget/TextView;
 
@@ -2104,7 +2073,7 @@
 
     invoke-virtual {v0, v1}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
-    .line 482
+    .line 522
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -2129,13 +2098,13 @@
 
     invoke-direct {p0, p1}, Lcom/gathin/tvhome/VoiceAssistantActivity;->speakResponse(Ljava/lang/String;)V
 
-    .line 483
+    .line 523
     invoke-direct {p0, v2, v3}, Lcom/gathin/tvhome/VoiceAssistantActivity;->finishWithDelay(J)V
 
-    .line 484
+    .line 524
     return-void
 
-    .line 462
+    .line 502
     :cond_27
     :goto_a
     iget-object p1, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->responseView:Landroid/widget/TextView;
@@ -2144,26 +2113,26 @@
 
     invoke-virtual {p1, v0}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
-    .line 463
+    .line 503
     const-string p1, "Starting 4K screensaver"
 
     invoke-direct {p0, p1}, Lcom/gathin/tvhome/VoiceAssistantActivity;->speakResponse(Ljava/lang/String;)V
 
-    .line 464
+    .line 504
     iget-object p1, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->mainHandler:Landroid/os/Handler;
 
-    new-instance v0, Lcom/gathin/tvhome/VoiceAssistantActivity$8;
+    new-instance v0, Lcom/gathin/tvhome/VoiceAssistantActivity$10;
 
-    invoke-direct {v0, p0}, Lcom/gathin/tvhome/VoiceAssistantActivity$8;-><init>(Lcom/gathin/tvhome/VoiceAssistantActivity;)V
+    invoke-direct {v0, p0}, Lcom/gathin/tvhome/VoiceAssistantActivity$10;-><init>(Lcom/gathin/tvhome/VoiceAssistantActivity;)V
 
     const-wide/16 v1, 0x4b0
 
     invoke-virtual {p1, v0, v1, v2}, Landroid/os/Handler;->postDelayed(Ljava/lang/Runnable;J)Z
 
-    .line 471
+    .line 511
     return-void
 
-    .line 453
+    .line 493
     :cond_28
     :goto_b
     iget-object p1, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->responseView:Landroid/widget/TextView;
@@ -2172,23 +2141,23 @@
 
     invoke-virtual {p1, v0}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
-    .line 454
+    .line 494
     const-string p1, "Opening Airtel Xstream"
 
     invoke-direct {p0, p1}, Lcom/gathin/tvhome/VoiceAssistantActivity;->speakResponse(Ljava/lang/String;)V
 
-    .line 455
+    .line 495
     const-string p1, "tv.airtel.xstream.tvapp"
 
     invoke-direct {p0, p1}, Lcom/gathin/tvhome/VoiceAssistantActivity;->launchAppPackage(Ljava/lang/String;)V
 
-    .line 456
+    .line 496
     invoke-direct {p0, v5, v6}, Lcom/gathin/tvhome/VoiceAssistantActivity;->finishWithDelay(J)V
 
-    .line 457
+    .line 497
     return-void
 
-    .line 444
+    .line 484
     :cond_29
     :goto_c
     iget-object p1, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->responseView:Landroid/widget/TextView;
@@ -2197,23 +2166,23 @@
 
     invoke-virtual {p1, v0}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
-    .line 445
+    .line 485
     const-string p1, "Opening Zee5"
 
     invoke-direct {p0, p1}, Lcom/gathin/tvhome/VoiceAssistantActivity;->speakResponse(Ljava/lang/String;)V
 
-    .line 446
+    .line 486
     const-string p1, "com.graymatrix.did"
 
     invoke-direct {p0, p1}, Lcom/gathin/tvhome/VoiceAssistantActivity;->launchAppPackage(Ljava/lang/String;)V
 
-    .line 447
+    .line 487
     invoke-direct {p0, v5, v6}, Lcom/gathin/tvhome/VoiceAssistantActivity;->finishWithDelay(J)V
 
-    .line 448
+    .line 488
     return-void
 
-    .line 435
+    .line 475
     :cond_2a
     :goto_d
     iget-object p1, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->responseView:Landroid/widget/TextView;
@@ -2222,23 +2191,23 @@
 
     invoke-virtual {p1, v0}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
-    .line 436
+    .line 476
     const-string p1, "Opening Sony LIV"
 
     invoke-direct {p0, p1}, Lcom/gathin/tvhome/VoiceAssistantActivity;->speakResponse(Ljava/lang/String;)V
 
-    .line 437
+    .line 477
     const-string p1, "com.sonyliv"
 
     invoke-direct {p0, p1}, Lcom/gathin/tvhome/VoiceAssistantActivity;->launchAppPackage(Ljava/lang/String;)V
 
-    .line 438
+    .line 478
     invoke-direct {p0, v5, v6}, Lcom/gathin/tvhome/VoiceAssistantActivity;->finishWithDelay(J)V
 
-    .line 439
+    .line 479
     return-void
 
-    .line 426
+    .line 466
     :cond_2b
     :goto_e
     iget-object p1, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->responseView:Landroid/widget/TextView;
@@ -2247,23 +2216,23 @@
 
     invoke-virtual {p1, v0}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
-    .line 427
+    .line 467
     const-string p1, "Opening Hotstar"
 
     invoke-direct {p0, p1}, Lcom/gathin/tvhome/VoiceAssistantActivity;->speakResponse(Ljava/lang/String;)V
 
-    .line 428
+    .line 468
     const-string p1, "in.startv.hotstar"
 
     invoke-direct {p0, p1}, Lcom/gathin/tvhome/VoiceAssistantActivity;->launchAppPackage(Ljava/lang/String;)V
 
-    .line 429
+    .line 469
     invoke-direct {p0, v5, v6}, Lcom/gathin/tvhome/VoiceAssistantActivity;->finishWithDelay(J)V
 
-    .line 430
+    .line 470
     return-void
 
-    .line 417
+    .line 457
     :cond_2c
     :goto_f
     iget-object p1, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->responseView:Landroid/widget/TextView;
@@ -2272,23 +2241,23 @@
 
     invoke-virtual {p1, v0}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
-    .line 418
+    .line 458
     const-string p1, "Opening Prime Video"
 
     invoke-direct {p0, p1}, Lcom/gathin/tvhome/VoiceAssistantActivity;->speakResponse(Ljava/lang/String;)V
 
-    .line 419
+    .line 459
     const-string p1, "com.amazon.amazonvideo.livingroom"
 
     invoke-direct {p0, p1}, Lcom/gathin/tvhome/VoiceAssistantActivity;->launchAppPackage(Ljava/lang/String;)V
 
-    .line 420
+    .line 460
     invoke-direct {p0, v5, v6}, Lcom/gathin/tvhome/VoiceAssistantActivity;->finishWithDelay(J)V
 
-    .line 421
+    .line 461
     return-void
 
-    .line 399
+    .line 439
     :cond_2d
     :goto_10
     iget-object p1, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->responseView:Landroid/widget/TextView;
@@ -2297,21 +2266,21 @@
 
     invoke-virtual {p1, v0}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
-    .line 400
+    .line 440
     const-string p1, "Opening YouTube"
 
     invoke-direct {p0, p1}, Lcom/gathin/tvhome/VoiceAssistantActivity;->speakResponse(Ljava/lang/String;)V
 
-    .line 401
+    .line 441
     invoke-static {p0}, Lcom/gathin/tvhome/TvKeyHandler;->launchYouTube(Landroid/content/Context;)V
 
-    .line 402
+    .line 442
     invoke-direct {p0, v5, v6}, Lcom/gathin/tvhome/VoiceAssistantActivity;->finishWithDelay(J)V
 
-    .line 403
+    .line 443
     return-void
 
-    .line 380
+    .line 420
     :cond_2e
     :goto_11
     iget-object p1, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->responseView:Landroid/widget/TextView;
@@ -2320,12 +2289,12 @@
 
     invoke-virtual {p1, v0}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
-    .line 381
+    .line 421
     const-string p1, "RAM optimized. Background tasks cleared."
 
     invoke-direct {p0, p1}, Lcom/gathin/tvhome/VoiceAssistantActivity;->speakResponse(Ljava/lang/String;)V
 
-    .line 383
+    .line 423
     :try_start_1
     const-string p1, "activity"
 
@@ -2335,10 +2304,10 @@
 
     check-cast p1, Landroid/app/ActivityManager;
 
-    .line 384
+    .line 424
     if-eqz p1, :cond_30
 
-    .line 385
+    .line 425
     invoke-virtual {p0}, Lcom/gathin/tvhome/VoiceAssistantActivity;->getPackageManager()Landroid/content/pm/PackageManager;
 
     move-result-object v0
@@ -2349,7 +2318,7 @@
 
     move-result-object v0
 
-    .line 386
+    .line 426
     invoke-interface {v0}, Ljava/util/List;->iterator()Ljava/util/Iterator;
 
     move-result-object v0
@@ -2367,7 +2336,7 @@
 
     check-cast v1, Landroid/content/pm/ApplicationInfo;
 
-    .line 387
+    .line 427
     iget v5, v1, Landroid/content/pm/ApplicationInfo;->flags:I
 
     and-int/2addr v5, v4
@@ -2386,79 +2355,202 @@
 
     if-nez v5, :cond_2f
 
-    .line 388
+    .line 428
     iget-object v1, v1, Landroid/content/pm/ApplicationInfo;->packageName:Ljava/lang/String;
 
     invoke-virtual {p1, v1}, Landroid/app/ActivityManager;->killBackgroundProcesses(Ljava/lang/String;)V
     :try_end_1
     .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_1
 
-    .line 390
+    .line 430
     :cond_2f
     goto :goto_12
 
-    .line 392
+    .line 432
     :catch_1
     move-exception p1
 
     :cond_30
     nop
 
-    .line 393
+    .line 433
     invoke-direct {p0, v2, v3}, Lcom/gathin/tvhome/VoiceAssistantActivity;->finishWithDelay(J)V
 
-    .line 394
+    .line 434
     return-void
 
-    .line 366
+    .line 406
     :cond_31
     :goto_13
     nop
 
-    .line 367
+    .line 407
     iget-object p1, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->responseView:Landroid/widget/TextView;
 
     const-string v0, "I am your Apple TV Voice Assistant, ready to control your Mi TV! What would you like to do?"
 
     invoke-virtual {p1, v0}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
-    .line 368
+    .line 408
     invoke-direct {p0, v0}, Lcom/gathin/tvhome/VoiceAssistantActivity;->speakResponse(Ljava/lang/String;)V
 
-    .line 369
+    .line 409
     iget-object p1, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->mainHandler:Landroid/os/Handler;
 
-    new-instance v0, Lcom/gathin/tvhome/VoiceAssistantActivity$7;
+    new-instance v0, Lcom/gathin/tvhome/VoiceAssistantActivity$9;
 
-    invoke-direct {v0, p0}, Lcom/gathin/tvhome/VoiceAssistantActivity$7;-><init>(Lcom/gathin/tvhome/VoiceAssistantActivity;)V
+    invoke-direct {v0, p0}, Lcom/gathin/tvhome/VoiceAssistantActivity$9;-><init>(Lcom/gathin/tvhome/VoiceAssistantActivity;)V
 
     const-wide/16 v1, 0xbb8
 
     invoke-virtual {p1, v0, v1, v2}, Landroid/os/Handler;->postDelayed(Ljava/lang/Runnable;J)Z
 
-    .line 375
+    .line 415
     return-void
 
-    .line 358
+    .line 398
     :cond_32
     :goto_14
+    return-void
+.end method
+
+.method public launchVoiceInput()V
+    .locals 3
+
+    .line 206
+    :try_start_0
+    new-instance v0, Landroid/content/Intent;
+
+    const-string v1, "android.speech.action.RECOGNIZE_SPEECH"
+
+    invoke-direct {v0, v1}, Landroid/content/Intent;-><init>(Ljava/lang/String;)V
+
+    .line 207
+    const-string v1, "android.speech.extra.LANGUAGE_MODEL"
+
+    const-string v2, "free_form"
+
+    invoke-virtual {v0, v1, v2}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;
+
+    .line 208
+    const-string v1, "android.speech.extra.LANGUAGE"
+
+    invoke-static {}, Ljava/util/Locale;->getDefault()Ljava/util/Locale;
+
+    move-result-object v2
+
+    invoke-virtual {v0, v1, v2}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Ljava/io/Serializable;)Landroid/content/Intent;
+
+    .line 209
+    const-string v1, "android.speech.extra.PROMPT"
+
+    const-string v2, "Say a command: \'Open YouTube\', \'Clean RAM\', \'Sleep 30 min\'..."
+
+    invoke-virtual {v0, v1, v2}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;
+
+    .line 210
+    const/16 v1, 0x3e9
+
+    invoke-virtual {p0, v0, v1}, Lcom/gathin/tvhome/VoiceAssistantActivity;->startActivityForResult(Landroid/content/Intent;I)V
+    :try_end_0
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+
+    .line 214
+    goto :goto_0
+
+    .line 211
+    :catch_0
+    move-exception v0
+
+    .line 212
+    const-string v1, "VoiceAssistant"
+
+    const-string v2, "RecognizerIntent failed, falling back to SpeechRecognizer"
+
+    invoke-static {v1, v2, v0}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
+
+    .line 213
+    invoke-direct {p0}, Lcom/gathin/tvhome/VoiceAssistantActivity;->initSpeechRecognizer()V
+
+    .line 215
+    :goto_0
+    return-void
+.end method
+
+.method protected onActivityResult(IILandroid/content/Intent;)V
+    .locals 1
+
+    .line 219
+    invoke-super {p0, p1, p2, p3}, Landroid/app/Activity;->onActivityResult(IILandroid/content/Intent;)V
+
+    .line 220
+    const/16 v0, 0x3e9
+
+    if-ne p1, v0, :cond_0
+
+    const/4 p1, -0x1
+
+    if-ne p2, p1, :cond_0
+
+    if-eqz p3, :cond_0
+
+    .line 221
+    const-string p1, "android.speech.extra.RESULTS"
+
+    invoke-virtual {p3, p1}, Landroid/content/Intent;->getStringArrayListExtra(Ljava/lang/String;)Ljava/util/ArrayList;
+
+    move-result-object p1
+
+    .line 222
+    if-eqz p1, :cond_0
+
+    invoke-virtual {p1}, Ljava/util/ArrayList;->isEmpty()Z
+
+    move-result p2
+
+    if-nez p2, :cond_0
+
+    .line 223
+    const/4 p2, 0x0
+
+    invoke-virtual {p1, p2}, Ljava/util/ArrayList;->get(I)Ljava/lang/Object;
+
+    move-result-object p1
+
+    check-cast p1, Ljava/lang/String;
+
+    .line 224
+    invoke-virtual {p0, p1}, Lcom/gathin/tvhome/VoiceAssistantActivity;->executeVoiceCommand(Ljava/lang/String;)V
+
+    .line 225
+    return-void
+
+    .line 228
+    :cond_0
+    const-string p1, "Listening Paused"
+
+    const-string p2, "Tap \'\ud83c\udf99\ufe0f Speak Now\' or choose an action chip below."
+
+    invoke-direct {p0, p1, p2}, Lcom/gathin/tvhome/VoiceAssistantActivity;->updateStatus(Ljava/lang/String;Ljava/lang/String;)V
+
+    .line 229
     return-void
 .end method
 
 .method protected onCreate(Landroid/os/Bundle;)V
     .locals 11
 
-    .line 75
+    .line 76
     invoke-super {p0, p1}, Landroid/app/Activity;->onCreate(Landroid/os/Bundle;)V
 
-    .line 78
+    .line 79
     new-instance p1, Landroid/widget/FrameLayout;
 
     invoke-direct {p1, p0}, Landroid/widget/FrameLayout;-><init>(Landroid/content/Context;)V
 
     iput-object p1, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->rootLayout:Landroid/widget/FrameLayout;
 
-    .line 79
+    .line 80
     iget-object p1, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->rootLayout:Landroid/widget/FrameLayout;
 
     const-string v0, "#E6080C15"
@@ -2469,27 +2561,27 @@
 
     invoke-virtual {p1, v0}, Landroid/widget/FrameLayout;->setBackgroundColor(I)V
 
-    .line 80
+    .line 81
     iget-object p1, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->rootLayout:Landroid/widget/FrameLayout;
 
     const/4 v0, 0x0
 
     invoke-virtual {p1, v0}, Landroid/widget/FrameLayout;->setFocusable(Z)V
 
-    .line 83
+    .line 84
     new-instance p1, Landroid/widget/LinearLayout;
 
     invoke-direct {p1, p0}, Landroid/widget/LinearLayout;-><init>(Landroid/content/Context;)V
 
-    .line 84
+    .line 85
     const/4 v1, 0x1
 
     invoke-virtual {p1, v1}, Landroid/widget/LinearLayout;->setOrientation(I)V
 
-    .line 85
+    .line 86
     invoke-virtual {p1, v1}, Landroid/widget/LinearLayout;->setGravity(I)V
 
-    .line 86
+    .line 87
     const/16 v2, 0x28
 
     invoke-direct {p0, v2}, Lcom/gathin/tvhome/VoiceAssistantActivity;->dp(I)I
@@ -2512,12 +2604,12 @@
 
     invoke-virtual {p1, v3, v5, v2, v4}, Landroid/widget/LinearLayout;->setPadding(IIII)V
 
-    .line 88
+    .line 89
     new-instance v2, Landroid/graphics/drawable/GradientDrawable;
 
     invoke-direct {v2}, Landroid/graphics/drawable/GradientDrawable;-><init>()V
 
-    .line 89
+    .line 90
     const-string v3, "#331E293B"
 
     invoke-static {v3}, Landroid/graphics/Color;->parseColor(Ljava/lang/String;)I
@@ -2526,7 +2618,7 @@
 
     invoke-virtual {v2, v3}, Landroid/graphics/drawable/GradientDrawable;->setColor(I)V
 
-    .line 90
+    .line 91
     const/16 v3, 0x1c
 
     invoke-direct {p0, v3}, Lcom/gathin/tvhome/VoiceAssistantActivity;->dp(I)I
@@ -2537,7 +2629,7 @@
 
     invoke-virtual {v2, v3}, Landroid/graphics/drawable/GradientDrawable;->setCornerRadius(F)V
 
-    .line 91
+    .line 92
     invoke-direct {p0, v1}, Lcom/gathin/tvhome/VoiceAssistantActivity;->dp(I)I
 
     move-result v3
@@ -2550,10 +2642,10 @@
 
     invoke-virtual {v2, v3, v4}, Landroid/graphics/drawable/GradientDrawable;->setStroke(II)V
 
-    .line 92
+    .line 93
     invoke-virtual {p1, v2}, Landroid/widget/LinearLayout;->setBackground(Landroid/graphics/drawable/Drawable;)V
 
-    .line 94
+    .line 95
     new-instance v2, Landroid/widget/FrameLayout$LayoutParams;
 
     const/16 v3, 0x2f8
@@ -2566,49 +2658,59 @@
 
     invoke-direct {v2, v3, v4}, Landroid/widget/FrameLayout$LayoutParams;-><init>(II)V
 
-    .line 95
+    .line 96
     const/16 v3, 0x11
 
     iput v3, v2, Landroid/widget/FrameLayout$LayoutParams;->gravity:I
 
-    .line 96
+    .line 97
     iget-object v5, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->rootLayout:Landroid/widget/FrameLayout;
 
     invoke-virtual {v5, p1, v2}, Landroid/widget/FrameLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
 
-    .line 99
+    .line 100
     new-instance v2, Landroid/view/View;
 
     invoke-direct {v2, p0}, Landroid/view/View;-><init>(Landroid/content/Context;)V
 
     iput-object v2, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->siriOrb:Landroid/view/View;
 
-    .line 100
+    .line 101
+    iget-object v2, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->siriOrb:Landroid/view/View;
+
+    invoke-virtual {v2, v1}, Landroid/view/View;->setFocusable(Z)V
+
+    .line 102
+    iget-object v2, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->siriOrb:Landroid/view/View;
+
+    invoke-virtual {v2, v1}, Landroid/view/View;->setClickable(Z)V
+
+    .line 103
     new-instance v2, Landroid/graphics/drawable/GradientDrawable;
 
     invoke-direct {v2}, Landroid/graphics/drawable/GradientDrawable;-><init>()V
 
-    .line 101
+    .line 104
     invoke-virtual {v2, v1}, Landroid/graphics/drawable/GradientDrawable;->setShape(I)V
 
-    .line 102
+    .line 105
     nop
 
-    .line 103
+    .line 106
     const-string v5, "#38BDF8"
 
     invoke-static {v5}, Landroid/graphics/Color;->parseColor(Ljava/lang/String;)I
 
     move-result v6
 
-    .line 104
+    .line 107
     const-string v7, "#A855F7"
 
     invoke-static {v7}, Landroid/graphics/Color;->parseColor(Ljava/lang/String;)I
 
     move-result v7
 
-    .line 105
+    .line 108
     const-string v8, "#EC4899"
 
     invoke-static {v8}, Landroid/graphics/Color;->parseColor(Ljava/lang/String;)I
@@ -2619,13 +2721,13 @@
 
     move-result-object v6
 
-    .line 102
+    .line 105
     invoke-virtual {v2, v6}, Landroid/graphics/drawable/GradientDrawable;->setColors([I)V
 
-    .line 107
+    .line 110
     invoke-virtual {v2, v1}, Landroid/graphics/drawable/GradientDrawable;->setGradientType(I)V
 
-    .line 108
+    .line 111
     const/16 v6, 0x2d
 
     invoke-direct {p0, v6}, Lcom/gathin/tvhome/VoiceAssistantActivity;->dp(I)I
@@ -2636,12 +2738,21 @@
 
     invoke-virtual {v2, v6}, Landroid/graphics/drawable/GradientDrawable;->setGradientRadius(F)V
 
-    .line 109
+    .line 112
     iget-object v6, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->siriOrb:Landroid/view/View;
 
     invoke-virtual {v6, v2}, Landroid/view/View;->setBackground(Landroid/graphics/drawable/Drawable;)V
 
-    .line 111
+    .line 114
+    iget-object v2, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->siriOrb:Landroid/view/View;
+
+    new-instance v6, Lcom/gathin/tvhome/VoiceAssistantActivity$2;
+
+    invoke-direct {v6, p0}, Lcom/gathin/tvhome/VoiceAssistantActivity$2;-><init>(Lcom/gathin/tvhome/VoiceAssistantActivity;)V
+
+    invoke-virtual {v2, v6}, Landroid/view/View;->setOnClickListener(Landroid/view/View$OnClickListener;)V
+
+    .line 121
     new-instance v2, Landroid/widget/LinearLayout$LayoutParams;
 
     const/16 v6, 0x5a
@@ -2656,7 +2767,7 @@
 
     invoke-direct {v2, v7, v6}, Landroid/widget/LinearLayout$LayoutParams;-><init>(II)V
 
-    .line 112
+    .line 122
     const/16 v6, 0x12
 
     invoke-direct {p0, v6}, Lcom/gathin/tvhome/VoiceAssistantActivity;->dp(I)I
@@ -2665,33 +2776,33 @@
 
     iput v6, v2, Landroid/widget/LinearLayout$LayoutParams;->bottomMargin:I
 
-    .line 113
+    .line 123
     iget-object v6, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->siriOrb:Landroid/view/View;
 
     invoke-virtual {p1, v6, v2}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
 
-    .line 116
+    .line 126
     new-instance v2, Landroid/widget/TextView;
 
     invoke-direct {v2, p0}, Landroid/widget/TextView;-><init>(Landroid/content/Context;)V
 
     iput-object v2, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->titleView:Landroid/widget/TextView;
 
-    .line 117
+    .line 127
     iget-object v2, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->titleView:Landroid/widget/TextView;
 
     const-string v6, "SIRI VOICE ASSISTANT"
 
     invoke-virtual {v2, v6}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
-    .line 118
+    .line 128
     iget-object v2, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->titleView:Landroid/widget/TextView;
 
     const/high16 v6, 0x41400000    # 12.0f
 
     invoke-virtual {v2, v6}, Landroid/widget/TextView;->setTextSize(F)V
 
-    .line 119
+    .line 129
     iget-object v2, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->titleView:Landroid/widget/TextView;
 
     const-string v6, "#94A3B8"
@@ -2702,7 +2813,7 @@
 
     invoke-virtual {v2, v6}, Landroid/widget/TextView;->setTextColor(I)V
 
-    .line 120
+    .line 130
     iget-object v2, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->titleView:Landroid/widget/TextView;
 
     const-string v6, "sans-serif-medium"
@@ -2713,45 +2824,45 @@
 
     invoke-virtual {v2, v6}, Landroid/widget/TextView;->setTypeface(Landroid/graphics/Typeface;)V
 
-    .line 121
+    .line 131
     iget-object v2, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->titleView:Landroid/widget/TextView;
 
     const v6, 0x3e4ccccd    # 0.2f
 
     invoke-virtual {v2, v6}, Landroid/widget/TextView;->setLetterSpacing(F)V
 
-    .line 122
+    .line 132
     iget-object v2, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->titleView:Landroid/widget/TextView;
 
     invoke-virtual {v2, v3}, Landroid/widget/TextView;->setGravity(I)V
 
-    .line 123
+    .line 133
     iget-object v2, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->titleView:Landroid/widget/TextView;
 
     invoke-virtual {p1, v2}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
 
-    .line 126
+    .line 136
     new-instance v2, Landroid/widget/TextView;
 
     invoke-direct {v2, p0}, Landroid/widget/TextView;-><init>(Landroid/content/Context;)V
 
     iput-object v2, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->transcriptView:Landroid/widget/TextView;
 
-    .line 127
+    .line 137
     iget-object v2, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->transcriptView:Landroid/widget/TextView;
 
     const-string v6, "Listening... Say a command or choose below"
 
     invoke-virtual {v2, v6}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
-    .line 128
+    .line 138
     iget-object v2, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->transcriptView:Landroid/widget/TextView;
 
     const/high16 v6, 0x41a00000    # 20.0f
 
     invoke-virtual {v2, v6}, Landroid/widget/TextView;->setTextSize(F)V
 
-    .line 129
+    .line 139
     iget-object v2, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->transcriptView:Landroid/widget/TextView;
 
     const-string v6, "#F8FAFC"
@@ -2762,7 +2873,7 @@
 
     invoke-virtual {v2, v6}, Landroid/widget/TextView;->setTextColor(I)V
 
-    .line 130
+    .line 140
     iget-object v2, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->transcriptView:Landroid/widget/TextView;
 
     const-string v6, "sans-serif"
@@ -2773,12 +2884,12 @@
 
     invoke-virtual {v2, v1}, Landroid/widget/TextView;->setTypeface(Landroid/graphics/Typeface;)V
 
-    .line 131
+    .line 141
     iget-object v1, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->transcriptView:Landroid/widget/TextView;
 
     invoke-virtual {v1, v3}, Landroid/widget/TextView;->setGravity(I)V
 
-    .line 132
+    .line 142
     iget-object v1, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->transcriptView:Landroid/widget/TextView;
 
     const/16 v2, 0x10
@@ -2805,33 +2916,33 @@
 
     invoke-virtual {v1, v6, v8, v9, v10}, Landroid/widget/TextView;->setPadding(IIII)V
 
-    .line 133
+    .line 143
     iget-object v1, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->transcriptView:Landroid/widget/TextView;
 
     invoke-virtual {p1, v1}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
 
-    .line 136
+    .line 146
     new-instance v1, Landroid/widget/TextView;
 
     invoke-direct {v1, p0}, Landroid/widget/TextView;-><init>(Landroid/content/Context;)V
 
     iput-object v1, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->responseView:Landroid/widget/TextView;
 
-    .line 137
+    .line 147
     iget-object v1, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->responseView:Landroid/widget/TextView;
 
     const-string v6, "Try saying: \'Hey Siri\', \'Open YouTube\', \'Clean RAM\', \'Sleep 30 min\'..."
 
     invoke-virtual {v1, v6}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
-    .line 138
+    .line 148
     iget-object v1, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->responseView:Landroid/widget/TextView;
 
     const/high16 v6, 0x41500000    # 13.0f
 
     invoke-virtual {v1, v6}, Landroid/widget/TextView;->setTextSize(F)V
 
-    .line 139
+    .line 149
     iget-object v1, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->responseView:Landroid/widget/TextView;
 
     invoke-static {v5}, Landroid/graphics/Color;->parseColor(Ljava/lang/String;)I
@@ -2840,12 +2951,12 @@
 
     invoke-virtual {v1, v5}, Landroid/widget/TextView;->setTextColor(I)V
 
-    .line 140
+    .line 150
     iget-object v1, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->responseView:Landroid/widget/TextView;
 
     invoke-virtual {v1, v3}, Landroid/widget/TextView;->setGravity(I)V
 
-    .line 141
+    .line 151
     iget-object v1, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->responseView:Landroid/widget/TextView;
 
     invoke-direct {p0, v2}, Lcom/gathin/tvhome/VoiceAssistantActivity;->dp(I)I
@@ -2864,23 +2975,23 @@
 
     invoke-virtual {v1, v3, v0, v5, v6}, Landroid/widget/TextView;->setPadding(IIII)V
 
-    .line 142
+    .line 152
     iget-object v1, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->responseView:Landroid/widget/TextView;
 
     invoke-virtual {p1, v1}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
 
-    .line 145
+    .line 155
     new-instance v1, Landroid/widget/HorizontalScrollView;
 
     invoke-direct {v1, p0}, Landroid/widget/HorizontalScrollView;-><init>(Landroid/content/Context;)V
 
-    .line 146
+    .line 156
     invoke-virtual {v1, v0}, Landroid/widget/HorizontalScrollView;->setHorizontalScrollBarEnabled(Z)V
 
-    .line 147
+    .line 157
     invoke-virtual {v1, v0}, Landroid/widget/HorizontalScrollView;->setClipToPadding(Z)V
 
-    .line 148
+    .line 158
     invoke-direct {p0, v7}, Lcom/gathin/tvhome/VoiceAssistantActivity;->dp(I)I
 
     move-result v3
@@ -2891,164 +3002,179 @@
 
     invoke-virtual {v1, v3, v0, v5, v0}, Landroid/widget/HorizontalScrollView;->setPadding(IIII)V
 
-    .line 150
+    .line 160
     new-instance v3, Landroid/widget/LinearLayout;
 
     invoke-direct {v3, p0}, Landroid/widget/LinearLayout;-><init>(Landroid/content/Context;)V
 
     iput-object v3, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->chipsContainer:Landroid/widget/LinearLayout;
 
-    .line 151
+    .line 161
     iget-object v3, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->chipsContainer:Landroid/widget/LinearLayout;
 
     invoke-virtual {v3, v0}, Landroid/widget/LinearLayout;->setOrientation(I)V
 
-    .line 152
+    .line 162
     iget-object v0, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->chipsContainer:Landroid/widget/LinearLayout;
 
     invoke-virtual {v0, v2}, Landroid/widget/LinearLayout;->setGravity(I)V
 
-    .line 153
+    .line 163
     iget-object v0, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->chipsContainer:Landroid/widget/LinearLayout;
 
     invoke-virtual {v1, v0}, Landroid/widget/HorizontalScrollView;->addView(Landroid/view/View;)V
 
-    .line 154
+    .line 164
     new-instance v0, Landroid/widget/LinearLayout$LayoutParams;
 
     invoke-direct {v0, v4, v4}, Landroid/widget/LinearLayout$LayoutParams;-><init>(II)V
 
     invoke-virtual {p1, v1, v0}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
 
-    .line 157
+    .line 167
+    const-string p1, "\ud83c\udf99\ufe0f Speak Now"
+
+    const-string v0, "SPEAK_ACTION"
+
+    invoke-direct {p0, p1, v0}, Lcom/gathin/tvhome/VoiceAssistantActivity;->addChip(Ljava/lang/String;Ljava/lang/String;)V
+
+    .line 168
     const-string p1, "\ud83d\ude80 Boost RAM"
 
     const-string v0, "clean ram"
 
     invoke-direct {p0, p1, v0}, Lcom/gathin/tvhome/VoiceAssistantActivity;->addChip(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 158
+    .line 169
     const-string p1, "\ud83d\udd34 YouTube"
 
     const-string v0, "open youtube"
 
     invoke-direct {p0, p1, v0}, Lcom/gathin/tvhome/VoiceAssistantActivity;->addChip(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 159
+    .line 170
     const-string p1, "\ud83c\udfac Screensaver"
 
     const-string v0, "screensaver"
 
     invoke-direct {p0, p1, v0}, Lcom/gathin/tvhome/VoiceAssistantActivity;->addChip(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 160
+    .line 171
     const-string p1, "\u23f0 30m Sleep"
 
     const-string v0, "sleep 30 minutes"
 
     invoke-direct {p0, p1, v0}, Lcom/gathin/tvhome/VoiceAssistantActivity;->addChip(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 161
+    .line 172
     const-string p1, "\ud83c\udf7f Trending Movies"
 
     const-string v0, "trending movies"
 
     invoke-direct {p0, p1, v0}, Lcom/gathin/tvhome/VoiceAssistantActivity;->addChip(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 162
+    .line 173
     const-string p1, "\ud83d\udd07 Mute TV"
 
     const-string v0, "mute"
 
     invoke-direct {p0, p1, v0}, Lcom/gathin/tvhome/VoiceAssistantActivity;->addChip(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 163
+    .line 174
     const-string p1, "\u2699\ufe0f Settings"
 
     const-string v0, "open settings"
 
     invoke-direct {p0, p1, v0}, Lcom/gathin/tvhome/VoiceAssistantActivity;->addChip(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 164
+    .line 175
     const-string p1, "\ud83d\udd52 Time & Date"
 
     const-string v0, "time"
 
     invoke-direct {p0, p1, v0}, Lcom/gathin/tvhome/VoiceAssistantActivity;->addChip(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 166
+    .line 177
     iget-object p1, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->rootLayout:Landroid/widget/FrameLayout;
 
     invoke-virtual {p0, p1}, Lcom/gathin/tvhome/VoiceAssistantActivity;->setContentView(Landroid/view/View;)V
 
-    .line 169
+    .line 180
     invoke-direct {p0}, Lcom/gathin/tvhome/VoiceAssistantActivity;->initTTS()V
 
-    .line 172
+    .line 183
     iget-object p1, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->mainHandler:Landroid/os/Handler;
 
     iget-object v0, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->pulseRunnable:Ljava/lang/Runnable;
 
     invoke-virtual {p1, v0}, Landroid/os/Handler;->post(Ljava/lang/Runnable;)Z
 
-    .line 175
-    invoke-direct {p0}, Lcom/gathin/tvhome/VoiceAssistantActivity;->initSpeechRecognizer()V
+    .line 186
+    iget-object p1, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->mainHandler:Landroid/os/Handler;
 
-    .line 176
+    new-instance v0, Lcom/gathin/tvhome/VoiceAssistantActivity$3;
+
+    invoke-direct {v0, p0}, Lcom/gathin/tvhome/VoiceAssistantActivity$3;-><init>(Lcom/gathin/tvhome/VoiceAssistantActivity;)V
+
+    const-wide/16 v1, 0x12c
+
+    invoke-virtual {p1, v0, v1, v2}, Landroid/os/Handler;->postDelayed(Ljava/lang/Runnable;J)Z
+
+    .line 195
     return-void
 .end method
 
 .method protected onDestroy()V
     .locals 2
 
-    .line 648
+    .line 688
     invoke-super {p0}, Landroid/app/Activity;->onDestroy()V
 
-    .line 649
+    .line 689
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->isDestroyed:Z
 
-    .line 650
+    .line 690
     iget-object v0, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->mainHandler:Landroid/os/Handler;
 
     const/4 v1, 0x0
 
     invoke-virtual {v0, v1}, Landroid/os/Handler;->removeCallbacksAndMessages(Ljava/lang/Object;)V
 
-    .line 651
+    .line 691
     iget-object v0, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->speechRecognizer:Landroid/speech/SpeechRecognizer;
 
     if-eqz v0, :cond_0
 
-    .line 652
+    .line 692
     iget-object v0, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->speechRecognizer:Landroid/speech/SpeechRecognizer;
 
     invoke-virtual {v0}, Landroid/speech/SpeechRecognizer;->destroy()V
 
-    .line 653
+    .line 693
     iput-object v1, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->speechRecognizer:Landroid/speech/SpeechRecognizer;
 
-    .line 655
+    .line 695
     :cond_0
     iget-object v0, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->textToSpeech:Landroid/speech/tts/TextToSpeech;
 
     if-eqz v0, :cond_1
 
-    .line 656
+    .line 696
     iget-object v0, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->textToSpeech:Landroid/speech/tts/TextToSpeech;
 
     invoke-virtual {v0}, Landroid/speech/tts/TextToSpeech;->stop()I
 
-    .line 657
+    .line 697
     iget-object v0, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->textToSpeech:Landroid/speech/tts/TextToSpeech;
 
     invoke-virtual {v0}, Landroid/speech/tts/TextToSpeech;->shutdown()V
 
-    .line 658
+    .line 698
     iput-object v1, p0, Lcom/gathin/tvhome/VoiceAssistantActivity;->textToSpeech:Landroid/speech/tts/TextToSpeech;
 
-    .line 660
+    .line 700
     :cond_1
     return-void
 .end method
@@ -3056,24 +3182,40 @@
 .method public onKeyDown(ILandroid/view/KeyEvent;)Z
     .locals 1
 
-    .line 639
+    .line 679
     const/4 v0, 0x4
 
     if-ne p1, v0, :cond_0
 
-    .line 640
+    .line 680
     invoke-virtual {p0}, Lcom/gathin/tvhome/VoiceAssistantActivity;->finish()V
 
-    .line 641
+    .line 681
     const/4 p1, 0x1
 
     return p1
 
-    .line 643
+    .line 683
     :cond_0
     invoke-super {p0, p1, p2}, Landroid/app/Activity;->onKeyDown(ILandroid/view/KeyEvent;)Z
 
     move-result p1
 
     return p1
+.end method
+
+.method protected onNewIntent(Landroid/content/Intent;)V
+    .locals 0
+
+    .line 199
+    invoke-super {p0, p1}, Landroid/app/Activity;->onNewIntent(Landroid/content/Intent;)V
+
+    .line 200
+    invoke-virtual {p0, p1}, Lcom/gathin/tvhome/VoiceAssistantActivity;->setIntent(Landroid/content/Intent;)V
+
+    .line 201
+    invoke-virtual {p0}, Lcom/gathin/tvhome/VoiceAssistantActivity;->launchVoiceInput()V
+
+    .line 202
+    return-void
 .end method

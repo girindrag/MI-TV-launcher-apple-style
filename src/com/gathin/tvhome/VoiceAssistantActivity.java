@@ -24,7 +24,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -36,6 +35,7 @@ import java.util.Locale;
 
 public class VoiceAssistantActivity extends Activity {
     private static final String TAG = "VoiceAssistant";
+    private static final int REQUEST_VOICE = 1001;
 
     private FrameLayout rootLayout;
     private View siriOrb;
@@ -49,6 +49,7 @@ public class VoiceAssistantActivity extends Activity {
     private Handler mainHandler = new Handler(Looper.getMainLooper());
     private boolean isListening = false;
     private boolean isDestroyed = false;
+    private boolean hasTriggeredInitialVoice = false;
 
     // Animation runnable for Siri pulse
     private float pulseScale = 1.0f;
@@ -97,6 +98,8 @@ public class VoiceAssistantActivity extends Activity {
 
         // Siri Orb / Wave Graphic (Iridescent Apple Siri Gradient)
         siriOrb = new View(this);
+        siriOrb.setFocusable(true);
+        siriOrb.setClickable(true);
         GradientDrawable orbBg = new GradientDrawable();
         orbBg.setShape(GradientDrawable.OVAL);
         orbBg.setColors(new int[]{
@@ -107,6 +110,13 @@ public class VoiceAssistantActivity extends Activity {
         orbBg.setGradientType(GradientDrawable.RADIAL_GRADIENT);
         orbBg.setGradientRadius(dp(45));
         siriOrb.setBackground(orbBg);
+
+        siriOrb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launchVoiceInput();
+            }
+        });
 
         LinearLayout.LayoutParams orbParams = new LinearLayout.LayoutParams(dp(90), dp(90));
         orbParams.bottomMargin = dp(18);
@@ -154,6 +164,7 @@ public class VoiceAssistantActivity extends Activity {
         centerPanel.addView(scroll, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
         // Add Quick Action Chips
+        addChip("🎙️ Speak Now", "SPEAK_ACTION");
         addChip("🚀 Boost RAM", "clean ram");
         addChip("🔴 YouTube", "open youtube");
         addChip("🎬 Screensaver", "screensaver");
@@ -171,8 +182,50 @@ public class VoiceAssistantActivity extends Activity {
         // Start Siri Pulse Animation
         mainHandler.post(pulseRunnable);
 
-        // Initialize Speech Recognition
-        initSpeechRecognizer();
+        // Launch Voice Input after slight layout delay
+        mainHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (!hasTriggeredInitialVoice && !isDestroyed) {
+                    hasTriggeredInitialVoice = true;
+                    launchVoiceInput();
+                }
+            }
+        }, 300);
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+        launchVoiceInput();
+    }
+
+    public void launchVoiceInput() {
+        try {
+            Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+            intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+            intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+            intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Say a command: 'Open YouTube', 'Clean RAM', 'Sleep 30 min'...");
+            startActivityForResult(intent, REQUEST_VOICE);
+        } catch (Exception e) {
+            Log.w(TAG, "RecognizerIntent failed, falling back to SpeechRecognizer", e);
+            initSpeechRecognizer();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_VOICE && resultCode == RESULT_OK && data != null) {
+            ArrayList<String> matches = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+            if (matches != null && !matches.isEmpty()) {
+                String spoken = matches.get(0);
+                executeVoiceCommand(spoken);
+                return;
+            }
+        }
+        updateStatus("Listening Paused", "Tap '🎙️ Speak Now' or choose an action chip below.");
     }
 
     private void addChip(final String label, final String command) {
@@ -217,7 +270,11 @@ public class VoiceAssistantActivity extends Activity {
         chip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                executeVoiceCommand(command);
+                if ("SPEAK_ACTION".equals(command)) {
+                    launchVoiceInput();
+                } else {
+                    executeVoiceCommand(command);
+                }
             }
         });
 
@@ -251,96 +308,79 @@ public class VoiceAssistantActivity extends Activity {
     }
 
     private void initSpeechRecognizer() {
-        if (SpeechRecognizer.isRecognitionAvailable(this)) {
-            try {
-                speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
-                speechRecognizer.setRecognitionListener(new RecognitionListener() {
-                    @Override
-                    public void onReadyForSpeech(Bundle params) {
-                        isListening = true;
-                        updateStatus("Listening...", "Say a command: 'Open YouTube', 'Clean RAM', 'Hey Siri'...");
-                    }
-
-                    @Override
-                    public void onBeginningOfSpeech() {
-                        pulseScale = 1.2f;
-                    }
-
-                    @Override
-                    public void onRmsChanged(float rmsdB) {
-                        // Dynamic Siri orb pulse based on mic input
-                        if (rmsdB > 2.0f && siriOrb != null) {
-                            float scale = 1.0f + (rmsdB / 20.0f);
-                            if (scale > 1.4f) scale = 1.4f;
-                            siriOrb.setScaleX(scale);
-                            siriOrb.setScaleY(scale);
-                        }
-                    }
-
-                    @Override
-                    public void onBufferReceived(byte[] buffer) {}
-
-                    @Override
-                    public void onEndOfSpeech() {
-                        isListening = false;
-                        updateStatus("Processing...", "Analyzing command...");
-                    }
-
-                    @Override
-                    public void onError(int error) {
-                        isListening = false;
-                        String msg = "Tap a suggestion chip or press Mic again to speak";
-                        if (error == SpeechRecognizer.ERROR_NO_MATCH) {
-                            msg = "Didn't catch that. Please speak clearly or choose a chip below.";
-                        }
-                        updateStatus("Listening Paused", msg);
-                    }
-
-                    @Override
-                    public void onResults(Bundle results) {
-                        isListening = false;
-                        ArrayList<String> matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
-                        if (matches != null && !matches.isEmpty()) {
-                            String spokenText = matches.get(0);
-                            executeVoiceCommand(spokenText);
-                        } else {
-                            updateStatus("Listening Paused", "No voice detected. Choose a chip below.");
-                        }
-                    }
-
-                    @Override
-                    public void onPartialResults(Bundle partialResults) {
-                        ArrayList<String> matches = partialResults.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
-                        if (matches != null && !matches.isEmpty()) {
-                            transcriptView.setText("“" + matches.get(0) + "”");
-                        }
-                    }
-
-                    @Override
-                    public void onEvent(int eventType, Bundle params) {}
-                });
-
-                startListening();
-            } catch (Exception e) {
-                Log.e(TAG, "Error initializing speech recognizer", e);
-                updateStatus("Voice Ready", "Microphone available. Choose an action below or speak.");
-            }
-        } else {
-            updateStatus("Voice Assistant Ready", "Select an action chip below using your TV remote.");
-        }
-    }
-
-    private void startListening() {
-        if (speechRecognizer == null) return;
+        if (!SpeechRecognizer.isRecognitionAvailable(this)) return;
         try {
+            if (speechRecognizer != null) {
+                speechRecognizer.destroy();
+            }
+            speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
+            speechRecognizer.setRecognitionListener(new RecognitionListener() {
+                @Override
+                public void onReadyForSpeech(Bundle params) {
+                    isListening = true;
+                    updateStatus("Listening...", "Say a command: 'Open YouTube', 'Clean RAM', 'Hey Siri'...");
+                }
+
+                @Override
+                public void onBeginningOfSpeech() {
+                    pulseScale = 1.2f;
+                }
+
+                @Override
+                public void onRmsChanged(float rmsdB) {
+                    if (rmsdB > 2.0f && siriOrb != null) {
+                        float scale = 1.0f + (rmsdB / 20.0f);
+                        if (scale > 1.4f) scale = 1.4f;
+                        siriOrb.setScaleX(scale);
+                        siriOrb.setScaleY(scale);
+                    }
+                }
+
+                @Override
+                public void onBufferReceived(byte[] buffer) {}
+
+                @Override
+                public void onEndOfSpeech() {
+                    isListening = false;
+                    updateStatus("Processing...", "Analyzing command...");
+                }
+
+                @Override
+                public void onError(int error) {
+                    isListening = false;
+                    updateStatus("Listening Paused", "Tap '🎙️ Speak Now' or choose a chip below.");
+                }
+
+                @Override
+                public void onResults(Bundle results) {
+                    isListening = false;
+                    ArrayList<String> matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
+                    if (matches != null && !matches.isEmpty()) {
+                        executeVoiceCommand(matches.get(0));
+                    } else {
+                        updateStatus("Listening Paused", "No voice detected. Choose a chip below.");
+                    }
+                }
+
+                @Override
+                public void onPartialResults(Bundle partialResults) {
+                    ArrayList<String> matches = partialResults.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
+                    if (matches != null && !matches.isEmpty()) {
+                        transcriptView.setText("“" + matches.get(0) + "”");
+                    }
+                }
+
+                @Override
+                public void onEvent(int eventType, Bundle params) {}
+            });
+
             Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
             intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
             intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
             intent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 3);
-            intent.putExtra(RecognizerIntent.EXTRA_PARTIAL_RESULTS, true);
             speechRecognizer.startListening(intent);
         } catch (Exception e) {
-            Log.e(TAG, "Error startListening", e);
+            Log.e(TAG, "Error in initSpeechRecognizer", e);
         }
     }
 
@@ -361,7 +401,7 @@ public class VoiceAssistantActivity extends Activity {
 
         transcriptView.setText("“" + rawCommand + "”");
 
-        // 1. Wake Words & Assistant Greetings (Hey Siri / OK Google / Alexa)
+        // 1. Wake Words & Greetings
         if (cmd.contains("hey siri") || cmd.contains("siri") || cmd.contains("ok google") || cmd.contains("alexa") || cmd.contains("hello") || cmd.contains("who are you")) {
             String reply = "I am your Apple TV Voice Assistant, ready to control your Mi TV! What would you like to do?";
             responseView.setText(reply);
@@ -369,7 +409,7 @@ public class VoiceAssistantActivity extends Activity {
             mainHandler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    startListening();
+                    launchVoiceInput();
                 }
             }, 3000);
             return;
@@ -549,7 +589,7 @@ public class VoiceAssistantActivity extends Activity {
 
         // 15. Trending Movies
         if (cmd.contains("trending") || cmd.contains("movie") || cmd.contains("show") || cmd.contains("imdb")) {
-            String topTitle = ImdbScreensaverManager.getCachedTopTitle();
+            String topTitle = ImdbScreensaverManager.getCachedTopTitle(this);
             if (topTitle == null || topTitle.isEmpty()) topTitle = "The Penguin, Dune Part Two, and Gladiator II";
             String reply = "Trending on IMDb right now: " + topTitle;
             responseView.setText("🍿 " + reply);
