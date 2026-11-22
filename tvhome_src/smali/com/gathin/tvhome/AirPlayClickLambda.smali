@@ -14,13 +14,13 @@
 .method public constructor <init>(Lcom/gathin/tvhome/MainActivity;)V
     .locals 0
 
-    .line 10
+    .line 11
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 11
+    .line 12
     iput-object p1, p0, Lcom/gathin/tvhome/AirPlayClickLambda;->activity:Lcom/gathin/tvhome/MainActivity;
 
-    .line 12
+    .line 13
     return-void
 .end method
 
@@ -29,7 +29,7 @@
 .method public onClick(Landroid/view/View;)V
     .locals 4
 
-    .line 18
+    .line 19
     const-string p1, "com.pigeoncast.screen.mirroring.android.tv"
 
     const/high16 v0, 0x10000000
@@ -45,10 +45,10 @@
 
     move-result-object v1
 
-    .line 19
+    .line 20
     if-nez v1, :cond_0
 
-    .line 20
+    .line 21
     iget-object v1, p0, Lcom/gathin/tvhome/AirPlayClickLambda;->activity:Lcom/gathin/tvhome/MainActivity;
 
     invoke-virtual {v1}, Lcom/gathin/tvhome/MainActivity;->getPackageManager()Landroid/content/pm/PackageManager;
@@ -59,16 +59,16 @@
 
     move-result-object v1
 
-    .line 22
+    .line 23
     :cond_0
     if-nez v1, :cond_1
 
-    .line 23
+    .line 24
     new-instance v1, Landroid/content/Intent;
 
     invoke-direct {v1}, Landroid/content/Intent;-><init>()V
 
-    .line 24
+    .line 25
     new-instance v2, Landroid/content/ComponentName;
 
     const-string v3, "com.mirror_universal.receiver.activity.SplashActivity"
@@ -77,78 +77,57 @@
 
     invoke-virtual {v1, v2}, Landroid/content/Intent;->setComponent(Landroid/content/ComponentName;)Landroid/content/Intent;
 
-    .line 26
+    .line 27
     :cond_1
     invoke-virtual {v1, v0}, Landroid/content/Intent;->addFlags(I)Landroid/content/Intent;
 
-    .line 27
+    .line 28
     iget-object p1, p0, Lcom/gathin/tvhome/AirPlayClickLambda;->activity:Lcom/gathin/tvhome/MainActivity;
 
     invoke-virtual {p1, v1}, Lcom/gathin/tvhome/MainActivity;->startActivity(Landroid/content/Intent;)V
     :try_end_0
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 28
+    .line 29
     return-void
 
-    .line 29
+    .line 30
     :catch_0
     move-exception p1
 
-    .line 33
-    :try_start_1
-    iget-object p1, p0, Lcom/gathin/tvhome/AirPlayClickLambda;->activity:Lcom/gathin/tvhome/MainActivity;
-
-    invoke-virtual {p1}, Lcom/gathin/tvhome/MainActivity;->getPackageManager()Landroid/content/pm/PackageManager;
-
-    move-result-object p1
-
-    const-string v1, "com.sand.aircasttv"
-
-    invoke-virtual {p1, v1}, Landroid/content/pm/PackageManager;->getLaunchIntentForPackage(Ljava/lang/String;)Landroid/content/Intent;
-
-    move-result-object p1
-
     .line 34
-    if-eqz p1, :cond_2
+    :try_start_1
+    new-instance p1, Landroid/content/Intent;
+
+    const-string v1, "android.intent.action.VIEW"
+
+    const-string v2, "market://details?id=com.pigeoncast.screen.mirroring.android.tv"
+
+    invoke-static {v2}, Landroid/net/Uri;->parse(Ljava/lang/String;)Landroid/net/Uri;
+
+    move-result-object v2
+
+    invoke-direct {p1, v1, v2}, Landroid/content/Intent;-><init>(Ljava/lang/String;Landroid/net/Uri;)V
 
     .line 35
     invoke-virtual {p1, v0}, Landroid/content/Intent;->addFlags(I)Landroid/content/Intent;
 
     .line 36
-    iget-object v1, p0, Lcom/gathin/tvhome/AirPlayClickLambda;->activity:Lcom/gathin/tvhome/MainActivity;
-
-    invoke-virtual {v1, p1}, Lcom/gathin/tvhome/MainActivity;->startActivity(Landroid/content/Intent;)V
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_1
-
-    .line 37
-    return-void
-
-    .line 39
-    :catch_1
-    move-exception p1
-
-    :cond_2
-    nop
-
-    .line 42
-    new-instance p1, Landroid/content/Intent;
-
-    iget-object v1, p0, Lcom/gathin/tvhome/AirPlayClickLambda;->activity:Lcom/gathin/tvhome/MainActivity;
-
-    const-class v2, Lcom/gathin/tvhome/AirPlayMirrorActivity;
-
-    invoke-direct {p1, v1, v2}, Landroid/content/Intent;-><init>(Landroid/content/Context;Ljava/lang/Class;)V
-
-    .line 43
-    invoke-virtual {p1, v0}, Landroid/content/Intent;->addFlags(I)Landroid/content/Intent;
-
-    .line 44
     iget-object v0, p0, Lcom/gathin/tvhome/AirPlayClickLambda;->activity:Lcom/gathin/tvhome/MainActivity;
 
     invoke-virtual {v0, p1}, Lcom/gathin/tvhome/MainActivity;->startActivity(Landroid/content/Intent;)V
+    :try_end_1
+    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_1
 
-    .line 45
+    goto :goto_0
+
+    .line 37
+    :catch_1
+    move-exception p1
+
+    :goto_0
+    nop
+
+    .line 38
     return-void
 .end method
