@@ -42,6 +42,7 @@
                 <TextView android:id="@id/btnBluetooth" android:nextFocusDown="@id/grid" android:contentDescription="@string/bluetooth" android:drawableStart="@drawable/ic_bluetooth" style="@style/TopButtonIcon" />
                 <TextView android:id="@id/btnReorder" android:nextFocusDown="@id/grid" android:contentDescription="@string/reorder" android:drawableStart="@drawable/ic_swap_vert" style="@style/TopButtonIcon" />
                 <TextView android:id="@id/btnLibraryTop" android:visibility="gone" android:nextFocusDown="@id/grid" android:contentDescription="@string/app_library" android:drawableStart="@drawable/ic_apps_pill" style="@style/TopButtonIcon" />
+                <TextView android:id="@id/btnVoice" android:nextFocusDown="@id/grid" android:contentDescription="Voice Assistant" android:drawableStart="@drawable/ic_mic" style="@style/TopButtonIcon" />
                 <TextView android:id="@id/btnControlCenter" android:nextFocusDown="@id/grid" android:contentDescription="Control Center" android:drawableStart="@drawable/ic_device_care" style="@style/TopButtonIcon" />
                 <TextView android:id="@id/btnChildLock" android:nextFocusDown="@id/grid" android:contentDescription="Child Lock" android:drawableStart="@drawable/ic_lock" style="@style/TopButtonIcon" />
                 <TextView android:id="@id/btnSettings" android:nextFocusDown="@id/grid" android:text="@string/settings" android:drawableStart="@drawable/ic_settings" style="@style/TopButton" />

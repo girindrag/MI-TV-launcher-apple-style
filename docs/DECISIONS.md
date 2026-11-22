@@ -10,6 +10,7 @@ This document records the architectural and engineering decisions made during th
 - [ADR-003: Dual-Layer Crossfade Architecture for Dynamic Screensaver](#adr-003-dual-layer-crossfade-architecture-for-dynamic-screensaver)
 - [ADR-004: Android Accessibility Service for Hardware Hotkey Interception](#adr-004-android-accessibility-service-for-hardware-hotkey-interception)
 - [ADR-005: Clutter-Free Ambient Screensaver (Clock-Only, No Captions)](#adr-005-clutter-free-ambient-screensaver-clock-only-no-captions)
+- [ADR-006: Apple Siri / Alexa Style Voice Assistant Subsystem](#adr-006-apple-siri--alexa-style-voice-assistant-subsystem)
 
 ---
 
@@ -65,3 +66,19 @@ This document records the architectural and engineering decisions made during th
 - **Consequences**:
   - ✅ Premium Apple TV ambient aesthetic.
   - ✅ High visual clarity without living room screen clutter.
+
+---
+
+### ADR-006: Apple Siri / Alexa Style Voice Assistant Subsystem
+- **Status**: Accepted
+- **Context**: Controlling Android TV purely with directional buttons can be tedious when searching for content, boosting performance, or adjusting sleep timers. Users expect conversational voice control similar to Apple Siri, Alexa, or Google Assistant.
+- **Decision**: Implement `VoiceAssistantActivity` and `TvVoiceAssistant`:
+  - Translucent Apple Siri glassmorphism overlay with dynamic pulsing gradient orb.
+  - Android `SpeechRecognizer` integration with system recognition engine (`Katniss`).
+  - Natural spoken audio feedback via Google `TextToSpeech` (TTS).
+  - Multi-intent parser for TV control: app launching, RAM cleaner, sleep timer, volume mute, weather, and time queries.
+  - D-Pad focusable glass suggestion chips for quiet or noisy environments.
+- **Consequences**:
+  - ✅ Fast, hands-free voice control across the entire television.
+  - ✅ Graceful audio and visual feedback.
+  - ✅ Remote-friendly D-Pad fallback chips if microphone is unavailable.

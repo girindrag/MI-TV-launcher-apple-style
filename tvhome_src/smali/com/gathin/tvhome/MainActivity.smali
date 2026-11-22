@@ -1393,6 +1393,18 @@
 
     :cond_main_yt_continue
 
+    invoke-virtual {p1}, Landroid/view/KeyEvent;->getKeyCode()I
+    move-result v0
+    invoke-virtual {p1}, Landroid/view/KeyEvent;->getAction()I
+    move-result v1
+    invoke-static {p0, v0, v1}, Lcom/gathin/tvhome/TvKeyHandler;->handleVoiceKeyFromActivity(Landroid/app/Activity;II)Z
+    move-result v0
+    if-eqz v0, :cond_main_voice_continue
+    const/4 v0, 0x1
+    return v0
+
+    :cond_main_voice_continue
+
     iget-object v0, p0, Lcom/gathin/tvhome/MainActivity;->settingsKeycodes:[I
 
     array-length v1, v0
@@ -5858,6 +5870,21 @@
     invoke-virtual {v7, v8}, Landroid/view/View;->setOnClickListener(Landroid/view/View$OnClickListener;)V
 
     :cond_32
+    const v7, 0x7f0900e4
+
+    invoke-virtual {v1, v7}, Landroid/app/Activity;->findViewById(I)Landroid/view/View;
+
+    move-result-object v7
+
+    if-eqz v7, :cond_voice_done
+
+    new-instance v8, Lcom/gathin/tvhome/VoiceClickLambda;
+
+    invoke-direct {v8, v1}, Lcom/gathin/tvhome/VoiceClickLambda;-><init>(Landroid/app/Activity;)V
+
+    invoke-virtual {v7, v8}, Landroid/view/View;->setOnClickListener(Landroid/view/View$OnClickListener;)V
+
+    :cond_voice_done
     const v7, 0x7f0900c1
 
     invoke-virtual {v1, v7}, Landroid/app/Activity;->findViewById(I)Landroid/view/View;

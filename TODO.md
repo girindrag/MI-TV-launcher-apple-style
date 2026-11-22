@@ -26,6 +26,13 @@ Active development checklist, completed milestones, and planned features for the
   - [x] Explicit routing to YouTube TV / SmartTube.
   - [x] Instant return to launcher on HOME key press via `HomeKeyService`.
 
+- [x] **Voice Assistant Engine (Hey Siri / Alexa / OK Google Style)**:
+  - [x] Apple TV Siri-style translucent glowing UI overlay with dynamic animated pulse wave.
+  - [x] Natural voice feedback powered by Text-to-Speech (TTS).
+  - [x] Full TV voice control: App launching, RAM booster, sleep timers, volume controls, screensaver trigger, time, and weather queries.
+  - [x] Top-bar Siri Mic button (`btnVoice`) and physical remote voice hotkey interception.
+  - [x] D-Pad focusable glass suggestion chips for quick remote execution.
+
 - [x] **TV Control Center & Power Tools**:
   - [x] One-click RAM cleaner / memory optimization.
   - [x] Sleep timer (15, 30, 60, 120 minutes).

@@ -219,6 +219,7 @@ def build_pdf(filename, repo_root):
         body_style
     ))
     story.append(Paragraph("• <b>Apple TV Aesthetics:</b> Translucent frost glass cards, smooth 1.1x D-Pad zoom, ambient dark blur backdrops.", bullet_style))
+    story.append(Paragraph("• <b>Siri / Alexa Voice Assistant:</b> Translucent glowing Siri orb overlay with natural spoken TTS feedback. Controls apps, RAM booster, sleep timers, screensaver, and volume.", bullet_style))
     story.append(Paragraph("• <b>Live IMDb Daily Sync:</b> Automatically fetches top trending movies and series via the open-source Cinemeta catalog and updates wallpapers daily.", bullet_style))
     story.append(Paragraph("• <b>Dynamic 4K Screensaver:</b> 14-second dual-layer crossfade engine with clean time and IMDb rating badge (no distracting location captions).", bullet_style))
     story.append(Paragraph("• <b>Remote Hotkey Interceptor:</b> Directly maps Xiaomi remote YouTube hotkey (keycodes 190, 288, 203) to YouTube TV / SmartTube, with instant HOME key return.", bullet_style))
@@ -334,6 +335,7 @@ def build_pdf(filename, repo_root):
     story.append(Paragraph("<b>1. Grant System Permissions & Remote Hotkeys (via ADB):</b>", h2_style))
     story.append(code_box(
         "adb shell \"pm grant com.gathin.tvhome android.permission.WRITE_SECURE_SETTINGS\"\n"
+        "adb shell \"pm grant com.gathin.tvhome android.permission.RECORD_AUDIO\"\n"
         "adb shell \"settings put secure enabled_accessibility_services com.gathin.tvhome/com.gathin.tvhome.HomeKeyService\"\n"
         "adb shell \"settings put secure accessibility_enabled 1\""
     ))

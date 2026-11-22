@@ -537,6 +537,17 @@
     return v0
 
     :cond_yt_resume
+    invoke-virtual {p1}, Landroid/view/KeyEvent;->getKeyCode()I
+    move-result v0
+    invoke-virtual {p1}, Landroid/view/KeyEvent;->getAction()I
+    move-result v1
+    invoke-static {p0, v0, v1}, Lcom/gathin/tvhome/TvKeyHandler;->handleVoiceKey(Landroid/content/Context;II)Z
+    move-result v0
+    if-eqz v0, :cond_voice_resume
+    const/4 v0, 0x1
+    return v0
+
+    :cond_voice_resume
     iget-boolean v0, p0, Lcom/gathin/tvhome/HomeKeyService;->consumeVolumeKeys:Z
 
     const/4 v1, 0x1

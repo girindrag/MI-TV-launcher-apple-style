@@ -15,13 +15,25 @@
 | :---: | :---: |
 | ![Home Screen](screenshots/home_screen_imdb.png) | ![Screensaver](screenshots/screensaver_imdb.png) |
 
-| YouTube Remote Integration | Classic Grid & App Launcher |
+| Siri Voice Assistant (TV Control) | YouTube Remote Integration |
 | :---: | :---: |
-| ![YouTube Launch](screenshots/yt_screen.png) | ![App Grid](screenshots/home_screen.png) |
+| ![Voice Assistant](screenshots/voice_assistant.png) | ![YouTube Launch](screenshots/yt_screen.png) |
 
 ---
 
 ## ✨ Features
+
+- **🎙️ Siri / Alexa Style Voice Assistant (`TvVoiceAssistant`)**:
+  - **Apple TV Siri Overlay**: Translucent frosted dark glass interface with an animated iridescent gradient pulsing orb.
+  - **Natural Spoken Feedback (TTS)**: Confirms commands aloud using Android TV Speech Services (e.g., *"Opening YouTube"*, *"RAM optimized"*, *"Sleep timer set for 30 minutes"*).
+  - **Hands-Free & Remote Control**: Activate via the top-bar Siri Mic button or remote voice hotkey (`KEYCODE_VOICE_ASSIST` 231 / `KEYCODE_SEARCH` 84).
+  - **Full TV Voice Control**:
+    - **Apps**: *"Open YouTube"*, *"Open Netflix"*, *"Prime Video"*, *"Hotstar"*, *"Settings"*, or any installed TV app.
+    - **Performance**: *"Clean RAM"*, *"Boost TV"*, *"Optimize memory"*.
+    - **Power & Timers**: *"Sleep timer 30 minutes"*, *"Sleep TV"*, *"Turn off TV"*.
+    - **Audio**: *"Mute"*, *"Unmute"*, *"Volume up"*, *"Volume down"*.
+    - **Information**: *"What time is it?"*, *"What's the weather?"*, *"Trending movies"*, *"Who are you?"*.
+  - **D-Pad Glass Suggestion Chips**: Quick-access focusable pills for instant 1-click execution without speaking.
 
 - **🍏 Apple TV (tvOS) Aesthetics**:
   - Sleek glassmorphism cards with smooth elevation and focus-scaling animations.
@@ -157,7 +169,10 @@ This compiles the smali resources from `tvhome_src/`, packages the APK, and sign
 ├── src/com/gathin/tvhome/         # Custom Java sources
 │   ├── AppleTvScreensaver.java     # Dual-layer crossfade 4K screensaver engine
 │   ├── ImdbScreensaverManager.java # Stremio Cinemeta open-source daily sync
-│   └── TvKeyHandler.java           # Remote hotkey interceptor for YouTube & Home
+│   ├── TvKeyHandler.java           # Remote hotkey interceptor for YouTube & Home
+│   ├── TvVoiceAssistant.java       # Voice assistant controller & key listener
+│   ├── VoiceAssistantActivity.java # Siri-style voice assistant dialog & TTS
+│   └── VoiceClickLambda.java       # Top bar mic button click listener
 └── tvhome_src/                    # Complete decompiled smali & resource project
     ├── AndroidManifest.xml
     ├── assets/                    # Built-in 4K aerial video assets

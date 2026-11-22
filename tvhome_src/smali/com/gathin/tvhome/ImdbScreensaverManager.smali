@@ -1004,10 +1004,67 @@
     return-object v1
 .end method
 
+.method public static getCachedTopTitle()Ljava/lang/String;
+    .locals 1
+
+    .line 306
+    const-string v0, "The Penguin, Dune Part Two, and Gladiator II"
+
+    return-object v0
+.end method
+
+.method public static getCachedTopTitle(Landroid/content/Context;)Ljava/lang/String;
+    .locals 1
+
+    .line 297
+    :try_start_0
+    invoke-static {p0}, Lcom/gathin/tvhome/ImdbScreensaverManager;->getCachedItems(Landroid/content/Context;)Ljava/util/List;
+
+    move-result-object p0
+
+    .line 298
+    if-eqz p0, :cond_0
+
+    invoke-interface {p0}, Ljava/util/List;->isEmpty()Z
+
+    move-result v0
+
+    if-nez v0, :cond_0
+
+    .line 299
+    const/4 v0, 0x0
+
+    invoke-interface {p0, v0}, Ljava/util/List;->get(I)Ljava/lang/Object;
+
+    move-result-object p0
+
+    check-cast p0, Lcom/gathin/tvhome/ImdbScreensaverManager$ImdbItem;
+
+    invoke-virtual {p0}, Lcom/gathin/tvhome/ImdbScreensaverManager$ImdbItem;->getDisplayName()Ljava/lang/String;
+
+    move-result-object p0
+    :try_end_0
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+
+    return-object p0
+
+    .line 301
+    :catch_0
+    move-exception p0
+
+    :cond_0
+    nop
+
+    .line 302
+    const-string p0, "The Penguin, Dune Part Two, and Gladiator II"
+
+    return-object p0
+.end method
+
 .method public static getTodayDateString()Ljava/lang/String;
     .locals 3
 
-    .line 297
+    .line 311
     :try_start_0
     new-instance v0, Ljava/text/SimpleDateFormat;
 
@@ -1017,7 +1074,7 @@
 
     invoke-direct {v0, v1, v2}, Ljava/text/SimpleDateFormat;-><init>(Ljava/lang/String;Ljava/util/Locale;)V
 
-    .line 298
+    .line 312
     new-instance v1, Ljava/util/Date;
 
     invoke-direct {v1}, Ljava/util/Date;-><init>()V
@@ -1030,11 +1087,11 @@
 
     return-object v0
 
-    .line 299
+    .line 313
     :catch_0
     move-exception v0
 
-    .line 300
+    .line 314
     const-string v0, "today"
 
     return-object v0

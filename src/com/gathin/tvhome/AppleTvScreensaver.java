@@ -75,6 +75,10 @@ public class AppleTvScreensaver {
         idleHandler.postDelayed(idleRunnable, IDLE_TIMEOUT_MS);
     }
 
+    public static void showScreensaver(final Activity activity) {
+        launchScreensaver(activity);
+    }
+
     public static void launchScreensaver(final Activity activity) {
         if (activity == null || activity.isFinishing()) return;
         if (activeScreensaverDialog != null && activeScreensaverDialog.isShowing()) return;
